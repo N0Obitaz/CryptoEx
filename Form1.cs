@@ -12,12 +12,12 @@ namespace WebSocketStreamingWithUI
 {
     public partial class Form1 : Form
     {
-       
+
         public Form1()
         {
             InitializeComponent();
 
-           
+
             this.Load += Form1_Load_1;
 
             priceLabels = new Dictionary<string, Label>
@@ -50,6 +50,9 @@ namespace WebSocketStreamingWithUI
 
         }
 
+        private void labelBTC_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
