@@ -63,11 +63,24 @@
             label23 = new Label();
             assetTicker = new Label();
             marketRatePanel = new Panel();
-            actionBtn = new Button();
             actionLabel = new Label();
             marketCap = new Label();
             priceLabel = new Label();
+            panel1 = new Panel();
+            marketButton = new Button();
+            portfolioButton = new Button();
+            sellButton = new Button();
+            exchangeButton = new Button();
+            label3 = new Label();
+            panel2 = new Panel();
+            exchangeNowButton = new Button();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
             marketRatePanel.SuspendLayout();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // printDialog1
@@ -83,7 +96,7 @@
             label1.AutoSize = true;
             label1.FlatStyle = FlatStyle.Popup;
             label1.Font = new Font("Segoe UI", 13.2000008F);
-            label1.Location = new Point(90, 111);
+            label1.Location = new Point(24, 19);
             label1.Name = "label1";
             label1.Size = new Size(0, 31);
             label1.TabIndex = 4;
@@ -99,7 +112,6 @@
             labelBTC.Size = new Size(25, 30);
             labelBTC.TabIndex = 0;
             labelBTC.Text = "0";
-            labelBTC.Click += labelBTC_Click;
             // 
             // labelBTCTicker
             // 
@@ -467,7 +479,10 @@
             // marketRatePanel
             // 
             marketRatePanel.BackColor = SystemColors.GradientActiveCaption;
-            marketRatePanel.Controls.Add(actionBtn);
+            marketRatePanel.Controls.Add(button3);
+            marketRatePanel.Controls.Add(button4);
+            marketRatePanel.Controls.Add(button2);
+            marketRatePanel.Controls.Add(button1);
             marketRatePanel.Controls.Add(actionLabel);
             marketRatePanel.Controls.Add(marketCap);
             marketRatePanel.Controls.Add(priceLabel);
@@ -502,25 +517,10 @@
             marketRatePanel.Controls.Add(dollarSymbol);
             marketRatePanel.Controls.Add(labelBTCTicker);
             marketRatePanel.Controls.Add(labelBTC);
-            marketRatePanel.Location = new Point(118, 149);
+            marketRatePanel.Location = new Point(67, 251);
             marketRatePanel.Name = "marketRatePanel";
-            marketRatePanel.Size = new Size(669, 458);
+            marketRatePanel.Size = new Size(869, 443);
             marketRatePanel.TabIndex = 33;
-            // 
-            // actionBtn
-            // 
-            actionBtn.BackColor = Color.CornflowerBlue;
-            actionBtn.Cursor = Cursors.Hand;
-            actionBtn.FlatAppearance.BorderSize = 0;
-            actionBtn.FlatStyle = FlatStyle.Flat;
-            actionBtn.ForeColor = SystemColors.Control;
-            actionBtn.Location = new Point(516, 68);
-            actionBtn.Name = "actionBtn";
-            actionBtn.Size = new Size(69, 30);
-            actionBtn.TabIndex = 36;
-            actionBtn.Text = "Trade";
-            actionBtn.UseVisualStyleBackColor = false;
-            actionBtn.Click += Button_Click;
             // 
             // actionLabel
             // 
@@ -564,19 +564,148 @@
             priceLabel.Text = "Price";
             priceLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(marketButton);
+            panel1.Controls.Add(portfolioButton);
+            panel1.Controls.Add(sellButton);
+            panel1.Controls.Add(exchangeButton);
+            panel1.Location = new Point(197, 29);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(640, 50);
+            panel1.TabIndex = 34;
+            // 
+            // marketButton
+            // 
+            marketButton.Cursor = Cursors.Hand;
+            marketButton.Location = new Point(464, 7);
+            marketButton.Name = "marketButton";
+            marketButton.Size = new Size(119, 36);
+            marketButton.TabIndex = 3;
+            marketButton.Text = "Market";
+            marketButton.UseVisualStyleBackColor = true;
+            // 
+            // portfolioButton
+            // 
+            portfolioButton.Cursor = Cursors.Hand;
+            portfolioButton.Location = new Point(325, 7);
+            portfolioButton.Name = "portfolioButton";
+            portfolioButton.Size = new Size(119, 36);
+            portfolioButton.TabIndex = 2;
+            portfolioButton.Text = "Portfolio";
+            portfolioButton.UseVisualStyleBackColor = true;
+            // 
+            // sellButton
+            // 
+            sellButton.Cursor = Cursors.Hand;
+            sellButton.Location = new Point(187, 7);
+            sellButton.Name = "sellButton";
+            sellButton.Size = new Size(119, 36);
+            sellButton.TabIndex = 1;
+            sellButton.Text = "Sell";
+            sellButton.UseVisualStyleBackColor = true;
+            // 
+            // exchangeButton
+            // 
+            exchangeButton.Cursor = Cursors.Hand;
+            exchangeButton.Location = new Point(51, 7);
+            exchangeButton.Name = "exchangeButton";
+            exchangeButton.Size = new Size(119, 36);
+            exchangeButton.TabIndex = 0;
+            exchangeButton.Text = "Exchange";
+            exchangeButton.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 20F);
+            label3.Location = new Point(30, 7);
+            label3.Name = "label3";
+            label3.Size = new Size(154, 46);
+            label3.TabIndex = 35;
+            label3.Text = "CryptoEx";
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(exchangeNowButton);
+            panel2.Controls.Add(label1);
+            panel2.Location = new Point(67, 92);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(869, 153);
+            panel2.TabIndex = 36;
+            // 
+            // exchangeNowButton
+            // 
+            exchangeNowButton.BackColor = Color.CornflowerBlue;
+            exchangeNowButton.Cursor = Cursors.Hand;
+            exchangeNowButton.FlatAppearance.BorderColor = Color.CornflowerBlue;
+            exchangeNowButton.FlatAppearance.BorderSize = 0;
+            exchangeNowButton.FlatStyle = FlatStyle.Flat;
+            exchangeNowButton.Location = new Point(24, 114);
+            exchangeNowButton.Name = "exchangeNowButton";
+            exchangeNowButton.Size = new Size(824, 32);
+            exchangeNowButton.TabIndex = 5;
+            exchangeNowButton.Text = "Exchange Now";
+            exchangeNowButton.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            button1.Cursor = Cursors.Hand;
+            button1.Location = new Point(632, 68);
+            button1.Name = "button1";
+            button1.Size = new Size(69, 30);
+            button1.TabIndex = 4;
+            button1.Text = "Sell";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Cursor = Cursors.Hand;
+            button2.Location = new Point(632, 104);
+            button2.Name = "button2";
+            button2.Size = new Size(69, 30);
+            button2.TabIndex = 36;
+            button2.Text = "Sell";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Cursor = Cursors.Hand;
+            button3.Location = new Point(632, 181);
+            button3.Name = "button3";
+            button3.Size = new Size(69, 30);
+            button3.TabIndex = 38;
+            button3.Text = "Sell";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Cursor = Cursors.Hand;
+            button4.Location = new Point(632, 143);
+            button4.Name = "button4";
+            button4.Size = new Size(69, 30);
+            button4.TabIndex = 37;
+            button4.Text = "Sell";
+            button4.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(910, 646);
+            ClientSize = new Size(1005, 718);
+            Controls.Add(panel2);
+            Controls.Add(label3);
+            Controls.Add(panel1);
             Controls.Add(marketRatePanel);
-            Controls.Add(label1);
             ForeColor = SystemColors.ActiveCaptionText;
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load_1;
             marketRatePanel.ResumeLayout(false);
             marketRatePanel.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -622,23 +751,26 @@
         public Label marketCap;
      
         public Label priceLabel;
-        private Button actionBtn;
         public Label actionLabel;
         private Panel marketRatePanel;
 
         //Generate Series of Buttons
         private void CreateActionButtons()
         {
-           
-        int j = 33;
-            for (int i = 0; i < 10; i++)
+            string[] currencies = new[] { "BTC", "ETH", "BNB", "SOL", "XRP", "DOGE", "ADA", "AVAX", "BCH", "DOT" };
+
+            int j = 37;
+            for (int i = 0; i < currencies.Length; i++)
             {
-                actionBtn = new Button(); // Reuse the same variable each time
+                string currency = currencies[i];
+                Button actionBtn = new Button(); 
                 actionBtn.Name = "actionBtn" + i;
                 actionBtn.Text = "Trade";
                 actionBtn.Size = new Size(69, 30);
-                actionBtn.Location = new Point(516, j + 68);
+                actionBtn.Location = new Point(516, j + 32);
                 actionBtn.Click += Button_Click;
+                actionBtn.Tag = currency;
+
                 actionBtn.FlatStyle = FlatStyle.Flat;
                 actionBtn.FlatAppearance.BorderSize = 0;
                 actionBtn.ForeColor = Color.White;
@@ -646,10 +778,21 @@
                 actionBtn.BackColor = Color.CornflowerBlue;
                 actionBtn.Cursor = Cursors.Hand;
                 marketRatePanel.Controls.Add(actionBtn);
-                j += 33;
+                j += 37;
             }
         }
 
+        private Button sellButton;
+        private Panel panel1;
+        private Button exchangeButton;
+        private Button marketButton;
+        private Button portfolioButton;
+        private Label label3;
+        private Panel panel2;
+        private Button exchangeNowButton;
         private Button button1;
+        private Button button3;
+        private Button button4;
+        private Button button2;
     }
 }
