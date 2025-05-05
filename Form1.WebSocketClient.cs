@@ -18,10 +18,9 @@ namespace WebSocketStreamingWithUI
         private readonly Dictionary<string, string> priceTable = [];
 
         private string pair;
-        private static string price;
         private Dictionary<string, Label> priceLabels;
         private Dictionary<string, Label> tickerLabels;
-        private Dictionary<string, float> previousPrices = [];
+      
 
         // faster real time fetching of currency exchanges
         //wss://stream.binance.com:9443/stream?streams=btcusdt@trade
@@ -36,24 +35,21 @@ namespace WebSocketStreamingWithUI
     };
 
 
-        private readonly string wsUrl;
+        private readonly string wsUrl = "wss://stream.binance.com:9443/stream?streams=" + string.Join("/", Array.ConvertAll(pairs, pair => $"{pair}@trade"));
         public string GetWsUrl()
         {
-            return "wss://stream.binance.com:9443/stream?streams=" + string.Join("/", Array.ConvertAll(pairs, pair => $"{pair}@trade"));
+            return wsUrl;
         }
         
-       
-        public async Task ConnectAndReceiveAsync()
+        public async Task ConnectAndReceiveAsync(string Uri)
         {
-
-
             try
             {
                 using (ClientWebSocket ws = new ClientWebSocket())
                 {
-                    await ws.ConnectAsync(new Uri(GetWsUrl()), CancellationToken.None);
-                    Console.WriteLine("Connected!");
-
+                    await ws.ConnectAsync(new Uri(Uri), CancellationToken.None);
+                    
+                   
                     byte[] buffer = new byte[4096];
 
                     // Start ping loop
@@ -61,10 +57,7 @@ namespace WebSocketStreamingWithUI
                     {
                         var result = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
                         string message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-
-
                         UpdatePriceTable(message);
-
                     }
                 }
             }
@@ -74,8 +67,6 @@ namespace WebSocketStreamingWithUI
             }
 
         }
-
-
         private void UpdatePriceTable(string jsonMessage)
         {
             try
@@ -109,10 +100,6 @@ namespace WebSocketStreamingWithUI
                 string ticker = json["data"]["s"].ToString();
                 DisplayPriceTable(pair, convertedPrice);
 
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -127,10 +114,10 @@ namespace WebSocketStreamingWithUI
             //price will be assigned to corresponding priceLabels dictionary
 
 
+            //get the stored value of the priceLabels
             float previousPrice = (float)Math.Round(float.Parse(priceLabels[pairSymbol].Text), 2);
 
 
-           
             foreach (var pair in priceLabels)
             {
                 
@@ -138,11 +125,11 @@ namespace WebSocketStreamingWithUI
                 
                 if (float.Parse(label.Text) != 0)
                 {
-
+                    //If price goes up
                     if (price > previousPrice)
                     {
                         priceLabels[pairSymbol].ForeColor = Color.Green;
-                    }
+                    }//If price goes down
                     else if (price < previousPrice) 
                     {
                         priceLabels[pairSymbol].ForeColor = Color.Red;
@@ -153,51 +140,46 @@ namespace WebSocketStreamingWithUI
                    
                     tickerLabels[pairSymbol].Text = pairSymbol;
 
-
-                    //priceLabels[pairSymbol].Text = label.Text;
-
                 }
 
                 //access yung price ng ticker
                 //convert into float
                 //gawing previousprice
-                //i-store sa dictionary?
                 //checking previous to current
                 //change colors
 
-
-
             }
-        }
-
-
-        private void CheckPrices(float previousPrice, float currentPrice)
-        {
-
-        }
-        private async void labelBTC_Click(object sender, EventArgs e)
-        {
-
-
-
-        }
-
-        private void labelETH_Click(object sender, EventArgs e)
-        {
-
         }
 
         private async void Form1_Load_1(object sender, EventArgs e)
         {
             CreateActionButtons();
-            await ConnectAndReceiveAsync();
+            await ConnectAndReceiveAsync(GetWsUrl());
         }
 
         private void Button_Click(object sender, EventArgs e)
         {
-            Button clickedButton = sender as Button;
-            MessageBox.Show("Clicked: " + clickedButton?.Text);
+            if (sender is Button btn && btn.Tag is string currency)
+            {
+                if (priceLabels.TryGetValue(currency, out Label priceLabel))
+                {
+                    if (decimal.TryParse(priceLabel.Text, out decimal livePrice))
+                    {
+                        MessageBox.Show($"Trade requested for {currency} at {livePrice}");
+                        // You can call your trading logic here
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Failed to parse price for {currency}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Currency {currency} not found in priceLabels.");
+                }
+            }
         }
+
 
 
     }
