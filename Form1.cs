@@ -20,8 +20,6 @@ namespace WebSocketStreamingWithUI
             this.Load += Form1_Load_1;
 
         }
-
-
         private void AddUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;

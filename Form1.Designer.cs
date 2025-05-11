@@ -46,6 +46,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             printDialog1 = new PrintDialog();
             printDialog2 = new PrintDialog();
             navigationPanel = new Guna.UI2.WinForms.Guna2Panel();
@@ -73,7 +74,7 @@
             // 
             // navigationPanel
             // 
-            navigationPanel.BackColor = SystemColors.AppWorkspace;
+            navigationPanel.BackColor = SystemColors.ControlDark;
             navigationPanel.BorderRadius = 20;
             navigationPanel.Controls.Add(guna2Button1);
             navigationPanel.Controls.Add(themeButton);
@@ -273,8 +274,9 @@
             Controls.Add(marketRatePanel);
             Controls.Add(navigationPanel);
             ForeColor = SystemColors.ActiveCaptionText;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "Form1";
+            Text = "CryptoEx";
             navigationPanel.ResumeLayout(false);
             marketRatePanel.ResumeLayout(false);
             ResumeLayout(false);
