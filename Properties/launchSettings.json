@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WebSocketStreamingWithUI": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\CBB\\source\\repos\\WebSocketStreamingWithUI"
+    }
+  }
+}
