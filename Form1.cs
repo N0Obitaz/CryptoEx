@@ -5,6 +5,7 @@ using System.Net.WebSockets;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System;
+using WebSocketStreamingWithUI.UserControls;
 
 namespace WebSocketStreamingWithUI
 
@@ -16,42 +17,27 @@ namespace WebSocketStreamingWithUI
         public Form1()
         {
             InitializeComponent();
-
-
             this.Load += Form1_Load_1;
-
-            priceLabels = new Dictionary<string, Label>
-            {
-                { "BTC", labelBTC },
-                { "ETH", labelETH },
-                { "BNB", labelBNB },
-                { "SOL", labelSOL },
-                { "XRP", labelXRP },
-                { "DOGE", labelDOGE },
-                { "ADA", labelADA },
-                { "AVAX", labelAVAX },
-                { "BCH", labelBCH },
-                { "DOT", labelDOT }
-            };
-
-            tickerLabels = new Dictionary<string, Label>
-            {
-                { "BTC", labelBTCTicker },
-                { "ETH", labelETHTicker },
-                { "BNB", labelBNBTicker },
-                { "SOL", labelSOLTicker },
-                { "XRP", labelXRPTicker },
-                { "DOGE", labelDOGETicker },
-                { "ADA", labelADATicker },
-                { "AVAX", labelAVAXTicker },
-                { "BCH", labelBCHTicker },
-                { "DOT", labelDOTTicker }
-            };
 
         }
 
-        private void labelBTC_Click(object sender, EventArgs e)
+
+        private void AddUserControl(UserControl userControl)
         {
+            userControl.Dock = DockStyle.Fill;
+            marketRatePanel.Controls.Clear();
+            marketRatePanel.Controls.Add(userControl);
+            userControl.BringToFront();
+        }
+        private async void Form1_Load_1(object sender, EventArgs e)
+        {
+            UC_Market uc = new UC_Market();
+            AddUserControl(uc);
+        }
+        private void dashboardButton_Click(object sender, EventArgs e)
+        {
+            UC_Market uc = new UC_Market();
+            AddUserControl(uc);
 
         }
     }
