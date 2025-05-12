@@ -31,11 +31,30 @@ namespace WebSocketStreamingWithUI
         {
             UC_Market uc = new UC_Market();
             AddUserControl(uc);
+            UC_Wallet uc_Wallet = new UC_Wallet();
+            AddWalletControl(uc_Wallet);
+
+        }
+        private void AddWalletControl(UserControl userControl)
+        {
+            userControl.Dock = DockStyle.Fill;
+            walletPanel.Controls.Clear();
+            walletPanel.Controls.Add(userControl);
+            userControl.BringToFront();
+
         }
         private void dashboardButton_Click(object sender, EventArgs e)
         {
             UC_Market uc = new UC_Market();
             AddUserControl(uc);
+
+            
+
+        }
+        
+
+        private void marketRatePanel_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }
