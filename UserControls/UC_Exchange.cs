@@ -16,5 +16,15 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             InitializeComponent();
         }
+
+        private void fromCurrency_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        public void ChangePlaceHolder(string currency, float livePrice)
+        {
+            fromCurrency.Text = currency;
+            fromAmountLabel.Text = livePrice.ToString("N2");
+        }
     }
 }
