@@ -43,7 +43,7 @@ namespace WebSocketStreamingWithUI.UserControls
         private readonly Dictionary<string, string> priceTable = [];
 
         private string pair;
-        private Dictionary<string, Label> priceLabels;
+        public Dictionary<string, Label> priceLabels;
         private Dictionary<string, Label> tickerLabels;
 
 
@@ -92,7 +92,7 @@ namespace WebSocketStreamingWithUI.UserControls
             }
 
         }
-        private void UpdatePriceTable(string jsonMessage)
+        public void UpdatePriceTable(string jsonMessage)
         {
             try
             {
@@ -189,7 +189,7 @@ namespace WebSocketStreamingWithUI.UserControls
                 {
                     if (float.TryParse(priceLabel.Text, out float livePrice))
                     {
-                        MessageBox.Show($"{currency}, {livePrice}");
+                       
                         UC_Exchange uC_Exchange = new UC_Exchange();
                         uC_Exchange.ChangePlaceHolder(currency, livePrice);
 
