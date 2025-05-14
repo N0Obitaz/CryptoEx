@@ -80,13 +80,13 @@
             balance = new Label();
             myBalanceLabel = new Label();
             guna2Separator4 = new Guna.UI2.WinForms.Guna2Separator();
-            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            historyPanel = new Guna.UI2.WinForms.Guna2Panel();
             transactionLabel = new Label();
             guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             navigationPanel.SuspendLayout();
             marketRatePanel.SuspendLayout();
             walletPanel.SuspendLayout();
-            guna2Panel1.SuspendLayout();
+            historyPanel.SuspendLayout();
             SuspendLayout();
             // 
             // printDialog1
@@ -195,6 +195,7 @@
             historyButton.Size = new Size(159, 40);
             historyButton.TabIndex = 3;
             historyButton.Text = "History";
+            historyButton.Click += historyButton_Click;
             // 
             // walletButton
             // 
@@ -215,6 +216,7 @@
             walletButton.Size = new Size(159, 40);
             walletButton.TabIndex = 2;
             walletButton.Text = "Wallet";
+            walletButton.Click += walletButton_Click;
             // 
             // exchangeButton
             // 
@@ -235,6 +237,7 @@
             exchangeButton.Size = new Size(159, 40);
             exchangeButton.TabIndex = 1;
             exchangeButton.Text = "Exchange";
+            exchangeButton.Click += exchangeButton_Click;
             // 
             // dashboardButton
             // 
@@ -259,6 +262,7 @@
             // 
             // marketRatePanel
             // 
+            marketRatePanel.BackColor = Color.Transparent;
             marketRatePanel.BorderRadius = 20;
             marketRatePanel.Controls.Add(guna2Separator3);
             marketRatePanel.Controls.Add(guna2Separator2);
@@ -423,20 +427,21 @@
             guna2Separator4.Size = new Size(324, 10);
             guna2Separator4.TabIndex = 38;
             // 
-            // guna2Panel1
+            // historyPanel
             // 
-            guna2Panel1.BackColor = SystemColors.ControlDark;
-            guna2Panel1.BorderColor = Color.White;
-            guna2Panel1.BorderRadius = 20;
-            guna2Panel1.Controls.Add(transactionLabel);
-            guna2Panel1.Controls.Add(guna2Separator1);
-            guna2Panel1.CustomizableEdges = customizableEdges29;
-            guna2Panel1.FillColor = Color.White;
-            guna2Panel1.Location = new Point(867, 326);
-            guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges30;
-            guna2Panel1.Size = new Size(325, 339);
-            guna2Panel1.TabIndex = 38;
+            historyPanel.BackColor = Color.Transparent;
+            historyPanel.BorderColor = Color.White;
+            historyPanel.BorderRadius = 20;
+            historyPanel.Controls.Add(transactionLabel);
+            historyPanel.Controls.Add(guna2Separator1);
+            historyPanel.CustomizableEdges = customizableEdges29;
+            historyPanel.FillColor = Color.White;
+            historyPanel.Location = new Point(867, 326);
+            historyPanel.Name = "historyPanel";
+            historyPanel.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            historyPanel.Size = new Size(325, 339);
+            historyPanel.TabIndex = 38;
+            historyPanel.UseTransparentBackground = true;
             // 
             // transactionLabel
             // 
@@ -465,7 +470,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(1204, 679);
-            Controls.Add(guna2Panel1);
+            Controls.Add(historyPanel);
             Controls.Add(walletPanel);
             Controls.Add(marketRatePanel);
             Controls.Add(navigationPanel);
@@ -477,8 +482,8 @@
             marketRatePanel.ResumeLayout(false);
             walletPanel.ResumeLayout(false);
             walletPanel.PerformLayout();
-            guna2Panel1.ResumeLayout(false);
-            guna2Panel1.PerformLayout();
+            historyPanel.ResumeLayout(false);
+            historyPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -505,7 +510,7 @@
         private Label balance;
         private Label myBalanceLabel;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator4;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Panel historyPanel;
         private Guna.UI2.WinForms.Guna2Button depositButton;
         private Guna.UI2.WinForms.Guna2Button withdrawButton;
         private Guna.UI2.WinForms.Guna2Button buyButton;
