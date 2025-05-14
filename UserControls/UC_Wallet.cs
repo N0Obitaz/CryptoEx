@@ -18,14 +18,18 @@ namespace WebSocketStreamingWithUI.UserControls
             InitializeComponent();
             GetUser();
         }
-        
+
         private void GetUser()
         {
             User newUser = new User();
             newUser.GetUserDetails();
 
-            balance.Text = newUser.GetBalance().ToString();
+            balance.Text = newUser.GetBalance().ToString("N2");
         }
-        
+
+        private void balance_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

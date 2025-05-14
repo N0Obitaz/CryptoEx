@@ -30,6 +30,7 @@ namespace WebSocketStreamingWithUI.UserControls
             int j = 90;
             for (int i = 0; i < currencies.Length; i++)
             {
+               
                 string currency = currencies[i];
                 Button actionBtn = new Button();
                 actionBtn.Name = "actionBtn" + i;
@@ -57,6 +58,8 @@ namespace WebSocketStreamingWithUI.UserControls
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             actionLabel = new Label();
@@ -94,6 +97,7 @@ namespace WebSocketStreamingWithUI.UserControls
             labelBTCTicker = new Label();
             labelBTC = new Label();
             marketPanel = new Guna.UI2.WinForms.Guna2Panel();
+            searchBox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2Separator3 = new Guna.UI2.WinForms.Guna2Separator();
             guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
             marketPanel.SuspendLayout();
@@ -102,7 +106,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // actionLabel
             // 
             actionLabel.AutoSize = true;
-            actionLabel.BackColor = Color.White;
+            actionLabel.BackColor = Color.Transparent;
             actionLabel.FlatStyle = FlatStyle.Popup;
             actionLabel.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             actionLabel.Location = new Point(517, 96);
@@ -116,7 +120,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // marketCap
             // 
             marketCap.AutoSize = true;
-            marketCap.BackColor = Color.White;
+            marketCap.BackColor = Color.Transparent;
             marketCap.FlatStyle = FlatStyle.Popup;
             marketCap.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             marketCap.Location = new Point(346, 96);
@@ -130,7 +134,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // priceLabel
             // 
             priceLabel.AutoSize = true;
-            priceLabel.BackColor = Color.White;
+            priceLabel.BackColor = Color.Transparent;
             priceLabel.FlatStyle = FlatStyle.Popup;
             priceLabel.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             priceLabel.Location = new Point(179, 96);
@@ -146,7 +150,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // assetTicker
             // 
             assetTicker.AutoSize = true;
-            assetTicker.BackColor = Color.White;
+            assetTicker.BackColor = Color.Transparent;
             assetTicker.FlatStyle = FlatStyle.Popup;
             assetTicker.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             assetTicker.Location = new Point(39, 96);
@@ -156,11 +160,12 @@ namespace WebSocketStreamingWithUI.UserControls
             assetTicker.TabIndex = 66;
             assetTicker.Text = "Asset";
             assetTicker.TextAlign = ContentAlignment.MiddleCenter;
+            assetTicker.Click += assetTicker_Click;
             // 
             // label23
             // 
             label23.AutoSize = true;
-            label23.BackColor = Color.White;
+            label23.BackColor = Color.Transparent;
             label23.FlatStyle = FlatStyle.Popup;
             label23.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             label23.Location = new Point(184, 468);
@@ -172,7 +177,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelDOTTicker
             // 
             labelDOTTicker.AutoSize = true;
-            labelDOTTicker.BackColor = Color.White;
+            labelDOTTicker.BackColor = Color.Transparent;
             labelDOTTicker.FlatStyle = FlatStyle.Popup;
             labelDOTTicker.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelDOTTicker.Location = new Point(38, 467);
@@ -184,7 +189,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelDOT
             // 
             labelDOT.AutoSize = true;
-            labelDOT.BackColor = Color.White;
+            labelDOT.BackColor = Color.Transparent;
             labelDOT.FlatStyle = FlatStyle.Popup;
             labelDOT.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelDOT.Location = new Point(212, 468);
@@ -196,7 +201,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // label20
             // 
             label20.AutoSize = true;
-            label20.BackColor = Color.White;
+            label20.BackColor = Color.Transparent;
             label20.FlatStyle = FlatStyle.Popup;
             label20.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             label20.Location = new Point(184, 430);
@@ -208,7 +213,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelBCHTicker
             // 
             labelBCHTicker.AutoSize = true;
-            labelBCHTicker.BackColor = Color.White;
+            labelBCHTicker.BackColor = Color.Transparent;
             labelBCHTicker.FlatStyle = FlatStyle.Popup;
             labelBCHTicker.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelBCHTicker.Location = new Point(38, 429);
@@ -220,7 +225,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelBCH
             // 
             labelBCH.AutoSize = true;
-            labelBCH.BackColor = Color.White;
+            labelBCH.BackColor = Color.Transparent;
             labelBCH.FlatStyle = FlatStyle.Popup;
             labelBCH.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelBCH.Location = new Point(212, 430);
@@ -232,7 +237,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // label17
             // 
             label17.AutoSize = true;
-            label17.BackColor = Color.White;
+            label17.BackColor = Color.Transparent;
             label17.FlatStyle = FlatStyle.Popup;
             label17.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             label17.Location = new Point(184, 392);
@@ -244,7 +249,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelAVAXTicker
             // 
             labelAVAXTicker.AutoSize = true;
-            labelAVAXTicker.BackColor = Color.White;
+            labelAVAXTicker.BackColor = Color.Transparent;
             labelAVAXTicker.FlatStyle = FlatStyle.Popup;
             labelAVAXTicker.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelAVAXTicker.Location = new Point(36, 391);
@@ -256,7 +261,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelAVAX
             // 
             labelAVAX.AutoSize = true;
-            labelAVAX.BackColor = Color.White;
+            labelAVAX.BackColor = Color.Transparent;
             labelAVAX.FlatStyle = FlatStyle.Popup;
             labelAVAX.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelAVAX.Location = new Point(212, 392);
@@ -268,7 +273,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // label14
             // 
             label14.AutoSize = true;
-            label14.BackColor = Color.White;
+            label14.BackColor = Color.Transparent;
             label14.FlatStyle = FlatStyle.Popup;
             label14.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             label14.Location = new Point(184, 354);
@@ -280,7 +285,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelADATicker
             // 
             labelADATicker.AutoSize = true;
-            labelADATicker.BackColor = Color.White;
+            labelADATicker.BackColor = Color.Transparent;
             labelADATicker.FlatStyle = FlatStyle.Popup;
             labelADATicker.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelADATicker.Location = new Point(36, 353);
@@ -292,7 +297,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelADA
             // 
             labelADA.AutoSize = true;
-            labelADA.BackColor = Color.White;
+            labelADA.BackColor = Color.Transparent;
             labelADA.FlatStyle = FlatStyle.Popup;
             labelADA.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelADA.Location = new Point(212, 354);
@@ -304,7 +309,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // label11
             // 
             label11.AutoSize = true;
-            label11.BackColor = Color.White;
+            label11.BackColor = Color.Transparent;
             label11.FlatStyle = FlatStyle.Popup;
             label11.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             label11.Location = new Point(184, 317);
@@ -316,7 +321,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelDOGETicker
             // 
             labelDOGETicker.AutoSize = true;
-            labelDOGETicker.BackColor = Color.White;
+            labelDOGETicker.BackColor = Color.Transparent;
             labelDOGETicker.FlatStyle = FlatStyle.Popup;
             labelDOGETicker.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelDOGETicker.Location = new Point(38, 316);
@@ -328,7 +333,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelDOGE
             // 
             labelDOGE.AutoSize = true;
-            labelDOGE.BackColor = Color.White;
+            labelDOGE.BackColor = Color.Transparent;
             labelDOGE.FlatStyle = FlatStyle.Popup;
             labelDOGE.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelDOGE.Location = new Point(212, 317);
@@ -340,7 +345,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // label8
             // 
             label8.AutoSize = true;
-            label8.BackColor = Color.White;
+            label8.BackColor = Color.Transparent;
             label8.FlatStyle = FlatStyle.Popup;
             label8.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             label8.Location = new Point(184, 279);
@@ -352,7 +357,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelXRPTicker
             // 
             labelXRPTicker.AutoSize = true;
-            labelXRPTicker.BackColor = Color.White;
+            labelXRPTicker.BackColor = Color.Transparent;
             labelXRPTicker.FlatStyle = FlatStyle.Popup;
             labelXRPTicker.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelXRPTicker.Location = new Point(36, 278);
@@ -364,7 +369,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelXRP
             // 
             labelXRP.AutoSize = true;
-            labelXRP.BackColor = Color.White;
+            labelXRP.BackColor = Color.Transparent;
             labelXRP.FlatStyle = FlatStyle.Popup;
             labelXRP.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelXRP.Location = new Point(212, 279);
@@ -376,7 +381,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // label5
             // 
             label5.AutoSize = true;
-            label5.BackColor = Color.White;
+            label5.BackColor = Color.Transparent;
             label5.FlatStyle = FlatStyle.Popup;
             label5.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             label5.Location = new Point(184, 242);
@@ -388,7 +393,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelSOLTicker
             // 
             labelSOLTicker.AutoSize = true;
-            labelSOLTicker.BackColor = Color.White;
+            labelSOLTicker.BackColor = Color.Transparent;
             labelSOLTicker.Enabled = false;
             labelSOLTicker.FlatStyle = FlatStyle.Popup;
             labelSOLTicker.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
@@ -401,7 +406,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelSOL
             // 
             labelSOL.AutoSize = true;
-            labelSOL.BackColor = Color.White;
+            labelSOL.BackColor = Color.Transparent;
             labelSOL.FlatStyle = FlatStyle.Popup;
             labelSOL.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelSOL.Location = new Point(212, 242);
@@ -413,7 +418,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = Color.White;
+            label2.BackColor = Color.Transparent;
             label2.FlatStyle = FlatStyle.Popup;
             label2.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             label2.Location = new Point(184, 204);
@@ -425,7 +430,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelBNBTicker
             // 
             labelBNBTicker.AutoSize = true;
-            labelBNBTicker.BackColor = Color.White;
+            labelBNBTicker.BackColor = Color.Transparent;
             labelBNBTicker.FlatStyle = FlatStyle.Popup;
             labelBNBTicker.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelBNBTicker.Location = new Point(36, 203);
@@ -437,7 +442,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelBNB
             // 
             labelBNB.AutoSize = true;
-            labelBNB.BackColor = Color.White;
+            labelBNB.BackColor = Color.Transparent;
             labelBNB.FlatStyle = FlatStyle.Popup;
             labelBNB.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelBNB.Location = new Point(212, 204);
@@ -449,7 +454,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // dollarSymbol2
             // 
             dollarSymbol2.AutoSize = true;
-            dollarSymbol2.BackColor = Color.White;
+            dollarSymbol2.BackColor = Color.Transparent;
             dollarSymbol2.FlatStyle = FlatStyle.Popup;
             dollarSymbol2.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             dollarSymbol2.Location = new Point(184, 167);
@@ -461,7 +466,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelETH
             // 
             labelETH.AutoSize = true;
-            labelETH.BackColor = Color.White;
+            labelETH.BackColor = Color.Transparent;
             labelETH.FlatStyle = FlatStyle.Popup;
             labelETH.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelETH.Location = new Point(212, 167);
@@ -473,7 +478,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelETHTicker
             // 
             labelETHTicker.AutoSize = true;
-            labelETHTicker.BackColor = Color.White;
+            labelETHTicker.BackColor = Color.Transparent;
             labelETHTicker.FlatStyle = FlatStyle.Popup;
             labelETHTicker.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelETHTicker.Location = new Point(36, 166);
@@ -485,7 +490,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // dollarSymbol
             // 
             dollarSymbol.AutoSize = true;
-            dollarSymbol.BackColor = Color.White;
+            dollarSymbol.BackColor = Color.Transparent;
             dollarSymbol.FlatStyle = FlatStyle.Popup;
             dollarSymbol.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             dollarSymbol.Location = new Point(184, 129);
@@ -497,7 +502,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // labelBTCTicker
             // 
             labelBTCTicker.AutoSize = true;
-            labelBTCTicker.BackColor = Color.White;
+            labelBTCTicker.BackColor = Color.Transparent;
             labelBTCTicker.FlatStyle = FlatStyle.Popup;
             labelBTCTicker.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelBTCTicker.Location = new Point(36, 128);
@@ -506,11 +511,12 @@ namespace WebSocketStreamingWithUI.UserControls
             labelBTCTicker.Size = new Size(85, 27);
             labelBTCTicker.TabIndex = 37;
             labelBTCTicker.Text = "TICKER";
+            labelBTCTicker.Click += labelBTCTicker_Click;
             // 
             // labelBTC
             // 
             labelBTC.AutoSize = true;
-            labelBTC.BackColor = Color.White;
+            labelBTC.BackColor = Color.Transparent;
             labelBTC.FlatStyle = FlatStyle.Popup;
             labelBTC.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
             labelBTC.Location = new Point(212, 129);
@@ -521,7 +527,10 @@ namespace WebSocketStreamingWithUI.UserControls
             // 
             // marketPanel
             // 
+            marketPanel.BackColor = Color.Transparent;
+            marketPanel.BorderColor = SystemColors.ActiveCaptionText;
             marketPanel.BorderRadius = 20;
+            marketPanel.Controls.Add(searchBox);
             marketPanel.Controls.Add(guna2Separator3);
             marketPanel.Controls.Add(guna2Separator2);
             marketPanel.Controls.Add(actionLabel);
@@ -558,18 +567,41 @@ namespace WebSocketStreamingWithUI.UserControls
             marketPanel.Controls.Add(dollarSymbol);
             marketPanel.Controls.Add(labelBTCTicker);
             marketPanel.Controls.Add(labelBTC);
-            marketPanel.CustomizableEdges = customizableEdges1;
-            marketPanel.FillColor = Color.White;
+            marketPanel.CustomizableEdges = customizableEdges3;
+            marketPanel.FillColor = Color.Azure;
             marketPanel.Location = new Point(3, 3);
             marketPanel.Name = "marketPanel";
-            marketPanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            marketPanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
             marketPanel.Size = new Size(612, 579);
             marketPanel.TabIndex = 70;
             marketPanel.Paint += marketPanel_Paint;
             // 
+            // searchBox
+            // 
+            searchBox.BorderRadius = 10;
+            searchBox.CustomizableEdges = customizableEdges1;
+            searchBox.DefaultText = "";
+            searchBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            searchBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            searchBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            searchBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            searchBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            searchBox.Font = new Font("Segoe UI", 9F);
+            searchBox.ForeColor = Color.Black;
+            searchBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            searchBox.Location = new Point(33, 21);
+            searchBox.Margin = new Padding(3, 4, 3, 4);
+            searchBox.Name = "searchBox";
+            searchBox.PlaceholderForeColor = Color.DimGray;
+            searchBox.PlaceholderText = "Search";
+            searchBox.SelectedText = "";
+            searchBox.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            searchBox.Size = new Size(187, 37);
+            searchBox.TabIndex = 72;
+            // 
             // guna2Separator3
             // 
-            guna2Separator3.BackColor = Color.White;
+            guna2Separator3.BackColor = Color.Transparent;
             guna2Separator3.FillColor = Color.Black;
             guna2Separator3.FillThickness = 2;
             guna2Separator3.Location = new Point(36, 63);
@@ -579,7 +611,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // 
             // guna2Separator2
             // 
-            guna2Separator2.BackColor = Color.White;
+            guna2Separator2.BackColor = Color.Transparent;
             guna2Separator2.FillColor = Color.Black;
             guna2Separator2.FillThickness = 2;
             guna2Separator2.Location = new Point(0, 79);
@@ -591,6 +623,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             Controls.Add(marketPanel);
             Name = "UC_Market";
             Size = new Size(673, 607);
@@ -638,5 +671,6 @@ namespace WebSocketStreamingWithUI.UserControls
         private Guna.UI2.WinForms.Guna2Panel marketPanel;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator3;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
+        private Guna.UI2.WinForms.Guna2TextBox searchBox;
     }
 }

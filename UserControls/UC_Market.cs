@@ -160,7 +160,7 @@ namespace WebSocketStreamingWithUI.UserControls
                         priceLabels[pairSymbol].ForeColor = Color.Red;
                     }
 
-                    priceLabels[pairSymbol].Text = price.ToString();
+                    priceLabels[pairSymbol].Text = price.ToString("N2");
 
 
                     tickerLabels[pairSymbol].Text = pairSymbol;
@@ -187,9 +187,16 @@ namespace WebSocketStreamingWithUI.UserControls
             {
                 if (priceLabels.TryGetValue(currency, out Label priceLabel))
                 {
-                    if (decimal.TryParse(priceLabel.Text, out decimal livePrice))
+                    if (float.TryParse(priceLabel.Text, out float livePrice))
                     {
-                        MessageBox.Show($"Trade requested for {currency} at {livePrice}");
+                        MessageBox.Show($"{currency}, {livePrice}");
+                        UC_Exchange uC_Exchange = new UC_Exchange();
+                        uC_Exchange.ChangePlaceHolder(currency, livePrice);
+
+                        Form1 GetFormMethod = new Form1();
+                        GetFormMethod.AddUserControl(uC_Exchange, marketPanel);
+
+                        
 
                     }
                     else
@@ -205,6 +212,16 @@ namespace WebSocketStreamingWithUI.UserControls
         }
 
         private void marketPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void labelBTCTicker_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void assetTicker_Click(object sender, EventArgs e)
         {
 
         }

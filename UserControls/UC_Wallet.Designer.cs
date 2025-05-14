@@ -157,6 +157,7 @@
             balance.Size = new Size(109, 27);
             balance.TabIndex = 47;
             balance.Text = "Fetching";
+            balance.Click += balance_Click;
             // 
             // myBalanceLabel
             // 
