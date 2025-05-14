@@ -19,7 +19,6 @@ namespace WebSocketStreamingWithUI.Data
             string password = "";
             connectionString = $"SERVER={server};DATABASE={database};USERNAME={username};PASSWORD={password};";
 
-
         }
         public string GetConnectionString()
         {

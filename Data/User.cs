@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using WebSocketStreamingWithUI.UserControls;
 
 namespace WebSocketStreamingWithUI.Data
 {
     public class User
 
     {
-        public string user = "hihi";
-        private string username;
+        private string user = "hihi";
+        
         private string password;
         private string email;
         private float balance;
 
+        Connection connection = new Connection();
         
+      
+        public string GetUser()
+        {
+            return user;
+        }
 
         public float GetBalance()
         {
@@ -24,17 +31,17 @@ namespace WebSocketStreamingWithUI.Data
         }
         public void GetUserDetails()
         {
-            Connection connection = new Connection();
-            string connectionString = connection.GetConnectionString();
+            
+          
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                using (MySqlConnection conn = new MySqlConnection(connection.GetConnectionString()))
                 {
                     
                     conn.Open();
                     string selectQuery = "SELECT username, email, balance from users WHERE username = @user";
 
-
+                    
                     using (MySqlCommand cmd = new MySqlCommand(selectQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@user", user);
@@ -44,19 +51,15 @@ namespace WebSocketStreamingWithUI.Data
                             if (!reader.HasRows)
                             {
                                 Console.WriteLine("No records found.");
+
                                 return;
                             }
-
                             while (reader.Read())
                             {
-
-                               
-
                                 email = reader["email"].ToString();
-                                balance = float.Parse(reader["balance"].ToString());
-                               
-                                
+                                balance = float.Parse(reader["balance"].ToString());                                
                             }
+                            
                         }
 
                     }
@@ -69,7 +72,40 @@ namespace WebSocketStreamingWithUI.Data
 
             
         }
+        public void GetHistory()
+        {
+            FetchHistoryData();
 
+        }
+        private void FetchHistoryData()
+        {
+            try
+            {
+                
+                using (MySqlConnection connect = new MySqlConnection(connection.GetConnectionString()))
+
+                {
+                    connect.Open();
+                    MessageBox.Show("Connected");
+                    string query = "SELECT * FROM history where username = @username";
+                    using (MySqlCommand cmd = new MySqlCommand(query, connect))
+                    {
+                        cmd.Parameters.AddWithValue("@username", user);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+
+                           
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: ", ex.Message);
+            }
+        }
 
 
 
