@@ -30,10 +30,14 @@
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             walletLabel = new Label();
             guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
+            exchangePanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             guna2CustomGradientPanel1.SuspendLayout();
+            exchangePanel.SuspendLayout();
             SuspendLayout();
             // 
             // guna2CustomGradientPanel1
@@ -46,7 +50,7 @@
             guna2CustomGradientPanel1.FillColor2 = Color.Teal;
             guna2CustomGradientPanel1.FillColor3 = Color.LightBlue;
             guna2CustomGradientPanel1.FillColor4 = Color.LightGray;
-            guna2CustomGradientPanel1.Location = new Point(0, 0);
+            guna2CustomGradientPanel1.Location = new Point(260, 90);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2CustomGradientPanel1.Size = new Size(617, 579);
@@ -77,15 +81,31 @@
             guna2Separator2.Size = new Size(641, 10);
             guna2Separator2.TabIndex = 37;
             // 
+            // exchangePanel
+            // 
+            exchangePanel.BackColor = Color.Transparent;
+            exchangePanel.BorderColor = Color.White;
+            exchangePanel.BorderRadius = 20;
+            exchangePanel.Controls.Add(guna2CustomGradientPanel1);
+            exchangePanel.CustomizableEdges = customizableEdges3;
+            exchangePanel.FillColor = Color.FromArgb(60, 63, 64);
+            exchangePanel.FillColor2 = Color.FromArgb(60, 63, 64);
+            exchangePanel.Location = new Point(0, 0);
+            exchangePanel.Name = "exchangePanel";
+            exchangePanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            exchangePanel.Size = new Size(1136, 733);
+            exchangePanel.TabIndex = 72;
+            // 
             // UC_Buy
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(guna2CustomGradientPanel1);
+            Controls.Add(exchangePanel);
             Name = "UC_Buy";
-            Size = new Size(641, 609);
+            Size = new Size(1142, 743);
             guna2CustomGradientPanel1.ResumeLayout(false);
             guna2CustomGradientPanel1.PerformLayout();
+            exchangePanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -94,5 +114,6 @@
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
         public Label walletLabel;
+        private Guna.UI2.WinForms.Guna2GradientPanel exchangePanel;
     }
 }
