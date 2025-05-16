@@ -32,31 +32,30 @@ namespace WebSocketStreamingWithUI.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Exchange));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Exchange));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ExchangeNow = new Label();
-            guna2CustomGradientPanel1 = new Guna2CustomGradientPanel();
             convertPanel = new Guna2Panel();
             overlayPanel = new Guna2Panel();
             closeButton = new Guna2Button();
@@ -72,14 +71,14 @@ namespace WebSocketStreamingWithUI.UserControls
             amountLabel = new Guna2TextBox();
             selectOptionFrom = new Guna2Button();
             from = new Label();
-            confirmButton = new Guna2Button();
             Exchange = new Label();
-            guna2Separator2 = new Guna2Separator();
-            guna2CustomGradientPanel1.SuspendLayout();
+            exchangePanel = new Guna2Panel();
+            guna2Button1 = new Guna2Button();
             convertPanel.SuspendLayout();
             overlayPanel.SuspendLayout();
             guna2Panel3.SuspendLayout();
             guna2Panel2.SuspendLayout();
+            exchangePanel.SuspendLayout();
             SuspendLayout();
             // 
             // ExchangeNow
@@ -92,37 +91,19 @@ namespace WebSocketStreamingWithUI.UserControls
             ExchangeNow.TabIndex = 0;
             ExchangeNow.Text = "ExchangeNow";
             // 
-            // guna2CustomGradientPanel1
-            // 
-            guna2CustomGradientPanel1.BackColor = Color.Transparent;
-            guna2CustomGradientPanel1.BorderRadius = 15;
-            guna2CustomGradientPanel1.Controls.Add(convertPanel);
-            guna2CustomGradientPanel1.Controls.Add(Exchange);
-            guna2CustomGradientPanel1.Controls.Add(guna2Separator2);
-            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges21;
-            guna2CustomGradientPanel1.FillColor = Color.LightGreen;
-            guna2CustomGradientPanel1.FillColor2 = Color.PaleGreen;
-            guna2CustomGradientPanel1.FillColor3 = Color.DarkSeaGreen;
-            guna2CustomGradientPanel1.FillColor4 = Color.PaleGreen;
-            guna2CustomGradientPanel1.Location = new Point(0, 0);
-            guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            guna2CustomGradientPanel1.Size = new Size(617, 579);
-            guna2CustomGradientPanel1.TabIndex = 1;
-            // 
             // convertPanel
             // 
             convertPanel.BorderRadius = 20;
             convertPanel.Controls.Add(overlayPanel);
+            convertPanel.Controls.Add(guna2Button1);
             convertPanel.Controls.Add(guna2Panel3);
             convertPanel.Controls.Add(guna2Panel2);
-            convertPanel.Controls.Add(confirmButton);
             convertPanel.CustomizableEdges = customizableEdges19;
-            convertPanel.FillColor = Color.GhostWhite;
-            convertPanel.Location = new Point(60, 72);
+            convertPanel.FillColor = Color.FromArgb(60, 63, 64);
+            convertPanel.Location = new Point(58, 62);
             convertPanel.Name = "convertPanel";
             convertPanel.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            convertPanel.Size = new Size(497, 487);
+            convertPanel.Size = new Size(539, 565);
             convertPanel.TabIndex = 73;
             // 
             // overlayPanel
@@ -162,12 +143,12 @@ namespace WebSocketStreamingWithUI.UserControls
             guna2Panel3.Controls.Add(amountTo);
             guna2Panel3.Controls.Add(selectOptionTo);
             guna2Panel3.Controls.Add(label1);
-            guna2Panel3.CustomizableEdges = customizableEdges9;
-            guna2Panel3.FillColor = Color.FromArgb(200, 255, 255);
-            guna2Panel3.Location = new Point(48, 252);
+            guna2Panel3.CustomizableEdges = customizableEdges11;
+            guna2Panel3.FillColor = Color.FromArgb(34, 35, 37);
+            guna2Panel3.Location = new Point(25, 270);
             guna2Panel3.Name = "guna2Panel3";
-            guna2Panel3.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2Panel3.Size = new Size(401, 160);
+            guna2Panel3.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            guna2Panel3.Size = new Size(468, 190);
             guna2Panel3.TabIndex = 83;
             // 
             // youGet
@@ -206,7 +187,7 @@ namespace WebSocketStreamingWithUI.UserControls
             amountTo.BackColor = SystemColors.Control;
             amountTo.BorderRadius = 15;
             amountTo.BorderThickness = 0;
-            amountTo.CustomizableEdges = customizableEdges5;
+            amountTo.CustomizableEdges = customizableEdges7;
             amountTo.DefaultText = "";
             amountTo.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             amountTo.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -222,7 +203,7 @@ namespace WebSocketStreamingWithUI.UserControls
             amountTo.PlaceholderForeColor = SystemColors.ControlDarkDark;
             amountTo.PlaceholderText = "0";
             amountTo.SelectedText = "";
-            amountTo.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            amountTo.ShadowDecoration.CustomizableEdges = customizableEdges8;
             amountTo.Size = new Size(196, 45);
             amountTo.TabIndex = 87;
             amountTo.TextAlign = HorizontalAlignment.Right;
@@ -232,7 +213,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // 
             selectOptionTo.BackgroundImage = (Image)resources.GetObject("selectOptionTo.BackgroundImage");
             selectOptionTo.BorderRadius = 10;
-            selectOptionTo.CustomizableEdges = customizableEdges7;
+            selectOptionTo.CustomizableEdges = customizableEdges9;
             selectOptionTo.DisabledState.BorderColor = Color.DarkGray;
             selectOptionTo.DisabledState.CustomBorderColor = Color.DarkGray;
             selectOptionTo.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -244,7 +225,7 @@ namespace WebSocketStreamingWithUI.UserControls
             selectOptionTo.ImageAlign = HorizontalAlignment.Right;
             selectOptionTo.Location = new Point(22, 55);
             selectOptionTo.Name = "selectOptionTo";
-            selectOptionTo.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            selectOptionTo.ShadowDecoration.CustomizableEdges = customizableEdges10;
             selectOptionTo.Size = new Size(148, 45);
             selectOptionTo.TabIndex = 85;
             selectOptionTo.Text = "Select";
@@ -275,12 +256,12 @@ namespace WebSocketStreamingWithUI.UserControls
             guna2Panel2.Controls.Add(amountLabel);
             guna2Panel2.Controls.Add(selectOptionFrom);
             guna2Panel2.Controls.Add(from);
-            guna2Panel2.CustomizableEdges = customizableEdges15;
-            guna2Panel2.FillColor = Color.FromArgb(200, 255, 255);
-            guna2Panel2.Location = new Point(48, 58);
+            guna2Panel2.CustomizableEdges = customizableEdges17;
+            guna2Panel2.FillColor = Color.FromArgb(34, 35, 37);
+            guna2Panel2.Location = new Point(25, 52);
             guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            guna2Panel2.Size = new Size(401, 160);
+            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            guna2Panel2.Size = new Size(468, 190);
             guna2Panel2.TabIndex = 82;
             // 
             // priceOfFromCurrency
@@ -319,7 +300,7 @@ namespace WebSocketStreamingWithUI.UserControls
             amountLabel.BackColor = SystemColors.Control;
             amountLabel.BorderRadius = 15;
             amountLabel.BorderThickness = 0;
-            amountLabel.CustomizableEdges = customizableEdges11;
+            amountLabel.CustomizableEdges = customizableEdges13;
             amountLabel.DefaultText = "";
             amountLabel.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             amountLabel.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -335,7 +316,7 @@ namespace WebSocketStreamingWithUI.UserControls
             amountLabel.PlaceholderForeColor = SystemColors.ControlDarkDark;
             amountLabel.PlaceholderText = "0";
             amountLabel.SelectedText = "";
-            amountLabel.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            amountLabel.ShadowDecoration.CustomizableEdges = customizableEdges14;
             amountLabel.Size = new Size(196, 45);
             amountLabel.TabIndex = 85;
             amountLabel.TextAlign = HorizontalAlignment.Right;
@@ -345,7 +326,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // 
             selectOptionFrom.BackgroundImage = (Image)resources.GetObject("selectOptionFrom.BackgroundImage");
             selectOptionFrom.BorderRadius = 10;
-            selectOptionFrom.CustomizableEdges = customizableEdges13;
+            selectOptionFrom.CustomizableEdges = customizableEdges15;
             selectOptionFrom.DisabledState.BorderColor = Color.DarkGray;
             selectOptionFrom.DisabledState.CustomBorderColor = Color.DarkGray;
             selectOptionFrom.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -357,7 +338,7 @@ namespace WebSocketStreamingWithUI.UserControls
             selectOptionFrom.ImageAlign = HorizontalAlignment.Right;
             selectOptionFrom.Location = new Point(22, 58);
             selectOptionFrom.Name = "selectOptionFrom";
-            selectOptionFrom.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            selectOptionFrom.ShadowDecoration.CustomizableEdges = customizableEdges16;
             selectOptionFrom.Size = new Size(148, 45);
             selectOptionFrom.TabIndex = 84;
             selectOptionFrom.Text = "Select";
@@ -379,62 +360,69 @@ namespace WebSocketStreamingWithUI.UserControls
             from.Text = "From";
             from.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // confirmButton
-            // 
-            confirmButton.CustomizableEdges = customizableEdges17;
-            confirmButton.DisabledState.BorderColor = Color.DarkGray;
-            confirmButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            confirmButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            confirmButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            confirmButton.Font = new Font("Segoe UI", 9F);
-            confirmButton.ForeColor = Color.White;
-            confirmButton.Location = new Point(165, 422);
-            confirmButton.Name = "confirmButton";
-            confirmButton.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            confirmButton.Size = new Size(166, 41);
-            confirmButton.TabIndex = 74;
-            confirmButton.Text = "Confirm";
-            // 
             // Exchange
             // 
             Exchange.AutoSize = true;
             Exchange.BackColor = Color.Transparent;
             Exchange.FlatStyle = FlatStyle.Popup;
-            Exchange.Font = new Font("Century Gothic", 13.2000008F, FontStyle.Bold);
-            Exchange.Location = new Point(25, 26);
+            Exchange.Font = new Font("Tahoma", 19.8000011F, FontStyle.Bold);
+            Exchange.ForeColor = SystemColors.GradientActiveCaption;
+            Exchange.Location = new Point(37, 12);
             Exchange.Margin = new Padding(0);
             Exchange.Name = "Exchange";
-            Exchange.Size = new Size(125, 27);
+            Exchange.Size = new Size(183, 41);
             Exchange.TabIndex = 69;
             Exchange.Text = "Exchange";
             Exchange.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // guna2Separator2
+            // exchangePanel
             // 
-            guna2Separator2.BackColor = Color.Transparent;
-            guna2Separator2.FillColor = Color.Black;
-            guna2Separator2.FillThickness = 2;
-            guna2Separator2.Location = new Point(0, 56);
-            guna2Separator2.Name = "guna2Separator2";
-            guna2Separator2.Size = new Size(641, 10);
-            guna2Separator2.TabIndex = 37;
+            exchangePanel.BackColor = Color.Transparent;
+            exchangePanel.BorderRadius = 20;
+            exchangePanel.Controls.Add(convertPanel);
+            exchangePanel.Controls.Add(Exchange);
+            exchangePanel.CustomizableEdges = customizableEdges21;
+            exchangePanel.FillColor = Color.FromArgb(34, 35, 37);
+            exchangePanel.Location = new Point(0, 0);
+            exchangePanel.Name = "exchangePanel";
+            exchangePanel.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            exchangePanel.Size = new Size(1136, 733);
+            exchangePanel.TabIndex = 74;
+            // 
+            // guna2Button1
+            // 
+            guna2Button1.BorderRadius = 20;
+            guna2Button1.CustomizableEdges = customizableEdges5;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = Color.IndianRed;
+            guna2Button1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2Button1.ForeColor = Color.White;
+            guna2Button1.Location = new Point(25, 474);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            guna2Button1.Size = new Size(468, 65);
+            guna2Button1.TabIndex = 74;
+            guna2Button1.Text = "Exchange";
             // 
             // UC_Exchange
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(guna2CustomGradientPanel1);
+            Controls.Add(exchangePanel);
             Controls.Add(ExchangeNow);
             Name = "UC_Exchange";
-            Size = new Size(653, 611);
-            guna2CustomGradientPanel1.ResumeLayout(false);
-            guna2CustomGradientPanel1.PerformLayout();
+            Size = new Size(1150, 748);
             convertPanel.ResumeLayout(false);
             overlayPanel.ResumeLayout(false);
             guna2Panel3.ResumeLayout(false);
             guna2Panel3.PerformLayout();
             guna2Panel2.ResumeLayout(false);
             guna2Panel2.PerformLayout();
+            exchangePanel.ResumeLayout(false);
+            exchangePanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -442,25 +430,6 @@ namespace WebSocketStreamingWithUI.UserControls
         #endregion
 
         private Label ExchangeNow;
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
-        private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
-        public Label Exchange;
-        public Label from;
-        private Guna.UI2.WinForms.Guna2Panel convertPanel;
-        private Guna.UI2.WinForms.Guna2Button confirmButton;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
-        public Label label1;
-        private Guna.UI2.WinForms.Guna2Button selectOptionFrom;
-        private Guna.UI2.WinForms.Guna2Button selectOptionTo;
-        private Guna.UI2.WinForms.Guna2TextBox amountLabel;
-        public Label amountText;
-        private Guna.UI2.WinForms.Guna2TextBox amountTo;
-        public Label priceOfFromCurrency;
-        public Label youGet;
-        public Label priceOfToCurrency;
-        private Guna.UI2.WinForms.Guna2Panel overlayPanel;
-        private Guna.UI2.WinForms.Guna2Button closeButton;
 
         private void CreateButtons()
         {
@@ -532,7 +501,23 @@ namespace WebSocketStreamingWithUI.UserControls
 
 
         }
-
-
+        private Guna2Panel convertPanel;
+        private Guna2Panel overlayPanel;
+        private Guna2Button closeButton;
+        private Guna2Panel guna2Panel3;
+        public Label youGet;
+        public Label priceOfToCurrency;
+        private Guna2TextBox amountTo;
+        private Guna2Button selectOptionTo;
+        public Label label1;
+        private Guna2Panel guna2Panel2;
+        public Label priceOfFromCurrency;
+        public Label amountText;
+        private Guna2TextBox amountLabel;
+        private Guna2Button selectOptionFrom;
+        public Label from;
+        public Label Exchange;
+        public Guna2Panel exchangePanel;
+        private Guna2Button guna2Button1;
     }
 }

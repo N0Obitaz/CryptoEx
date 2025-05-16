@@ -194,6 +194,7 @@ namespace WebSocketStreamingWithUI.UserControls
                         UC_Exchange uC_Exchange = new UC_Exchange();
                         uC_Exchange.ChangePlaceHolder(currency);
 
+
                         Form1 GetFormMethod = new Form1();
                         GetFormMethod.AddUserControl(uC_Exchange, marketPanel);
 
@@ -231,6 +232,11 @@ namespace WebSocketStreamingWithUI.UserControls
             var uC_Favorites = new UC_Favorites();
             Form1 form1 = new Form1();
             form1.AddUserControl(uC_Favorites, marketPanel);
+
+        }
+
+        private void UC_Market_Load_1(object sender, EventArgs e)
+        {
 
         }
     }

@@ -86,6 +86,7 @@ namespace WebSocketStreamingWithUI.UserControls
             this.Controls.Add(overlayPanel);
             overlayPanel.Visible = true;
             CreateButtons();
+            convertPanel.Controls.Add(overlayPanel);
             overlayPanel.BringToFront();
 
         }
@@ -100,7 +101,8 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-            this.Controls.Remove(overlayPanel);
+            convertPanel.Controls.Remove(overlayPanel);
+            
         }
 
        
@@ -119,10 +121,12 @@ namespace WebSocketStreamingWithUI.UserControls
                 {
                 case CurrencySelectionTarget.From:
                     ChangePlaceHolderTo(selectOptionFrom, priceOfFromCurrency, currency);
+                        convertPanel.Controls.Remove(overlayPanel);
                     break;
                 case CurrencySelectionTarget.To:
                     ChangePlaceHolderTo(selectOptionTo, priceOfToCurrency, currency);
-                    break;
+                        convertPanel.Controls.Remove(overlayPanel);
+                        break;
                 }
             }
 
