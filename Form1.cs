@@ -25,21 +25,24 @@ namespace WebSocketStreamingWithUI
             userControl.Dock = DockStyle.Fill;
             customizingPanel.Controls.Clear();
             customizingPanel.Size = new Size(1136, 733);
-            customizingPanel.BringToFront();
+           
             customizingPanel.Controls.Add(userControl);
             userControl.BringToFront();
+            customizingPanel.BringToFront();
         }
+
+        
         private async void Form1_Load_1(object sender, EventArgs e)
         {
             UC_Market uc = new UC_Market();
-            AddUserControl(uc, marketRatePanel);
+            AddUserControl(uc, Mainpanel1);
             UC_Wallet uc_Wallet = new UC_Wallet();
-            AddUserControl(uc_Wallet, walletPanel);
+            AddUserControl(uc_Wallet, Mainpanel1);
         }
         private void dashboardButton_Click(object sender, EventArgs e)
         {
             UC_Market uc = new UC_Market();
-            AddUserControl(uc, marketRatePanel);
+            AddUserControl(uc, Mainpanel1);
 
         }
         private void marketRatePanel_Paint(object sender, PaintEventArgs e)
@@ -51,21 +54,19 @@ namespace WebSocketStreamingWithUI
             //UC_History uC_History = new UC_History();
             //AddUserControl(uC_History, marketRatePanel);
             UC_History2 uC_History2 = new UC_History2();
-            AddUserControl(uC_History2, marketRatePanel);
+            AddUserControl(uC_History2, Mainpanel1);
         }
 
         private void walletButton_Click(object sender, EventArgs e)
         {
             UC_Buy uC_Buy = new UC_Buy();
-            AddUserControl(uC_Buy, marketRatePanel);
+            AddUserControl(uC_Buy, Mainpanel1);
         }
-
+     
         private void exchangeButton_Click(object sender, EventArgs e)
         {
             UC_Exchange uC_Exchange = new UC_Exchange();
-            AddUserControl(uC_Exchange, marketRatePanel);
+            AddUserControl(uC_Exchange, Mainpanel1);
         }
-
-
-    }   
+    }
 }
