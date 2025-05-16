@@ -1,30 +1,29 @@
-﻿
-/*This file handles the fetching of history of what users
- * Do particularly in using the system such as BUYING, SELLING, WITHDRAWING, DEPOSITING,
- * AND EXCHANGING*/
-
-using Guna.UI2.WinForms.Suite;
-using Microsoft.VisualBasic.ApplicationServices;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Utilities.Collections;
 using WebSocketStreamingWithUI.Data;
 using newUser = WebSocketStreamingWithUI.Data.User;
 
-
-
 namespace WebSocketStreamingWithUI.UserControls
 {
-    public partial class UC_History : UserControl
+    public partial class UC_History2 : UserControl
     {
-        public UC_History()
+        public UC_History2()
         {
             InitializeComponent();
             FetchHistoryData();
         }
-        
+
         private void FetchHistoryData()
         {
-            
+
             Connection connection = new Connection();
             newUser user = new newUser();
             try
@@ -33,7 +32,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
                 {
                     connect.Open();
-                    
+
                     string query = "SELECT * FROM history where username = @username";
                     using (MySqlCommand cmd = new MySqlCommand(query, connect))
                     {
@@ -50,16 +49,15 @@ namespace WebSocketStreamingWithUI.UserControls
                             while (reader.Read())
                             {
                                 Guna.UI2.WinForms.Guna2GradientPanel historyBoxes = new Guna.UI2.WinForms.Guna2GradientPanel();
-                                
-                               
-                                
-                                historyBoxes.Name = "historyBox" +count;
+
+
+                                historyBoxes.Name = "historyBox" + count;
                                 actionLabel.Text = reader["action"].ToString();
                                 string amount;
                                 if (actionLabel.Text == "BUY" || actionLabel.Text == "DEPOSIT")
                                 {
 
-                                    amount= "+ " + float.Parse(reader["amount"].ToString()).ToString("N2");
+                                    amount = "+ " + float.Parse(reader["amount"].ToString()).ToString("N2");
                                 }
                                 else amount = "- " + float.Parse(reader["amount"].ToString()).ToString("N2");
                                 amountLabel.Text = amount;
@@ -69,7 +67,7 @@ namespace WebSocketStreamingWithUI.UserControls
                                 timeLabel.Text = dateTime.ToString("HH:mm:ss");
                                 subAction.Text = reader["currency"].ToString();
 
-                                    
+
                                 count++;
 
                                 var timeLbl = new Label()
@@ -139,7 +137,8 @@ namespace WebSocketStreamingWithUI.UserControls
                                 historyBoxes.Controls.Add(actionLbl);
                                 historyBoxes.Controls.Add(subAct);
 
-                                historyPanel.Controls.Add(historyBoxes);
+                                //historyPanel.Controls.Add(historyBoxes);
+                                historyBigPanel.Controls.Add(historyBoxes);
                                 count++;
                                 j += 81;
                             }
@@ -149,9 +148,15 @@ namespace WebSocketStreamingWithUI.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro: ", ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void historyLabel_Click(object sender, EventArgs e)
         {
 

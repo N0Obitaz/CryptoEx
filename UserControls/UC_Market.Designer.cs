@@ -58,6 +58,8 @@ namespace WebSocketStreamingWithUI.UserControls
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -100,6 +102,7 @@ namespace WebSocketStreamingWithUI.UserControls
             searchBox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2Separator3 = new Guna.UI2.WinForms.Guna2Separator();
             guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
+            favoriteSwitch = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             marketPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -530,6 +533,7 @@ namespace WebSocketStreamingWithUI.UserControls
             marketPanel.BackColor = Color.Transparent;
             marketPanel.BorderColor = SystemColors.ActiveCaptionText;
             marketPanel.BorderRadius = 20;
+            marketPanel.Controls.Add(favoriteSwitch);
             marketPanel.Controls.Add(searchBox);
             marketPanel.Controls.Add(guna2Separator3);
             marketPanel.Controls.Add(guna2Separator2);
@@ -567,11 +571,11 @@ namespace WebSocketStreamingWithUI.UserControls
             marketPanel.Controls.Add(dollarSymbol);
             marketPanel.Controls.Add(labelBTCTicker);
             marketPanel.Controls.Add(labelBTC);
-            marketPanel.CustomizableEdges = customizableEdges3;
+            marketPanel.CustomizableEdges = customizableEdges5;
             marketPanel.FillColor = Color.Azure;
             marketPanel.Location = new Point(3, 3);
             marketPanel.Name = "marketPanel";
-            marketPanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            marketPanel.ShadowDecoration.CustomizableEdges = customizableEdges6;
             marketPanel.Size = new Size(612, 579);
             marketPanel.TabIndex = 70;
             marketPanel.Paint += marketPanel_Paint;
@@ -579,7 +583,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // searchBox
             // 
             searchBox.BorderRadius = 10;
-            searchBox.CustomizableEdges = customizableEdges1;
+            searchBox.CustomizableEdges = customizableEdges3;
             searchBox.DefaultText = "";
             searchBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             searchBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -595,7 +599,7 @@ namespace WebSocketStreamingWithUI.UserControls
             searchBox.PlaceholderForeColor = Color.DimGray;
             searchBox.PlaceholderText = "Search";
             searchBox.SelectedText = "";
-            searchBox.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            searchBox.ShadowDecoration.CustomizableEdges = customizableEdges4;
             searchBox.Size = new Size(187, 37);
             searchBox.TabIndex = 72;
             // 
@@ -618,6 +622,24 @@ namespace WebSocketStreamingWithUI.UserControls
             guna2Separator2.Name = "guna2Separator2";
             guna2Separator2.Size = new Size(646, 10);
             guna2Separator2.TabIndex = 70;
+            // 
+            // favoriteSwitch
+            // 
+            favoriteSwitch.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
+            favoriteSwitch.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            favoriteSwitch.CheckedState.InnerBorderColor = Color.White;
+            favoriteSwitch.CheckedState.InnerColor = Color.White;
+            favoriteSwitch.CustomizableEdges = customizableEdges1;
+            favoriteSwitch.Location = new Point(544, 48);
+            favoriteSwitch.Name = "favoriteSwitch";
+            favoriteSwitch.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            favoriteSwitch.Size = new Size(44, 25);
+            favoriteSwitch.TabIndex = 73;
+            favoriteSwitch.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
+            favoriteSwitch.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
+            favoriteSwitch.UncheckedState.InnerBorderColor = Color.White;
+            favoriteSwitch.UncheckedState.InnerColor = Color.White;
+            favoriteSwitch.CheckedChanged += favoriteSwitch_CheckedChanged;
             // 
             // UC_Market
             // 
@@ -672,5 +694,6 @@ namespace WebSocketStreamingWithUI.UserControls
         private Guna.UI2.WinForms.Guna2Separator guna2Separator3;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
         private Guna.UI2.WinForms.Guna2TextBox searchBox;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch favoriteSwitch;
     }
 }

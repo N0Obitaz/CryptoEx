@@ -24,6 +24,8 @@ namespace WebSocketStreamingWithUI
         {
             userControl.Dock = DockStyle.Fill;
             customizingPanel.Controls.Clear();
+            customizingPanel.Size = new Size(1136, 733);
+            customizingPanel.BringToFront();
             customizingPanel.Controls.Add(userControl);
             userControl.BringToFront();
         }
@@ -33,27 +35,23 @@ namespace WebSocketStreamingWithUI
             AddUserControl(uc, marketRatePanel);
             UC_Wallet uc_Wallet = new UC_Wallet();
             AddUserControl(uc_Wallet, walletPanel);
-
-
         }
-
         private void dashboardButton_Click(object sender, EventArgs e)
         {
             UC_Market uc = new UC_Market();
             AddUserControl(uc, marketRatePanel);
 
         }
-
-
         private void marketRatePanel_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
         private void historyButton_Click(object sender, EventArgs e)
         {
-            UC_History uC_History = new UC_History();
-            AddUserControl(uC_History, marketRatePanel);
+            //UC_History uC_History = new UC_History();
+            //AddUserControl(uC_History, marketRatePanel);
+            UC_History2 uC_History2 = new UC_History2();
+            AddUserControl(uC_History2, marketRatePanel);
         }
 
         private void walletButton_Click(object sender, EventArgs e)
@@ -67,5 +65,7 @@ namespace WebSocketStreamingWithUI
             UC_Exchange uC_Exchange = new UC_Exchange();
             AddUserControl(uC_Exchange, marketRatePanel);
         }
-    }
+
+
+    }   
 }

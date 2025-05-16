@@ -18,8 +18,6 @@ namespace WebSocketStreamingWithUI.Data
         private float balance;
 
         Connection connection = new Connection();
-        
-      
         public string GetUser()
         {
             return user;
@@ -31,8 +29,6 @@ namespace WebSocketStreamingWithUI.Data
         }
         public void GetUserDetails()
         {
-            
-          
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connection.GetConnectionString()))
@@ -72,42 +68,6 @@ namespace WebSocketStreamingWithUI.Data
 
             
         }
-        public void GetHistory()
-        {
-            FetchHistoryData();
-
-        }
-        private void FetchHistoryData()
-        {
-            try
-            {
-                
-                using (MySqlConnection connect = new MySqlConnection(connection.GetConnectionString()))
-
-                {
-                    connect.Open();
-                    MessageBox.Show("Connected");
-                    string query = "SELECT * FROM history where username = @username";
-                    using (MySqlCommand cmd = new MySqlCommand(query, connect))
-                    {
-                        cmd.Parameters.AddWithValue("@username", user);
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-
-                           
-                        }
-
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro: ", ex.Message);
-            }
-        }
-
-
-
+      
     }
 }

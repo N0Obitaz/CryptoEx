@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace WebSocketStreamingWithUI.UserControls
 {
-    public partial class UC_Buy : UserControl
+    public partial class UC_BigWallet : UserControl
     {
-        public UC_Buy()
+        public UC_BigWallet()
         {
             InitializeComponent();
-        }
-
-        private void walletLabel_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

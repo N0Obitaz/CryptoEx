@@ -31,5 +31,10 @@ namespace WebSocketStreamingWithUI.UserControls
         {
 
         }
+
+        private void myBalanceLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

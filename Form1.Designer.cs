@@ -469,7 +469,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
-            ClientSize = new Size(1204, 679);
+            ClientSize = new Size(1474, 825);
             Controls.Add(historyPanel);
             Controls.Add(walletPanel);
             Controls.Add(marketRatePanel);

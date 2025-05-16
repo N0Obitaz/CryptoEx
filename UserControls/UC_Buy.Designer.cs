@@ -65,6 +65,7 @@
             walletLabel.TabIndex = 69;
             walletLabel.Text = "Wallet";
             walletLabel.TextAlign = ContentAlignment.MiddleCenter;
+            walletLabel.Click += walletLabel_Click;
             // 
             // guna2Separator2
             // 

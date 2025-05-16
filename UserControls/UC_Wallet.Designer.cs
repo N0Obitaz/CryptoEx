@@ -169,6 +169,7 @@
             myBalanceLabel.Size = new Size(114, 22);
             myBalanceLabel.TabIndex = 46;
             myBalanceLabel.Text = "My Balance";
+            myBalanceLabel.Click += myBalanceLabel_Click;
             // 
             // guna2Separator4
             // 

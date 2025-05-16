@@ -8,7 +8,6 @@ namespace WebSocketStreamingWithUI.Data
 {
     public class Connection
     {
-
         private readonly string connectionString;
        
         public Connection()
@@ -18,18 +17,11 @@ namespace WebSocketStreamingWithUI.Data
             string username = "root";
             string password = "";
             connectionString = $"SERVER={server};DATABASE={database};USERNAME={username};PASSWORD={password};";
-
         }
         public string GetConnectionString()
         {
             return connectionString;
 
         }
-
-
     }
-
-
-
-
 }

@@ -57,7 +57,7 @@ namespace WebSocketStreamingWithUI.UserControls
         "btcusdt", "ethusdt", "bnbusdt", "solusdt",
         "xrpusdt", "dogeusdt", "adausdt", "avaxusdt",
         "bchusdt", "dotusdt"
-    };
+        };
 
 
         private readonly string wsUrl = "wss://stream.binance.com:9443/stream?streams=" + string.Join("/", Array.ConvertAll(pairs, pair => $"{pair}@trade"));
@@ -176,6 +176,7 @@ namespace WebSocketStreamingWithUI.UserControls
             }
         }
 
+
         private async void UC_Market_Load(object sender, EventArgs e)
         {
             CreateActionButtons();
@@ -189,14 +190,13 @@ namespace WebSocketStreamingWithUI.UserControls
                 {
                     if (float.TryParse(priceLabel.Text, out float livePrice))
                     {
-                       
+
                         UC_Exchange uC_Exchange = new UC_Exchange();
-                        uC_Exchange.ChangePlaceHolder(currency, livePrice);
+                        uC_Exchange.ChangePlaceHolder(currency);
 
                         Form1 GetFormMethod = new Form1();
                         GetFormMethod.AddUserControl(uC_Exchange, marketPanel);
 
-                        
 
                     }
                     else
@@ -206,7 +206,7 @@ namespace WebSocketStreamingWithUI.UserControls
                 }
                 else
                 {
-                    Console.WriteLine($"Currency {currency} not found in priceLabels.");
+                    MessageBox.Show($"Currency {currency} not found in priceLabels.");
                 }
             }
         }
@@ -223,6 +223,14 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private void assetTicker_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void favoriteSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            var uC_Favorites = new UC_Favorites();
+            Form1 form1 = new Form1();
+            form1.AddUserControl(uC_Favorites, marketPanel);
 
         }
     }
