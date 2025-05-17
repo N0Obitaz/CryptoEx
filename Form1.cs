@@ -36,8 +36,7 @@ namespace WebSocketStreamingWithUI
         {
             UC_Market uc = new UC_Market();
             AddUserControl(uc, Mainpanel1);
-            UC_Wallet uc_Wallet = new UC_Wallet();
-            AddUserControl(uc_Wallet, Mainpanel1);
+           
         }
         private void dashboardButton_Click(object sender, EventArgs e)
         {
