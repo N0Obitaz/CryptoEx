@@ -66,10 +66,18 @@ namespace WebSocketStreamingWithUI.UserControls
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             favoriteSwitch = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             searchBox = new Guna.UI2.WinForms.Guna2TextBox();
             label11 = new Label();
@@ -109,10 +117,18 @@ namespace WebSocketStreamingWithUI.UserControls
             labelDOT = new Label();
             label2 = new Label();
             marketPanel = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            transactionPanel = new Guna.UI2.WinForms.Guna2Panel();
+            walletPanel = new Guna.UI2.WinForms.Guna2Panel();
+            sellButton = new Guna.UI2.WinForms.Guna2Button();
+            buyButton = new Guna.UI2.WinForms.Guna2Button();
+            withdrawButton = new Guna.UI2.WinForms.Guna2Button();
+            depositButton = new Guna.UI2.WinForms.Guna2Button();
+            balance = new Label();
+            myBalanceLabel = new Label();
+            walletSeparator = new Guna.UI2.WinForms.Guna2Separator();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             marketPanel.SuspendLayout();
+            walletPanel.SuspendLayout();
             guna2Panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -650,39 +666,161 @@ namespace WebSocketStreamingWithUI.UserControls
             marketPanel.Size = new Size(801, 733);
             marketPanel.TabIndex = 71;
             // 
-            // guna2Panel3
+            // transactionPanel
             // 
-            guna2Panel3.BackColor = Color.Transparent;
-            guna2Panel3.BorderRadius = 20;
-            guna2Panel3.CustomizableEdges = customizableEdges7;
-            guna2Panel3.FillColor = Color.FromArgb(60, 63, 64);
-            guna2Panel3.Location = new Point(820, 218);
-            guna2Panel3.Name = "guna2Panel3";
-            guna2Panel3.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2Panel3.Size = new Size(322, 518);
-            guna2Panel3.TabIndex = 73;
+            transactionPanel.BackColor = Color.Transparent;
+            transactionPanel.BorderRadius = 20;
+            transactionPanel.CustomizableEdges = customizableEdges7;
+            transactionPanel.FillColor = Color.FromArgb(60, 63, 64);
+            transactionPanel.Location = new Point(815, 216);
+            transactionPanel.Name = "transactionPanel";
+            transactionPanel.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            transactionPanel.Size = new Size(322, 518);
+            transactionPanel.TabIndex = 73;
             // 
-            // guna2Panel2
+            // walletPanel
             // 
-            guna2Panel2.BackColor = Color.Transparent;
-            guna2Panel2.BorderRadius = 20;
-            guna2Panel2.CustomizableEdges = customizableEdges9;
-            guna2Panel2.FillColor = Color.FromArgb(60, 63, 64);
-            guna2Panel2.Location = new Point(820, 3);
-            guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2Panel2.Size = new Size(319, 198);
-            guna2Panel2.TabIndex = 72;
+            walletPanel.BackColor = Color.Transparent;
+            walletPanel.BorderRadius = 20;
+            walletPanel.Controls.Add(sellButton);
+            walletPanel.Controls.Add(buyButton);
+            walletPanel.Controls.Add(withdrawButton);
+            walletPanel.Controls.Add(depositButton);
+            walletPanel.Controls.Add(balance);
+            walletPanel.Controls.Add(myBalanceLabel);
+            walletPanel.Controls.Add(walletSeparator);
+            walletPanel.CustomizableEdges = customizableEdges17;
+            walletPanel.FillColor = Color.FromArgb(60, 63, 64);
+            walletPanel.Location = new Point(815, 2);
+            walletPanel.Name = "walletPanel";
+            walletPanel.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            walletPanel.Size = new Size(319, 198);
+            walletPanel.TabIndex = 72;
+            // 
+            // sellButton
+            // 
+            sellButton.BackColor = Color.Transparent;
+            sellButton.BorderRadius = 15;
+            sellButton.Cursor = Cursors.Hand;
+            sellButton.CustomizableEdges = customizableEdges9;
+            sellButton.DisabledState.BorderColor = Color.DarkGray;
+            sellButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            sellButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            sellButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            sellButton.FillColor = Color.IndianRed;
+            sellButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            sellButton.ForeColor = Color.Black;
+            sellButton.Location = new Point(234, 9);
+            sellButton.Name = "sellButton";
+            sellButton.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            sellButton.Size = new Size(75, 29);
+            sellButton.TabIndex = 57;
+            sellButton.Text = "Sell";
+            // 
+            // buyButton
+            // 
+            buyButton.BackColor = Color.Transparent;
+            buyButton.BorderRadius = 15;
+            buyButton.Cursor = Cursors.Hand;
+            buyButton.CustomizableEdges = customizableEdges11;
+            buyButton.DisabledState.BorderColor = Color.DarkGray;
+            buyButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            buyButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            buyButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            buyButton.FillColor = Color.PaleGreen;
+            buyButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buyButton.ForeColor = Color.Black;
+            buyButton.Location = new Point(151, 10);
+            buyButton.Name = "buyButton";
+            buyButton.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            buyButton.Size = new Size(75, 29);
+            buyButton.TabIndex = 56;
+            buyButton.Text = "Buy";
+            // 
+            // withdrawButton
+            // 
+            withdrawButton.BackColor = Color.Transparent;
+            withdrawButton.BorderRadius = 15;
+            withdrawButton.Cursor = Cursors.Hand;
+            withdrawButton.CustomizableEdges = customizableEdges13;
+            withdrawButton.DisabledState.BorderColor = Color.DarkGray;
+            withdrawButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            withdrawButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            withdrawButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            withdrawButton.FillColor = Color.CornflowerBlue;
+            withdrawButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            withdrawButton.ForeColor = Color.Black;
+            withdrawButton.Location = new Point(164, 150);
+            withdrawButton.Name = "withdrawButton";
+            withdrawButton.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            withdrawButton.Size = new Size(128, 39);
+            withdrawButton.TabIndex = 55;
+            withdrawButton.Text = "Withdraw";
+            // 
+            // depositButton
+            // 
+            depositButton.BackColor = Color.Transparent;
+            depositButton.BorderRadius = 15;
+            depositButton.Cursor = Cursors.Hand;
+            depositButton.CustomizableEdges = customizableEdges15;
+            depositButton.DisabledState.BorderColor = Color.DarkGray;
+            depositButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            depositButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            depositButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            depositButton.FillColor = Color.PaleGreen;
+            depositButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            depositButton.ForeColor = Color.Black;
+            depositButton.Location = new Point(30, 150);
+            depositButton.Name = "depositButton";
+            depositButton.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            depositButton.Size = new Size(128, 39);
+            depositButton.TabIndex = 51;
+            depositButton.Text = "Deposit";
+            depositButton.Click += depositButton_Click;
+            // 
+            // balance
+            // 
+            balance.AutoSize = true;
+            balance.BackColor = Color.Transparent;
+            balance.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold);
+            balance.ForeColor = Color.White;
+            balance.Location = new Point(105, 93);
+            balance.Name = "balance";
+            balance.Size = new Size(109, 27);
+            balance.TabIndex = 54;
+            balance.Text = "Fetching";
+            balance.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // myBalanceLabel
+            // 
+            myBalanceLabel.AutoSize = true;
+            myBalanceLabel.BackColor = Color.Transparent;
+            myBalanceLabel.Font = new Font("Century Gothic", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            myBalanceLabel.Location = new Point(13, 13);
+            myBalanceLabel.Name = "myBalanceLabel";
+            myBalanceLabel.Size = new Size(114, 22);
+            myBalanceLabel.TabIndex = 53;
+            myBalanceLabel.Text = "My Balance";
+            // 
+            // walletSeparator
+            // 
+            walletSeparator.BackColor = Color.Transparent;
+            walletSeparator.FillColor = Color.Black;
+            walletSeparator.FillThickness = 2;
+            walletSeparator.Location = new Point(-3, 42);
+            walletSeparator.Name = "walletSeparator";
+            walletSeparator.Size = new Size(324, 10);
+            walletSeparator.TabIndex = 52;
             // 
             // guna2Panel1
             // 
             guna2Panel1.Controls.Add(marketPanel);
-            guna2Panel1.Controls.Add(guna2Panel3);
-            guna2Panel1.Controls.Add(guna2Panel2);
-            guna2Panel1.CustomizableEdges = customizableEdges11;
+            guna2Panel1.Controls.Add(transactionPanel);
+            guna2Panel1.Controls.Add(walletPanel);
+            guna2Panel1.CustomizableEdges = customizableEdges19;
             guna2Panel1.Location = new Point(3, 3);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges20;
             guna2Panel1.Size = new Size(1243, 795);
             guna2Panel1.TabIndex = 74;
             // 
@@ -697,6 +835,8 @@ namespace WebSocketStreamingWithUI.UserControls
             Load += UC_Market_Load_1;
             marketPanel.ResumeLayout(false);
             marketPanel.PerformLayout();
+            walletPanel.ResumeLayout(false);
+            walletPanel.PerformLayout();
             guna2Panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -743,8 +883,15 @@ namespace WebSocketStreamingWithUI.UserControls
         public Label labelBTCTicker;
         public Label labelBTC;
         
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private Guna.UI2.WinForms.Guna2Panel transactionPanel;
+        private Guna.UI2.WinForms.Guna2Panel walletPanel;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Button sellButton;
+        private Guna.UI2.WinForms.Guna2Button buyButton;
+        private Guna.UI2.WinForms.Guna2Button withdrawButton;
+        private Guna.UI2.WinForms.Guna2Button depositButton;
+        private Label balance;
+        private Label myBalanceLabel;
+        private Guna.UI2.WinForms.Guna2Separator walletSeparator;
     }
 }

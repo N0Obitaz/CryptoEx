@@ -1,11 +1,13 @@
 ﻿using System.Net.WebSockets;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using WebSocketStreamingWithUI.Data;
 
 namespace WebSocketStreamingWithUI.UserControls
 {
     public partial class UC_Market : UserControl
     {
+        Form1 GetFormMethod = new Form1();
         public UC_Market()
         {
             InitializeComponent();
@@ -179,8 +181,17 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private async void UC_Market_Load(object sender, EventArgs e)
         {
+
+            GetUser();
             CreateActionButtons();
             await ConnectAndReceiveAsync(GetWsUrl());
+        }
+        private void GetUser()
+        {
+            User newUser = new User();
+            newUser.GetUserDetails();
+
+            balance.Text = newUser.GetBalance().ToString("N2");
         }
         private void Button_Click(object sender, EventArgs e)
         {
@@ -195,7 +206,7 @@ namespace WebSocketStreamingWithUI.UserControls
                         uC_Exchange.ChangePlaceHolder(currency);
 
 
-                        Form1 GetFormMethod = new Form1();
+
                         GetFormMethod.AddUserControl(uC_Exchange, marketPanel);
 
 
@@ -237,6 +248,14 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private void UC_Market_Load_1(object sender, EventArgs e)
         {
+
+        }
+
+        private void depositButton_Click(object sender, EventArgs e)
+        {
+            var uC_Deposit = new UC_Deposit();
+       
+            GetFormMethod.AddUserControl(uC_Deposit, marketPanel);
 
         }
     }
