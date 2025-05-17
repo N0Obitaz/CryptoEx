@@ -47,94 +47,76 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private void UpdatePrice(string pairSymbol, float newPrice)
         {
+            try
+            {
+                if (!priceLabels.ContainsKey(pairSymbol)) return;
 
-            if (!priceLabels.ContainsKey(pairSymbol)) return;
+                Label priceLabel = priceLabels[pairSymbol];
+                float prevPrice = float.TryParse(priceLabel.Text, out float val) ? val : 0;
 
-            Label priceLabel = priceLabels[pairSymbol];
-            float prevPrice = float.TryParse(priceLabel.Text, out float val) ? val : 0;
+                priceLabel.ForeColor = newPrice > prevPrice ? Color.Green :
+                                       newPrice < prevPrice ? Color.Red : priceLabel.ForeColor;
 
-            priceLabel.ForeColor = newPrice > prevPrice ? Color.Green :
-                                   newPrice < prevPrice ? Color.Red : priceLabel.ForeColor;
+                priceLabel.Text = newPrice.ToString("N2");
+                float a = float.Parse(priceOfFromCurrency.Text);
+                if (amountLabel.Text == "")
+                {
+                    
+                    return;
+                }
+                float b = float.Parse(amountLabel.Text);
 
-            priceLabel.Text = newPrice.ToString("N2");
-            //priceOfToCurrency.Text = newPrice.ToString("N2");
+                float calculated = a * b;
+                float converted = calculated / float.Parse(priceOfToCurrency.Text);
+                amountTo.Text = converted.ToString();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return;
+            }
+
         }
 
         public void ChangePlaceHolder(string currency)
         {
             priceLabels[currency] = priceOfFromCurrency;
             //priceOfFromCurrency.Text = livePrice.ToString();
-            selectOptionFrom.Text = currency;
+            dropDownFrom.Text = currency;
             priceOfFromCurrency.Visible = true;
         }
-        private void ChangePlaceHolderTo(Guna2Button targetButton, Label targetPrice, string currency)
+
+
+
+        private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = dropDownFrom.SelectedIndex;
+            ChangePlaceHolderTo(priceOfFromCurrency, dropDownFrom.Items[selectedIndex].ToString());
+
+        }
+
+        private void ChangePlaceHolderTo(Label targetPrice, string currency)
         {
             priceLabels[currency] = targetPrice;
-            targetButton.Text = currency;
+
+            targetPrice.Visible = true;
+
+        }
+        private void ChangePlaceHolderFrom(Label targetPrice, string currency)
+        {
+            priceLabels[currency] = targetPrice;
             targetPrice.Visible = true;
 
         }
 
-
-
-        private enum CurrencySelectionTarget { None, From, To }
-        private CurrencySelectionTarget currentSelection = CurrencySelectionTarget.None;
-
-        private void AddOverLayPanel()
+        private void guna2ComboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            int selectedIndex = dropDownTo.SelectedIndex;
+            ChangePlaceHolderFrom(priceOfToCurrency, dropDownTo.Items[selectedIndex].ToString());
 
-            this.Controls.Add(overlayPanel);
-            overlayPanel.Visible = true;
-            CreateButtons();
-            convertPanel.Controls.Add(overlayPanel);
-            overlayPanel.BringToFront();
-
-        }
-        private void selectOption_Click(object sender, EventArgs e)
-        {
-            currentSelection = CurrencySelectionTarget.From;
-            AddOverLayPanel();
-
-        }
-
-        //Close overLayPanel
-
-        private void closeButton_Click(object sender, EventArgs e)
-        {
-            convertPanel.Controls.Remove(overlayPanel);
-            
-        }
-
-       
-        private void selectOptionTo_Click(object sender, EventArgs e)
-        {
-            currentSelection = CurrencySelectionTarget.To;
-            AddOverLayPanel();
-        }
-        private void currencyBtn_Click(object sender, EventArgs e)
-        {
-            
-            if (sender is Button btn && btn.Tag is string currency)
-            {
-
-                switch (currentSelection)
-                {
-                case CurrencySelectionTarget.From:
-                    ChangePlaceHolderTo(selectOptionFrom, priceOfFromCurrency, currency);
-                        convertPanel.Controls.Remove(overlayPanel);
-                    break;
-                case CurrencySelectionTarget.To:
-                    ChangePlaceHolderTo(selectOptionTo, priceOfToCurrency, currency);
-                        convertPanel.Controls.Remove(overlayPanel);
-                        break;
-                }
-            }
-
-            //MessageBox.Show($"Failed to parse price for {currency}");
-
-
-            this.Controls.Remove(overlayPanel);
-            currentSelection = CurrencySelectionTarget.None;
         }
     }
 }
