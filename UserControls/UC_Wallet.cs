@@ -16,23 +16,12 @@ namespace WebSocketStreamingWithUI.UserControls
         public UC_Wallet()
         {
             InitializeComponent();
-            GetUser();
+          
         }
 
-        private void GetUser()
-        {
-            User newUser = new User();
-            newUser.GetUserDetails();
+        
 
-            balance.Text = newUser.GetBalance().ToString("N2");
-        }
-
-        private void balance_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void myBalanceLabel_Click(object sender, EventArgs e)
+        private void UC_Wallet_Load(object sender, EventArgs e)
         {
 
         }
