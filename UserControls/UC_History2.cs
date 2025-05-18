@@ -45,7 +45,7 @@ namespace WebSocketStreamingWithUI.UserControls
                                 return;
                             }
                             int count = 0;
-                            int j = 101;
+                            int j = 20;
                             while (reader.Read())
                             {
                                 Guna.UI2.WinForms.Guna2GradientPanel historyBoxes = new Guna.UI2.WinForms.Guna2GradientPanel();
@@ -126,8 +126,8 @@ namespace WebSocketStreamingWithUI.UserControls
                                 };
                                 historyBoxes.BorderRadius = 20;
                                 historyBoxes.Name = "historyBoxes" + count;
-                                historyBoxes.Size = new Size(523, 63);
-                                historyBoxes.Location = new Point(37, j + 81);
+                                historyBoxes.Size = new Size(600, 63);
+                                historyBoxes.Location = new Point(37, j);
                                 historyBoxes.FillColor = Color.FromArgb(192, 255, 255);
                                 historyBoxes.FillColor2 = Color.FromArgb(0, 192, 192);
                                 historyBoxes.TabIndex = 46;
@@ -138,7 +138,7 @@ namespace WebSocketStreamingWithUI.UserControls
                                 historyBoxes.Controls.Add(subAct);
 
                                 //historyPanel.Controls.Add(historyBoxes);
-                                historyBigPanel.Controls.Add(historyBoxes);
+                                historyInsidePanel.Controls.Add(historyBoxes);
                                 count++;
                                 j += 81;
                             }

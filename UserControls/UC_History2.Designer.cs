@@ -28,12 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             historyBigPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             historyPanel = new Guna.UI2.WinForms.Guna2Panel();
@@ -46,9 +50,12 @@
             dateLabelHistory = new Label();
             historyLabel = new Label();
             guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
+            historyInsidePanel = new Guna.UI2.WinForms.Guna2Panel();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             historyBigPanel.SuspendLayout();
             historyPanel.SuspendLayout();
             historyBox.SuspendLayout();
+            guna2Panel1.SuspendLayout();
             SuspendLayout();
             // 
             // historyBigPanel
@@ -56,13 +63,14 @@
             historyBigPanel.BackColor = Color.Transparent;
             historyBigPanel.BorderColor = Color.White;
             historyBigPanel.BorderRadius = 20;
+            historyBigPanel.Controls.Add(guna2Panel1);
             historyBigPanel.Controls.Add(guna2HtmlLabel1);
-            historyBigPanel.CustomizableEdges = customizableEdges7;
+            historyBigPanel.CustomizableEdges = customizableEdges5;
             historyBigPanel.FillColor = Color.FromArgb(60, 63, 64);
             historyBigPanel.FillColor2 = Color.FromArgb(60, 63, 64);
             historyBigPanel.Location = new Point(0, 0);
             historyBigPanel.Name = "historyBigPanel";
-            historyBigPanel.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            historyBigPanel.ShadowDecoration.CustomizableEdges = customizableEdges6;
             historyBigPanel.Size = new Size(1136, 733);
             historyBigPanel.TabIndex = 4;
             // 
@@ -71,7 +79,7 @@
             guna2HtmlLabel1.BackColor = Color.Transparent;
             guna2HtmlLabel1.Font = new Font("Showcard Gothic", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2HtmlLabel1.ForeColor = Color.White;
-            guna2HtmlLabel1.Location = new Point(451, 57);
+            guna2HtmlLabel1.Location = new Point(500, 57);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             guna2HtmlLabel1.Size = new Size(137, 39);
             guna2HtmlLabel1.TabIndex = 2;
@@ -88,11 +96,11 @@
             historyPanel.Controls.Add(dateLabelHistory);
             historyPanel.Controls.Add(historyLabel);
             historyPanel.Controls.Add(guna2Separator1);
-            historyPanel.CustomizableEdges = customizableEdges11;
+            historyPanel.CustomizableEdges = customizableEdges9;
             historyPanel.FillColor = Color.White;
             historyPanel.Location = new Point(1, 1);
             historyPanel.Name = "historyPanel";
-            historyPanel.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            historyPanel.ShadowDecoration.CustomizableEdges = customizableEdges10;
             historyPanel.Size = new Size(617, 579);
             historyPanel.TabIndex = 39;
             historyPanel.UseTransparentBackground = true;
@@ -114,12 +122,12 @@
             historyBox.Controls.Add(timeLabel);
             historyBox.Controls.Add(amountLabel);
             historyBox.Controls.Add(actionLabel);
-            historyBox.CustomizableEdges = customizableEdges9;
+            historyBox.CustomizableEdges = customizableEdges7;
             historyBox.FillColor = Color.FromArgb(192, 255, 255);
             historyBox.FillColor2 = Color.FromArgb(0, 192, 192);
             historyBox.Location = new Point(37, 101);
             historyBox.Name = "historyBox";
-            historyBox.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            historyBox.ShadowDecoration.CustomizableEdges = customizableEdges8;
             historyBox.Size = new Size(523, 63);
             historyBox.TabIndex = 46;
             // 
@@ -196,6 +204,31 @@
             guna2Separator1.Size = new Size(613, 10);
             guna2Separator1.TabIndex = 44;
             // 
+            // historyInsidePanel
+            // 
+            historyInsidePanel.AutoScroll = true;
+            historyInsidePanel.BackColor = Color.Transparent;
+            historyInsidePanel.BorderRadius = 20;
+            historyInsidePanel.CustomizableEdges = customizableEdges1;
+            historyInsidePanel.FillColor = Color.Transparent;
+            historyInsidePanel.Location = new Point(14, 16);
+            historyInsidePanel.Name = "historyInsidePanel";
+            historyInsidePanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            historyInsidePanel.Size = new Size(907, 573);
+            historyInsidePanel.TabIndex = 3;
+            // 
+            // guna2Panel1
+            // 
+            guna2Panel1.BorderRadius = 30;
+            guna2Panel1.Controls.Add(historyInsidePanel);
+            guna2Panel1.CustomizableEdges = customizableEdges3;
+            guna2Panel1.FillColor = Color.FromArgb(34, 35, 37);
+            guna2Panel1.Location = new Point(101, 102);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2Panel1.Size = new Size(935, 605);
+            guna2Panel1.TabIndex = 4;
+            // 
             // UC_History2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -210,6 +243,7 @@
             historyPanel.PerformLayout();
             historyBox.ResumeLayout(false);
             historyBox.PerformLayout();
+            guna2Panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -228,5 +262,7 @@
         public Guna.UI2.WinForms.Guna2HtmlLabel subAction;
         private Guna.UI2.WinForms.Guna2GradientPanel historyBigPanel;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private Guna.UI2.WinForms.Guna2Panel historyInsidePanel;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
     }
 }
