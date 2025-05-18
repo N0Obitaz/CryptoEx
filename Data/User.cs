@@ -74,19 +74,19 @@ namespace WebSocketStreamingWithUI.Data
 
             
         }
-        public void UpdateUserBalance(string amount)
+        public void UpdateUserBalance(string amount, string operation)
         {
             
-            UpdateBalance(float.Parse(amount));
+            UpdateBalance(float.Parse(amount), operation);
         }
-        private void UpdateBalance(float amount)
+        private void UpdateBalance(float amount, string operation)
         {
             try
             {
                 using (var conn = new MySqlConnection(connection.GetConnectionString()))
                 {
                     conn.Open();
-                    string UpdateQuery = "UPDATE users SET balance = balance + @amount WHERE username = @username";
+                    string UpdateQuery = $"UPDATE users SET balance = balance {operation} @amount WHERE username = @username";
 
                     using (var cmd = new MySqlCommand(UpdateQuery, conn))
                     {
@@ -96,7 +96,11 @@ namespace WebSocketStreamingWithUI.Data
                        object result =  cmd.ExecuteNonQuery();
                         if (int.Parse(result.ToString()) > 0)
                         {
-                            string action = "DEPOSIT";
+                             string action = "";
+                             action = operation == "+" ? "DEPOSIT" :
+                                        operation == "-" ? "WITHDRAW" : action;
+                            //priceLabel.ForeColor = newPrice > prevPrice ? Color.Green :
+                            //          newPrice < prevPrice ? Color.Red : priceLabel.ForeColor;
                             string currency = "USDT";
                             InsertToHistory(GetUser(), action, amount, currency);
                         }
