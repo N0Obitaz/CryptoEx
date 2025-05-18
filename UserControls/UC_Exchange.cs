@@ -86,6 +86,8 @@ namespace WebSocketStreamingWithUI.UserControls
             priceLabels[currency] = priceOfFromCurrency;
             //priceOfFromCurrency.Text = livePrice.ToString();
             dropDownFrom.Text = currency;
+            SelectedLabelFrom.Visible = false;
+            dropDownTo.Text = "Select Option";
             priceOfFromCurrency.Visible = true;
         }
 
@@ -93,6 +95,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            SelectedLabelFrom.Visible = false;
             int selectedIndex = dropDownFrom.SelectedIndex;
             ChangePlaceHolderTo(priceOfFromCurrency, dropDownFrom.Items[selectedIndex].ToString());
 
@@ -114,6 +117,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private void guna2ComboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            selectedLabelTo.Visible = false;
             int selectedIndex = dropDownTo.SelectedIndex;
             ChangePlaceHolderFrom(priceOfToCurrency, dropDownTo.Items[selectedIndex].ToString());
 

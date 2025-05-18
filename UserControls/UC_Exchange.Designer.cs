@@ -54,12 +54,14 @@ namespace WebSocketStreamingWithUI.UserControls
             convertPanel = new Guna2Panel();
             guna2Button1 = new Guna2Button();
             guna2Panel3 = new Guna2Panel();
+            selectedLabelTo = new Guna2HtmlLabel();
             amountTo = new Guna2TextBox();
             dropDownTo = new Guna2ComboBox();
             youGet = new Label();
             priceOfToCurrency = new Label();
             label1 = new Label();
             guna2Panel2 = new Guna2Panel();
+            SelectedLabelFrom = new Guna2HtmlLabel();
             dropDownFrom = new Guna2ComboBox();
             priceOfFromCurrency = new Label();
             amountText = new Label();
@@ -108,7 +110,7 @@ namespace WebSocketStreamingWithUI.UserControls
             guna2Button1.FillColor = Color.IndianRed;
             guna2Button1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(25, 474);
+            guna2Button1.Location = new Point(35, 474);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2Button1.Size = new Size(468, 65);
@@ -118,6 +120,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // guna2Panel3
             // 
             guna2Panel3.BorderRadius = 20;
+            guna2Panel3.Controls.Add(selectedLabelTo);
             guna2Panel3.Controls.Add(amountTo);
             guna2Panel3.Controls.Add(dropDownTo);
             guna2Panel3.Controls.Add(youGet);
@@ -125,17 +128,29 @@ namespace WebSocketStreamingWithUI.UserControls
             guna2Panel3.Controls.Add(label1);
             guna2Panel3.CustomizableEdges = customizableEdges7;
             guna2Panel3.FillColor = Color.FromArgb(34, 35, 37);
-            guna2Panel3.Location = new Point(25, 270);
+            guna2Panel3.Location = new Point(35, 270);
             guna2Panel3.Name = "guna2Panel3";
             guna2Panel3.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2Panel3.Size = new Size(468, 190);
             guna2Panel3.TabIndex = 83;
+            // 
+            // selectedLabelTo
+            // 
+            selectedLabelTo.BackColor = Color.FromArgb(60, 63, 64);
+            selectedLabelTo.Font = new Font("Segoe UI", 10F);
+            selectedLabelTo.ForeColor = Color.White;
+            selectedLabelTo.Location = new Point(22, 61);
+            selectedLabelTo.Name = "selectedLabelTo";
+            selectedLabelTo.Size = new Size(106, 25);
+            selectedLabelTo.TabIndex = 92;
+            selectedLabelTo.Text = "Select Option";
             // 
             // amountTo
             // 
             amountTo.BackColor = Color.Transparent;
             amountTo.BorderRadius = 15;
             amountTo.BorderThickness = 0;
+            amountTo.Cursor = Cursors.IBeam;
             amountTo.CustomizableEdges = customizableEdges3;
             amountTo.DefaultText = "";
             amountTo.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -163,6 +178,7 @@ namespace WebSocketStreamingWithUI.UserControls
             dropDownTo.BackColor = Color.Transparent;
             dropDownTo.BorderRadius = 10;
             dropDownTo.BorderThickness = 0;
+            dropDownTo.Cursor = Cursors.Hand;
             dropDownTo.CustomizableEdges = customizableEdges5;
             dropDownTo.DrawMode = DrawMode.OwnerDrawFixed;
             dropDownTo.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -232,6 +248,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // 
             guna2Panel2.BorderColor = Color.Transparent;
             guna2Panel2.BorderRadius = 20;
+            guna2Panel2.Controls.Add(SelectedLabelFrom);
             guna2Panel2.Controls.Add(dropDownFrom);
             guna2Panel2.Controls.Add(priceOfFromCurrency);
             guna2Panel2.Controls.Add(amountText);
@@ -239,11 +256,22 @@ namespace WebSocketStreamingWithUI.UserControls
             guna2Panel2.Controls.Add(from);
             guna2Panel2.CustomizableEdges = customizableEdges13;
             guna2Panel2.FillColor = Color.FromArgb(34, 35, 37);
-            guna2Panel2.Location = new Point(25, 52);
+            guna2Panel2.Location = new Point(35, 52);
             guna2Panel2.Name = "guna2Panel2";
             guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges14;
             guna2Panel2.Size = new Size(468, 190);
             guna2Panel2.TabIndex = 82;
+            // 
+            // SelectedLabelFrom
+            // 
+            SelectedLabelFrom.BackColor = Color.FromArgb(60, 63, 64);
+            SelectedLabelFrom.Font = new Font("Segoe UI", 10F);
+            SelectedLabelFrom.ForeColor = Color.White;
+            SelectedLabelFrom.Location = new Point(24, 62);
+            SelectedLabelFrom.Name = "SelectedLabelFrom";
+            SelectedLabelFrom.Size = new Size(106, 25);
+            SelectedLabelFrom.TabIndex = 91;
+            SelectedLabelFrom.Text = "Select Option";
             // 
             // dropDownFrom
             // 
@@ -251,6 +279,7 @@ namespace WebSocketStreamingWithUI.UserControls
             dropDownFrom.BackColor = Color.Transparent;
             dropDownFrom.BorderRadius = 10;
             dropDownFrom.BorderThickness = 0;
+            dropDownFrom.Cursor = Cursors.Hand;
             dropDownFrom.CustomizableEdges = customizableEdges9;
             dropDownFrom.DrawMode = DrawMode.OwnerDrawFixed;
             dropDownFrom.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -306,6 +335,7 @@ namespace WebSocketStreamingWithUI.UserControls
             amountLabel.BackColor = Color.Transparent;
             amountLabel.BorderRadius = 15;
             amountLabel.BorderThickness = 0;
+            amountLabel.Cursor = Cursors.IBeam;
             amountLabel.CustomizableEdges = customizableEdges11;
             amountLabel.DefaultText = "";
             amountLabel.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -478,8 +508,10 @@ namespace WebSocketStreamingWithUI.UserControls
         public Label Exchange;
         public Guna2Panel exchangePanel;
         private Guna2Button guna2Button1;
-        private Guna2ComboBox dropDownFrom;
-        private Guna2ComboBox dropDownTo;
+        public Guna2ComboBox dropDownFrom;
+        public Guna2ComboBox dropDownTo;
         private Guna2TextBox amountTo;
+        private Guna2HtmlLabel selectedLabelTo;
+        private Guna2HtmlLabel SelectedLabelFrom;
     }
 }
