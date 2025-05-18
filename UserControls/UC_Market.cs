@@ -1,5 +1,6 @@
 ﻿using System.Net.WebSockets;
 using System.Text;
+using Guna.UI2.WinForms;
 using Newtonsoft.Json.Linq;
 using WebSocketStreamingWithUI.Data;
 
@@ -39,9 +40,22 @@ namespace WebSocketStreamingWithUI.UserControls
                 { "BCH", labelBCHTicker },
                 { "DOT", labelDOTTicker }
             };
-
+            panels = new Dictionary<int, Guna2Panel>
+            {
+                 {0, Panel1 },
+                 {1, Panel2 },
+                 {2, Panel3 },
+                 {3, Panel4 },
+                 {4, Panel5 },
+                 {5, Panel6 },
+                 {6, Panel7 },
+                 {7, Panel8 },
+                 {8, Panel9 },
+                 {9, Panel10 },
+            };
         }
 
+        public Dictionary<int, Guna2Panel> panels;
         private readonly Dictionary<string, string> priceTable = [];
 
         private string pair;
@@ -195,7 +209,7 @@ namespace WebSocketStreamingWithUI.UserControls
         }
         private void Button_Click(object sender, EventArgs e)
         {
-            if (sender is Button btn && btn.Tag is string currency)
+            if (sender is Guna2Button btn && btn.Tag is string currency)
             {
                 if (priceLabels.TryGetValue(currency, out Label priceLabel))
                 {
@@ -254,9 +268,19 @@ namespace WebSocketStreamingWithUI.UserControls
         private void depositButton_Click(object sender, EventArgs e)
         {
             var uC_Deposit = new UC_Deposit();
-       
             GetFormMethod.AddUserControl(uC_Deposit, marketPanel);
 
+        }
+
+        private void labelSOLTicker_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void withdrawButton_Click(object sender, EventArgs e)
+        {
+            var uC_Withdraw = new UC_Withdraw();
+            GetFormMethod.AddUserControl(uC_Withdraw, marketPanel);
         }
     }
 }
