@@ -36,6 +36,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -70,7 +71,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             printDialog1 = new PrintDialog();
             printDialog2 = new PrintDialog();
@@ -152,9 +152,9 @@
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button1.FillColor = Color.Transparent;
-            guna2Button1.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2Button1.Font = new Font("Impact", 13.8F);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(68, 578);
+            guna2Button1.Location = new Point(71, 633);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2Button1.Size = new Size(127, 40);
@@ -172,9 +172,9 @@
             themeButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             themeButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             themeButton.FillColor = Color.Transparent;
-            themeButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            themeButton.Font = new Font("Impact", 13.8F);
             themeButton.ForeColor = Color.White;
-            themeButton.Location = new Point(68, 533);
+            themeButton.Location = new Point(71, 588);
             themeButton.Name = "themeButton";
             themeButton.ShadowDecoration.CustomizableEdges = customizableEdges4;
             themeButton.Size = new Size(127, 40);
@@ -192,14 +192,18 @@
             settingsButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             settingsButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             settingsButton.FillColor = Color.Transparent;
-            settingsButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            settingsButton.Font = new Font("Impact", 13.8F);
             settingsButton.ForeColor = Color.White;
-            settingsButton.Location = new Point(68, 487);
+            settingsButton.Image = (Image)resources.GetObject("settingsButton.Image");
+            settingsButton.ImageOffset = new Point(-12, 0);
+            settingsButton.ImageSize = new Size(50, 50);
+            settingsButton.Location = new Point(22, 481);
             settingsButton.Name = "settingsButton";
             settingsButton.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            settingsButton.Size = new Size(127, 40);
+            settingsButton.Size = new Size(207, 56);
             settingsButton.TabIndex = 4;
             settingsButton.Text = "Settings";
+            settingsButton.TextOffset = new Point(-5, 0);
             // 
             // historyButton
             // 
@@ -212,14 +216,18 @@
             historyButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             historyButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             historyButton.FillColor = Color.Transparent;
-            historyButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            historyButton.Font = new Font("Impact", 13.8F);
             historyButton.ForeColor = Color.White;
-            historyButton.Location = new Point(52, 316);
+            historyButton.Image = (Image)resources.GetObject("historyButton.Image");
+            historyButton.ImageOffset = new Point(-15, 0);
+            historyButton.ImageSize = new Size(50, 50);
+            historyButton.Location = new Point(25, 388);
             historyButton.Name = "historyButton";
             historyButton.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            historyButton.Size = new Size(159, 40);
+            historyButton.Size = new Size(207, 56);
             historyButton.TabIndex = 3;
             historyButton.Text = "History";
+            historyButton.TextOffset = new Point(-10, 0);
             historyButton.Click += historyButton_Click;
             // 
             // walletButton
@@ -233,14 +241,18 @@
             walletButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             walletButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             walletButton.FillColor = Color.Transparent;
-            walletButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            walletButton.Font = new Font("Impact", 13.8F);
             walletButton.ForeColor = Color.White;
-            walletButton.Location = new Point(52, 247);
+            walletButton.Image = (Image)resources.GetObject("walletButton.Image");
+            walletButton.ImageOffset = new Point(-16, 0);
+            walletButton.ImageSize = new Size(50, 50);
+            walletButton.Location = new Point(22, 313);
             walletButton.Name = "walletButton";
             walletButton.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            walletButton.Size = new Size(159, 40);
+            walletButton.Size = new Size(207, 56);
             walletButton.TabIndex = 2;
             walletButton.Text = "Wallet";
+            walletButton.TextOffset = new Point(-10, 0);
             walletButton.Click += walletButton_Click;
             // 
             // exchangeButton
@@ -254,14 +266,18 @@
             exchangeButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             exchangeButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             exchangeButton.FillColor = Color.Transparent;
-            exchangeButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            exchangeButton.Font = new Font("Impact", 13.8F);
             exchangeButton.ForeColor = Color.White;
-            exchangeButton.Location = new Point(52, 179);
+            exchangeButton.Image = (Image)resources.GetObject("exchangeButton.Image");
+            exchangeButton.ImageOffset = new Point(-12, 0);
+            exchangeButton.ImageSize = new Size(50, 50);
+            exchangeButton.Location = new Point(25, 232);
             exchangeButton.Name = "exchangeButton";
             exchangeButton.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            exchangeButton.Size = new Size(159, 40);
+            exchangeButton.Size = new Size(207, 56);
             exchangeButton.TabIndex = 1;
             exchangeButton.Text = "Exchange";
+            exchangeButton.TextOffset = new Point(-4, 0);
             exchangeButton.Click += exchangeButton_Click;
             // 
             // dashboardButton
@@ -275,12 +291,15 @@
             dashboardButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             dashboardButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             dashboardButton.FillColor = Color.Transparent;
-            dashboardButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dashboardButton.Font = new Font("Impact", 13.8F);
             dashboardButton.ForeColor = Color.White;
-            dashboardButton.Location = new Point(52, 112);
+            dashboardButton.Image = (Image)resources.GetObject("dashboardButton.Image");
+            dashboardButton.ImageOffset = new Point(-8, 0);
+            dashboardButton.ImageSize = new Size(50, 50);
+            dashboardButton.Location = new Point(25, 157);
             dashboardButton.Name = "dashboardButton";
             dashboardButton.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            dashboardButton.Size = new Size(159, 40);
+            dashboardButton.Size = new Size(207, 56);
             dashboardButton.TabIndex = 0;
             dashboardButton.Text = "Dashboard";
             dashboardButton.Click += dashboardButton_Click;

@@ -58,13 +58,14 @@ namespace WebSocketStreamingWithUI
 
         private void walletButton_Click(object sender, EventArgs e)
         {
-            UC_Buy uC_Buy = new UC_Buy();
-            AddUserControl(uC_Buy, Mainpanel1);
+            var uC_Wallet = new UC_Wallet();
+            AddUserControl(uC_Wallet, Mainpanel1);
         }
      
         private void exchangeButton_Click(object sender, EventArgs e)
         {
             UC_Exchange uC_Exchange = new UC_Exchange();
+          
             AddUserControl(uC_Exchange, Mainpanel1);
         }
     }
