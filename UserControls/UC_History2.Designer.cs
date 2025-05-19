@@ -30,6 +30,9 @@
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_History2));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -38,10 +41,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_History2));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             historyBigPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
+            deleteButton = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             historyInsidePanel = new Guna.UI2.WinForms.Guna2Panel();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -55,7 +56,6 @@
             dateLabelHistory = new Label();
             historyLabel = new Label();
             guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
-            deleteButton = new Guna.UI2.WinForms.Guna2Button();
             historyBigPanel.SuspendLayout();
             guna2Panel1.SuspendLayout();
             historyPanel.SuspendLayout();
@@ -78,6 +78,25 @@
             historyBigPanel.ShadowDecoration.CustomizableEdges = customizableEdges8;
             historyBigPanel.Size = new Size(1136, 733);
             historyBigPanel.TabIndex = 4;
+            // 
+            // deleteButton
+            // 
+            deleteButton.Cursor = Cursors.Hand;
+            deleteButton.CustomizableEdges = customizableEdges1;
+            deleteButton.DisabledState.BorderColor = Color.DarkGray;
+            deleteButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            deleteButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            deleteButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            deleteButton.FillColor = Color.Transparent;
+            deleteButton.Font = new Font("Segoe UI", 9F);
+            deleteButton.ForeColor = Color.White;
+            deleteButton.HoverState.Image = (Image)resources.GetObject("resource.Image");
+            deleteButton.Image = (Image)resources.GetObject("deleteButton.Image");
+            deleteButton.Location = new Point(971, 46);
+            deleteButton.Name = "deleteButton";
+            deleteButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            deleteButton.Size = new Size(50, 50);
+            deleteButton.TabIndex = 0;
             // 
             // guna2Panel1
             // 
@@ -233,24 +252,6 @@
             guna2Separator1.Name = "guna2Separator1";
             guna2Separator1.Size = new Size(613, 10);
             guna2Separator1.TabIndex = 44;
-            // 
-            // deleteButton
-            // 
-            deleteButton.CustomizableEdges = customizableEdges1;
-            deleteButton.DisabledState.BorderColor = Color.DarkGray;
-            deleteButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            deleteButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            deleteButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            deleteButton.FillColor = Color.Transparent;
-            deleteButton.Font = new Font("Segoe UI", 9F);
-            deleteButton.ForeColor = Color.White;
-            deleteButton.HoverState.Image = (Image)resources.GetObject("resource.Image");
-            deleteButton.Image = (Image)resources.GetObject("deleteButton.Image");
-            deleteButton.Location = new Point(971, 46);
-            deleteButton.Name = "deleteButton";
-            deleteButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            deleteButton.Size = new Size(50, 50);
-            deleteButton.TabIndex = 0;
             // 
             // UC_History2
             // 

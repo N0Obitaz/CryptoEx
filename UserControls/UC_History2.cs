@@ -25,33 +25,7 @@ namespace WebSocketStreamingWithUI.UserControls
             FetchHistoryData();
         }
 
-        private int CountDistinctDates()
-        {
-            try
-            {
-                  using (var conn = new MySqlConnection(connection.GetConnectionString()))
-                  {
-                    conn.Open();
-                        string countQuery = "SELECT COUNT(DISTINCT CAST(date AS DATE)) AS date_count FROM history WHERE username = @username";
-                        using (var cmd = new MySqlCommand(countQuery, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@username", user.GetUser());
-
-                            int result = Convert.ToInt32(cmd.ExecuteScalar());
-                            if (result > 0)
-                            {
-                                return result;
-                            }
-                        }
-                  }
-               
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            return 0;
-        }
+       
 
         private void FetchHistoryData()
         {
@@ -78,12 +52,8 @@ namespace WebSocketStreamingWithUI.UserControls
                             int count = 0;
                            
                             int j = 20;
-                            int height = 0;
-                           
-                               
-                             
-                             
-                                List<HistoryItem> items = new List<HistoryItem>();
+                        
+                           List<HistoryItem> items = new List<HistoryItem>();
 
                             while (reader.Read())
                             {
