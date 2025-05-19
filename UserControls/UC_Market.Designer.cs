@@ -323,6 +323,7 @@ namespace WebSocketStreamingWithUI.UserControls
             labelBTCTicker.Size = new Size(121, 31);
             labelBTCTicker.TabIndex = 37;
             labelBTCTicker.Text = "TICKER";
+            labelBTCTicker.TextAlign = ContentAlignment.TopCenter;
             labelBTCTicker.Click += labelBTCTicker_Click;
             // 
             // label14
