@@ -165,6 +165,7 @@ namespace WebSocketStreamingWithUI.UserControls
             myBalanceLabel = new Label();
             walletSeparator = new Guna2Separator();
             guna2Panel1 = new Guna2Panel();
+            phpSIgn = new Label();
             marketPanel.SuspendLayout();
             Panel10.SuspendLayout();
             Panel9.SuspendLayout();
@@ -231,9 +232,9 @@ namespace WebSocketStreamingWithUI.UserControls
             label11.ForeColor = Color.White;
             label11.Location = new Point(273, 13);
             label11.Name = "label11";
-            label11.Size = new Size(24, 25);
+            label11.Size = new Size(26, 25);
             label11.TabIndex = 53;
-            label11.Text = "$";
+            label11.Text = "₱";
             // 
             // labelADA
             // 
@@ -335,9 +336,9 @@ namespace WebSocketStreamingWithUI.UserControls
             label14.ForeColor = Color.White;
             label14.Location = new Point(273, 13);
             label14.Name = "label14";
-            label14.Size = new Size(24, 25);
+            label14.Size = new Size(26, 25);
             label14.TabIndex = 56;
-            label14.Text = "$";
+            label14.Text = "₱";
             // 
             // actionLabel
             // 
@@ -363,9 +364,9 @@ namespace WebSocketStreamingWithUI.UserControls
             label8.ForeColor = Color.White;
             label8.Location = new Point(273, 13);
             label8.Name = "label8";
-            label8.Size = new Size(24, 25);
+            label8.Size = new Size(26, 25);
             label8.TabIndex = 50;
-            label8.Text = "$";
+            label8.Text = "₱";
             // 
             // dollarSymbol
             // 
@@ -376,9 +377,9 @@ namespace WebSocketStreamingWithUI.UserControls
             dollarSymbol.ForeColor = Color.White;
             dollarSymbol.Location = new Point(273, 13);
             dollarSymbol.Name = "dollarSymbol";
-            dollarSymbol.Size = new Size(24, 25);
+            dollarSymbol.Size = new Size(26, 25);
             dollarSymbol.TabIndex = 38;
-            dollarSymbol.Text = "$";
+            dollarSymbol.Text = "₱";
             // 
             // labelAVAX
             // 
@@ -484,9 +485,9 @@ namespace WebSocketStreamingWithUI.UserControls
             label17.ForeColor = Color.White;
             label17.Location = new Point(273, 13);
             label17.Name = "label17";
-            label17.Size = new Size(24, 25);
+            label17.Size = new Size(26, 25);
             label17.TabIndex = 59;
-            label17.Text = "$";
+            label17.Text = "₱";
             // 
             // assetTicker
             // 
@@ -513,9 +514,9 @@ namespace WebSocketStreamingWithUI.UserControls
             label5.ForeColor = Color.White;
             label5.Location = new Point(273, 13);
             label5.Name = "label5";
-            label5.Size = new Size(24, 25);
+            label5.Size = new Size(26, 25);
             label5.TabIndex = 47;
-            label5.Text = "$";
+            label5.Text = "₱";
             // 
             // dollarSymbol2
             // 
@@ -526,9 +527,9 @@ namespace WebSocketStreamingWithUI.UserControls
             dollarSymbol2.ForeColor = Color.White;
             dollarSymbol2.Location = new Point(273, 13);
             dollarSymbol2.Name = "dollarSymbol2";
-            dollarSymbol2.Size = new Size(24, 25);
+            dollarSymbol2.Size = new Size(26, 25);
             dollarSymbol2.TabIndex = 41;
-            dollarSymbol2.Text = "$";
+            dollarSymbol2.Text = "₱";
             // 
             // labelBCH
             // 
@@ -552,9 +553,9 @@ namespace WebSocketStreamingWithUI.UserControls
             label23.ForeColor = Color.White;
             label23.Location = new Point(273, 13);
             label23.Name = "label23";
-            label23.Size = new Size(24, 25);
+            label23.Size = new Size(26, 25);
             label23.TabIndex = 65;
-            label23.Text = "$";
+            label23.Text = "₱";
             // 
             // labelSOLTicker
             // 
@@ -644,9 +645,9 @@ namespace WebSocketStreamingWithUI.UserControls
             label20.ForeColor = Color.White;
             label20.Location = new Point(273, 13);
             label20.Name = "label20";
-            label20.Size = new Size(24, 25);
+            label20.Size = new Size(26, 25);
             label20.TabIndex = 62;
-            label20.Text = "$";
+            label20.Text = "₱";
             // 
             // labelDOT
             // 
@@ -670,9 +671,9 @@ namespace WebSocketStreamingWithUI.UserControls
             label2.ForeColor = Color.White;
             label2.Location = new Point(273, 13);
             label2.Name = "label2";
-            label2.Size = new Size(24, 25);
+            label2.Size = new Size(26, 25);
             label2.TabIndex = 44;
-            label2.Text = "$";
+            label2.Text = "₱";
             // 
             // marketPanel
             // 
@@ -861,6 +862,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // 
             walletPanel.BackColor = Color.Transparent;
             walletPanel.BorderRadius = 20;
+            walletPanel.Controls.Add(phpSIgn);
             walletPanel.Controls.Add(sellButton);
             walletPanel.Controls.Add(buyButton);
             walletPanel.Controls.Add(withdrawButton);
@@ -1005,6 +1007,19 @@ namespace WebSocketStreamingWithUI.UserControls
             guna2Panel1.Size = new Size(1243, 795);
             guna2Panel1.TabIndex = 74;
             // 
+            // phpSIgn
+            // 
+            phpSIgn.AutoSize = true;
+            phpSIgn.BackColor = Color.Transparent;
+            phpSIgn.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold);
+            phpSIgn.ForeColor = Color.White;
+            phpSIgn.Location = new Point(45, 93);
+            phpSIgn.Name = "phpSIgn";
+            phpSIgn.Size = new Size(54, 27);
+            phpSIgn.TabIndex = 58;
+            phpSIgn.Text = "PHP";
+            phpSIgn.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // UC_Market
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1110,6 +1125,6 @@ namespace WebSocketStreamingWithUI.UserControls
         public Guna2Panel Panel8;
         public Guna2Panel Panel7;
         public Guna2Panel Panel10;
-        
+        private Label phpSIgn;
     }
 }

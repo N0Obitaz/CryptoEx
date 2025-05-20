@@ -10,6 +10,7 @@ namespace WebSocketStreamingWithUI.TestWebSocket
 {
     public class WebSocketPriceClient
     {
+        private float phpRate = 55.76f;
         public delegate void PriceUpdateHandler(string pair, float price);
         public event PriceUpdateHandler OnPriceUpdate;
 
@@ -45,11 +46,12 @@ namespace WebSocketStreamingWithUI.TestWebSocket
 
         private void HandleMessage(string jsonMessage)
         {
+
             try
             {
                 var json = JObject.Parse(jsonMessage);
                 string pair = json["data"]["s"].ToString().Split("USDT")[0];
-                float price = float.Parse(json["data"]["p"].ToString());
+                float price = float.Parse(json["data"]["p"].ToString()) * phpRate;
 
                 OnPriceUpdate?.Invoke(pair, price);
             }

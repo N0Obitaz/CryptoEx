@@ -123,8 +123,9 @@ namespace WebSocketStreamingWithUI.UserControls
 
                 //binance price format
                 string price = json["data"]["p"].ToString();
+                float phpRate = 55.76f;
 
-                float convertedPrice = (float)Math.Round(float.Parse(price), 2);
+                float convertedPrice = (float)Math.Round(float.Parse(price), 2) * phpRate;
 
                 priceTable[pair] = price; // Store latest price
 

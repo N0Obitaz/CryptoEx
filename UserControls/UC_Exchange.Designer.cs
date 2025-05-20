@@ -358,6 +358,7 @@ namespace WebSocketStreamingWithUI.UserControls
             amountLabel.TabIndex = 85;
             amountLabel.TextAlign = HorizontalAlignment.Right;
             amountLabel.TextChanged += Text_Changed;
+            amountLabel.KeyPress += amountLabel_KeyPress;
             // 
             // from
             // 

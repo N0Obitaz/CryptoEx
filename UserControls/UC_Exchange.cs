@@ -19,7 +19,7 @@ namespace WebSocketStreamingWithUI.UserControls
         private string selectedToPair = null;
 
         private Dictionary<string, Label> priceLabels = new();
-        
+
 
         private WebSocketPriceClient wsClient;
 
@@ -52,7 +52,7 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             try
             {
-                
+
 
                 if (pairSymbol == selectedFromPair)
                 {
@@ -88,7 +88,8 @@ namespace WebSocketStreamingWithUI.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Invalid Input!" + ex.Message);
+
                 return;
             }
 
@@ -98,7 +99,7 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             selectedFromPair = currency;
             ChangePlaceHolderFrom(priceOfFromCurrency, selectedFromPair);
-            //priceOfFromCurrency.Text = livePrice.ToString();
+           
             dropDownFrom.Text = currency;
             SelectedLabelFrom.Visible = false;
             dropDownTo.Text = "Select Option";
@@ -107,7 +108,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private void ChangePlaceHolderFrom(Label targetPrice, string currency)
         {
-          
+
             priceLabels[currency] = targetPrice;
             targetPrice.Visible = true;
 
@@ -118,7 +119,7 @@ namespace WebSocketStreamingWithUI.UserControls
             targetPrice.Visible = true;
 
         }
-        
+
         private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectedLabelFrom.Visible = false;
@@ -136,6 +137,19 @@ namespace WebSocketStreamingWithUI.UserControls
             int selectedIndex = dropDownTo.SelectedIndex;
             selectedToPair = dropDownTo.Items[selectedIndex].ToString();
             ChangePlaceHolderFrom(priceOfToCurrency, selectedToPair);
+
+        }
+
+        private void amountLabel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == '.' && (sender as Guna.UI2.WinForms.Guna2TextBox).Text.Contains("."))
+            {
+                e.Handled = true;
+            }
 
         }
     }
