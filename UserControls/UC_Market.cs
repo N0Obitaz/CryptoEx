@@ -159,7 +159,7 @@ namespace WebSocketStreamingWithUI.UserControls
             float previousPrice = (float)Math.Round(float.Parse(priceLabels[pairSymbol].Text), 2);
 
 
-            foreach (var pair in priceLabels)
+            foreach (var pair in priceLabels) 
             {
 
                 Label label = pair.Value;
@@ -281,6 +281,12 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             var uC_Withdraw = new UC_Withdraw();
             GetFormMethod.AddUserControl(uC_Withdraw, marketPanel);
+        }
+
+        private void buyButton_Click(object sender, EventArgs e)
+        {
+            UC_Buy uC_Buy = new UC_Buy();
+            GetFormMethod.AddUserControl(uC_Buy, marketPanel);
         }
     }
 }

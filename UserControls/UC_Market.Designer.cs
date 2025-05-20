@@ -915,6 +915,7 @@ namespace WebSocketStreamingWithUI.UserControls
             buyButton.Size = new Size(75, 29);
             buyButton.TabIndex = 56;
             buyButton.Text = "Buy";
+            buyButton.Click += buyButton_Click;
             // 
             // withdrawButton
             // 

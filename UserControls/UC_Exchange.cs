@@ -15,8 +15,11 @@ namespace WebSocketStreamingWithUI.UserControls
 {
     public partial class UC_Exchange : UserControl
     {
+        private string selectedFromPair = null;
+        private string selectedToPair = null;
 
         private Dictionary<string, Label> priceLabels = new();
+        
 
         private WebSocketPriceClient wsClient;
 
@@ -26,7 +29,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
             this.Load += UC_Exchange_Load;
         }
-        private async void UC_Exchange_Load(object sender, EventArgs e)
+        public async void UC_Exchange_Load(object sender, EventArgs e)
         {
             wsClient = new WebSocketPriceClient();
             wsClient.OnPriceUpdate += WsClient_OnPriceUpdate;
@@ -49,21 +52,31 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             try
             {
-                if (!priceLabels.ContainsKey(pairSymbol)) return;
+                
 
-                Label priceLabel = priceLabels[pairSymbol];
-                float prevPrice = float.TryParse(priceLabel.Text, out float val) ? val : 0;
+                if (pairSymbol == selectedFromPair)
+                {
+                    float prev = float.TryParse(priceOfFromCurrency.Text, out float val) ? val : 0;
+                    priceOfFromCurrency.ForeColor = newPrice > prev ? Color.Green :
+                                               newPrice < prev ? Color.Red : priceOfFromCurrency.ForeColor;
+                    priceOfFromCurrency.Text = newPrice.ToString("N2");
+                }
 
-                priceLabel.ForeColor = newPrice > prevPrice ? Color.Green :
-                                       newPrice < prevPrice ? Color.Red : priceLabel.ForeColor;
+                if (pairSymbol == selectedToPair)
+                {
+                    float prev = float.TryParse(priceOfToCurrency.Text, out float val) ? val : 0;
+                    priceOfToCurrency.ForeColor = newPrice > prev ? Color.Green :
+                                             newPrice < prev ? Color.Red : priceOfToCurrency.ForeColor;
+                    priceOfToCurrency.Text = newPrice.ToString("N2");
+                }
 
-                priceLabel.Text = newPrice.ToString("N2");
-                float a = float.Parse(priceOfFromCurrency.Text);
                 if (amountLabel.Text == "")
                 {
-                    
                     return;
                 }
+
+
+                float a = float.Parse(priceOfFromCurrency.Text);
                 float b = float.Parse(amountLabel.Text);
 
                 float calculated = a * b;
@@ -83,7 +96,8 @@ namespace WebSocketStreamingWithUI.UserControls
 
         public void ChangePlaceHolder(string currency)
         {
-            priceLabels[currency] = priceOfFromCurrency;
+            selectedFromPair = currency;
+            ChangePlaceHolderFrom(priceOfFromCurrency, selectedFromPair);
             //priceOfFromCurrency.Text = livePrice.ToString();
             dropDownFrom.Text = currency;
             SelectedLabelFrom.Visible = false;
@@ -91,27 +105,28 @@ namespace WebSocketStreamingWithUI.UserControls
             priceOfFromCurrency.Visible = true;
         }
 
+        private void ChangePlaceHolderFrom(Label targetPrice, string currency)
+        {
+          
+            priceLabels[currency] = targetPrice;
+            targetPrice.Visible = true;
 
+        }
+        private void ChangePlaceHolderTo(Label targetPrice, string currency)
+        {
+            priceLabels[currency] = targetPrice;
+            targetPrice.Visible = true;
 
+        }
+        
         private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectedLabelFrom.Visible = false;
             int selectedIndex = dropDownFrom.SelectedIndex;
-            ChangePlaceHolderTo(priceOfFromCurrency, dropDownFrom.Items[selectedIndex].ToString());
+            if (selectedIndex < 0 || selectedIndex >= dropDownFrom.Items.Count) return;
 
-        }
-
-        private void ChangePlaceHolderTo(Label targetPrice, string currency)
-        {
-            priceLabels[currency] = targetPrice;
-
-            targetPrice.Visible = true;
-
-        }
-        private void ChangePlaceHolderFrom(Label targetPrice, string currency)
-        {
-            priceLabels[currency] = targetPrice;
-            targetPrice.Visible = true;
+            selectedFromPair = dropDownFrom.Items[selectedIndex].ToString();
+            ChangePlaceHolderTo(priceOfFromCurrency, selectedFromPair);
 
         }
 
@@ -119,7 +134,8 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             selectedLabelTo.Visible = false;
             int selectedIndex = dropDownTo.SelectedIndex;
-            ChangePlaceHolderFrom(priceOfToCurrency, dropDownTo.Items[selectedIndex].ToString());
+            selectedToPair = dropDownTo.Items[selectedIndex].ToString();
+            ChangePlaceHolderFrom(priceOfToCurrency, selectedToPair);
 
         }
     }
