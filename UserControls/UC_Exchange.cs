@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,20 +20,22 @@ namespace WebSocketStreamingWithUI.UserControls
         private string selectedToPair = null;
 
         private Dictionary<string, Label> priceLabels = new();
-
+        HttpClientPHP phpClient = new HttpClientPHP();
 
         private WebSocketPriceClient wsClient;
 
         public UC_Exchange()
         {
             InitializeComponent();
-
+           
             this.Load += UC_Exchange_Load;
         }
         public async void UC_Exchange_Load(object sender, EventArgs e)
         {
+
             wsClient = new WebSocketPriceClient();
             wsClient.OnPriceUpdate += WsClient_OnPriceUpdate;
+            await phpClient.GetPHPRate();
             await wsClient.ConnectAsync();
         }
 
@@ -79,9 +82,17 @@ namespace WebSocketStreamingWithUI.UserControls
                 float a = float.Parse(priceOfFromCurrency.Text);
                 float b = float.Parse(amountLabel.Text);
 
+                float phpRate = phpClient.GetPrice();
+
                 float calculated = a * b;
                 float converted = calculated / float.Parse(priceOfToCurrency.Text);
+                phpEquiv.Text = $"PHP {(converted * phpRate).ToString("N")}";
+
+               
+                phpEquiv.Visible = true;
                 amountTo.Text = converted.ToString();
+
+                
 
 
 
@@ -99,7 +110,7 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             selectedFromPair = currency;
             ChangePlaceHolderFrom(priceOfFromCurrency, selectedFromPair);
-           
+
             dropDownFrom.Text = currency;
             SelectedLabelFrom.Visible = false;
             dropDownTo.Text = "Select Option";

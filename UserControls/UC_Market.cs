@@ -3,16 +3,21 @@ using System.Text;
 using Guna.UI2.WinForms;
 using Newtonsoft.Json.Linq;
 using WebSocketStreamingWithUI.Data;
+using System.Net.Http;
+using WebSocketStreamingWithUI.TestWebSocket;
 
 namespace WebSocketStreamingWithUI.UserControls
 {
     public partial class UC_Market : UserControl
     {
         Form1 GetFormMethod = new Form1();
+        HttpClientPHP phpClient = new HttpClientPHP();
+
         public UC_Market()
         {
             InitializeComponent();
             this.Load += UC_Market_Load;
+            
             priceLabels = new Dictionary<string, Label>
             {
                 { "BTC", labelBTC },
@@ -123,8 +128,8 @@ namespace WebSocketStreamingWithUI.UserControls
 
                 //binance price format
                 string price = json["data"]["p"].ToString();
-                float phpRate = 55.76f;
-
+                float phpRate = phpClient.GetPrice();
+                
                 float convertedPrice = (float)Math.Round(float.Parse(price), 2) * phpRate;
 
                 priceTable[pair] = price; // Store latest price
@@ -196,16 +201,18 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private async void UC_Market_Load(object sender, EventArgs e)
         {
-
+            phpClient.GetPHPRate();
+            
             GetUser();
             CreateActionButtons();
             await ConnectAndReceiveAsync(GetWsUrl());
         }
-        private void GetUser()
+        private async void GetUser()
         {
+            
             User newUser = new User();
             newUser.GetUserDetails();
-
+             
             balance.Text = newUser.GetBalance().ToString("N2");
         }
         private void Button_Click(object sender, EventArgs e)
@@ -219,7 +226,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
                         UC_Exchange uC_Exchange = new UC_Exchange();
                         uC_Exchange.ChangePlaceHolder(currency);
-
+                        
 
 
                         GetFormMethod.AddUserControl(uC_Exchange, marketPanel);

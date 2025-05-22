@@ -54,6 +54,7 @@ namespace WebSocketStreamingWithUI.UserControls
             convertPanel = new Guna2Panel();
             guna2Button1 = new Guna2Button();
             guna2Panel3 = new Guna2Panel();
+            phpEquiv = new Label();
             selectedLabelTo = new Guna2HtmlLabel();
             amountTo = new Guna2TextBox();
             dropDownTo = new Guna2ComboBox();
@@ -120,6 +121,7 @@ namespace WebSocketStreamingWithUI.UserControls
             // guna2Panel3
             // 
             guna2Panel3.BorderRadius = 20;
+            guna2Panel3.Controls.Add(phpEquiv);
             guna2Panel3.Controls.Add(selectedLabelTo);
             guna2Panel3.Controls.Add(amountTo);
             guna2Panel3.Controls.Add(dropDownTo);
@@ -133,6 +135,22 @@ namespace WebSocketStreamingWithUI.UserControls
             guna2Panel3.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2Panel3.Size = new Size(468, 190);
             guna2Panel3.TabIndex = 83;
+            // 
+            // phpEquiv
+            // 
+            phpEquiv.AutoSize = true;
+            phpEquiv.BackColor = Color.Transparent;
+            phpEquiv.FlatStyle = FlatStyle.Popup;
+            phpEquiv.Font = new Font("Century Gothic", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            phpEquiv.ForeColor = SystemColors.ControlDarkDark;
+            phpEquiv.Location = new Point(217, 128);
+            phpEquiv.Margin = new Padding(0);
+            phpEquiv.Name = "phpEquiv";
+            phpEquiv.Size = new Size(21, 23);
+            phpEquiv.TabIndex = 93;
+            phpEquiv.Text = "0";
+            phpEquiv.TextAlign = ContentAlignment.MiddleRight;
+            phpEquiv.Visible = false;
             // 
             // selectedLabelTo
             // 
@@ -265,9 +283,10 @@ namespace WebSocketStreamingWithUI.UserControls
             // SelectedLabelFrom
             // 
             SelectedLabelFrom.BackColor = Color.FromArgb(60, 63, 64);
+            SelectedLabelFrom.Dock = DockStyle.Fill;
             SelectedLabelFrom.Font = new Font("Segoe UI", 10F);
             SelectedLabelFrom.ForeColor = Color.White;
-            SelectedLabelFrom.Location = new Point(24, 62);
+            SelectedLabelFrom.Location = new Point(0, 0);
             SelectedLabelFrom.Name = "SelectedLabelFrom";
             SelectedLabelFrom.Size = new Size(106, 25);
             SelectedLabelFrom.TabIndex = 91;
@@ -514,5 +533,6 @@ namespace WebSocketStreamingWithUI.UserControls
         private Guna2TextBox amountTo;
         private Guna2HtmlLabel selectedLabelTo;
         private Guna2HtmlLabel SelectedLabelFrom;
+        public Label phpEquiv;
     }
 }
