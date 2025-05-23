@@ -18,8 +18,8 @@ namespace WebSocketStreamingWithUI.Data
     public class User
         
     {
-        
-       
+
+        bool alreadyInsertedHistory = false;
         private string user = "hihi";
         
         private string password;
@@ -96,6 +96,7 @@ namespace WebSocketStreamingWithUI.Data
                         cmd.Parameters.AddWithValue("@username", GetUser());
                         cmd.Parameters.AddWithValue("@currency", currency);
 
+
                         return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
                     }
 
@@ -109,12 +110,14 @@ namespace WebSocketStreamingWithUI.Data
         }
         public void UpdateHoldings(string currency, float amount, string operation)
         {
+            string sign = operation.Substring(0, 1);
+            string word = operation.Substring(1);
             try
             {
                 using (var conn = new MySqlConnection(connection.GetConnectionString()))
                 {
                     conn.Open();
-                    string UpdateQuery = $"UPDATE Holdings SET quantity = quantity {operation} @amount WHERE fk_username = @username AND @currency = currency";
+                    string UpdateQuery = $"UPDATE Holdings SET quantity = quantity {sign} @amount WHERE fk_username = @username AND @currency = currency";
 
                     using (var cmd = new MySqlCommand(UpdateQuery, conn))
                     {
@@ -126,7 +129,8 @@ namespace WebSocketStreamingWithUI.Data
 
                         if (int.Parse(result.ToString()) > 0)
                         {
-                            InsertToHistory(GetUser(), operation, amount, currency);
+                            InsertToHistory(GetUser(), word, amount, currency);
+                            alreadyInsertedHistory = true;
                         }
 
                     }
@@ -141,8 +145,10 @@ namespace WebSocketStreamingWithUI.Data
 
         }
         
-        public void InsertToHoldings(string currency, float amount)
+        public void InsertToHoldings(string currency, float amount, string operation)
         {
+       
+            string word = operation.Substring(1);
             try
             {
                 using (var conn = new MySqlConnection(connection.GetConnectionString()))
@@ -156,7 +162,9 @@ namespace WebSocketStreamingWithUI.Data
                         cmd.Parameters.AddWithValue("@amount", amount);
                         object result = cmd.ExecuteNonQuery();
                         MessageBox.Show("Currency Successfully Bought!");
-                        
+
+                        alreadyInsertedHistory = true;
+                        InsertToHistory(GetUser(), word, amount, currency);
                     }
 
                 }
@@ -167,10 +175,9 @@ namespace WebSocketStreamingWithUI.Data
             }
         }
 
-        private void UpdateBalance(float amount, string operation, string currency)
+        public void UpdateBalance(float amount, string operation, string currency)
         {
-            UC_Buy buyUC = new UC_Buy();
-
+        
             string sign = operation.Substring(0, 1);
             string word = operation.Substring(1);
 
@@ -191,8 +198,12 @@ namespace WebSocketStreamingWithUI.Data
                         object result =  cmd.ExecuteNonQuery();
                         if (int.Parse(result.ToString()) > 0)
                         {
-                            
-                            InsertToHistory(GetUser(), word, amount, currency);
+                            if(!alreadyInsertedHistory)
+                            {
+                                InsertToHistory(GetUser(), word, amount, currency);
+                                alreadyInsertedHistory = false;
+                            }
+                           
                         }
                     }
                 }
@@ -213,25 +224,20 @@ namespace WebSocketStreamingWithUI.Data
                 {
                     conn.Open();
                     string query = "SELECT balance from users WHERE username = @username";
-
                     using (var cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@username", GetUser());
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (!reader.HasRows)
-                            {
-                                return false;
-                            }
-
+                            if (!reader.HasRows) return false;
+                            
                             while (reader.Read())
                             {
                                 balanceFrom = float.Parse(reader["balance"].ToString());
 
                                 if (balanceFrom > convertAmount)
                                 {
-                                
                                     return true;
                                 }
                             }

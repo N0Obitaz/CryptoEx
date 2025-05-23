@@ -17,7 +17,7 @@ namespace WebSocketStreamingWithUI.UserControls
     {
         User newUser = new User();
         private Dictionary<string, Guna2HtmlLabel> priceLabels = new();
-        
+        public float amountToPass = 0;
         private string currentSelectedPair = null;
         WebSocketPriceClient ws;
         public UC_Buy()
@@ -61,7 +61,7 @@ namespace WebSocketStreamingWithUI.UserControls
                                        newPrice < prevPrice ? Color.Red : priceChanges.ForeColor;
                 
                 priceChanges.Text = newPrice.ToString("N2");
-
+                
 
                 if (amountLabel.Text == "")
                 {
@@ -71,7 +71,7 @@ namespace WebSocketStreamingWithUI.UserControls
                 }
 
                 float calculated = (float.Parse(amountLabel.Text) * float.Parse(priceChanges.Text));
-
+                amountToPass = calculated;
                 currencyEquiv.Text = calculated.ToString("N");
                 currencyEquiv.Visible = true;
               
@@ -189,10 +189,14 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             if (newUser.CheckHoldings(currentSelectedPair))
             {
-                newUser.UpdateHoldings(currentSelectedPair, float.Parse(amountLabel.Text), "+");
+                newUser.UpdateHoldings(currentSelectedPair, float.Parse(amountLabel.Text), "+BUY");
+                newUser.UpdateBalance(amountToPass, "-BUY", currentSelectedPair);
             }else
             {
-                newUser.InsertToHoldings(currentSelectedPair, float.Parse(amountLabel.Text));
+                newUser.InsertToHoldings(currentSelectedPair, float.Parse(amountLabel.Text), "+BUY");
+                newUser.UpdateBalance(amountToPass, "-BUY", currentSelectedPair);
+
+
             }
            
         }

@@ -146,8 +146,8 @@ namespace WebSocketStreamingWithUI.UserControls
                                         {
                                             Text = amount,
                                             Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0),
-                                            Location = new Point(620, 10),
-                                            Size = new Size(150, 25),
+                                            Location = new Point(580, 10),
+                                            Size = new Size(190, 25),
                                             ForeColor = (item.Action == "BUY" || item.Action == "DEPOSIT")
                                                 ? Color.Green : Color.Red,
                                             TextAlign = ContentAlignment.MiddleRight,

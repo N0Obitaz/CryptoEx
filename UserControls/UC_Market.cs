@@ -8,8 +8,12 @@ using WebSocketStreamingWithUI.TestWebSocket;
 
 namespace WebSocketStreamingWithUI.UserControls
 {
-    public partial class UC_Market : UserControl
+    public partial class UC_Market : UserControl, IDisposable
     {
+
+        private CancellationTokenSource _cancellationTokenSource;
+        private ClientWebSocket _webSocket;
+        private Task _webSocketTask;
         Form1 GetFormMethod = new Form1();
         HttpClientPHP phpClient = new HttpClientPHP();
 
@@ -60,6 +64,26 @@ namespace WebSocketStreamingWithUI.UserControls
             };
         }
 
+        
+        public new void Dispose()
+        {
+            _cancellationTokenSource?.Cancel();
+
+            try
+            {
+                _webSocket?.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing", CancellationToken.None).Wait();
+            }
+            catch { /* ignore if already closed */ }
+
+            _webSocket?.Dispose();
+            _cancellationTokenSource?.Dispose();
+
+            _webSocket = null;
+            _cancellationTokenSource = null;
+
+            base.Dispose();
+        }
+
         public Dictionary<int, Guna2Panel> panels;
         private readonly Dictionary<string, string> priceTable = [];
 
@@ -89,28 +113,34 @@ namespace WebSocketStreamingWithUI.UserControls
 
         public async Task ConnectAndReceiveAsync(string Uri)
         {
+            _cancellationTokenSource = new CancellationTokenSource();
+            _webSocket = new ClientWebSocket();
+
             try
             {
-                using (ClientWebSocket ws = new ClientWebSocket())
-                {
-                    await ws.ConnectAsync(new Uri(Uri), CancellationToken.None);
+                    await _webSocket.ConnectAsync(new Uri(Uri), CancellationToken.None);
 
 
                     byte[] buffer = new byte[4096];
 
                     // Start ping loop
-                    while (ws.State == WebSocketState.Open)
+                    while (_webSocket.State == WebSocketState.Open)
                     {
-                        var result = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                        var result = await _webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
                         string message = Encoding.UTF8.GetString(buffer, 0, result.Count);
                         UpdatePriceTable(message);
                     }
-                }
+                
+            }
+            catch (OperationCanceledException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+            
 
         }
         public void UpdatePriceTable(string jsonMessage)
@@ -205,7 +235,7 @@ namespace WebSocketStreamingWithUI.UserControls
             
             GetUser();
             CreateActionButtons();
-            await ConnectAndReceiveAsync(GetWsUrl());
+            _webSocketTask = ConnectAndReceiveAsync(GetWsUrl());
         }
         private async void GetUser()
         {
