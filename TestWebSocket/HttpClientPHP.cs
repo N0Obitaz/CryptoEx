@@ -12,8 +12,10 @@ namespace WebSocketStreamingWithUI.TestWebSocket
         private float phpPrice;
         public float GetPrice()
         {
+           
             return phpPrice;
         }
+       
        
         public async Task GetPHPRate()
         {

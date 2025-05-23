@@ -97,6 +97,7 @@
             deleteButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
             deleteButton.Size = new Size(50, 50);
             deleteButton.TabIndex = 0;
+            deleteButton.Click += deleteButton_Click;
             // 
             // guna2Panel1
             // 

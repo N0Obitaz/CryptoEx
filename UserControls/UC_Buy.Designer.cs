@@ -28,22 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             separator1 = new Guna.UI2.WinForms.Guna2Separator();
             buyPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            actionButton = new Guna.UI2.WinForms.Guna2Button();
             EntryField = new Guna.UI2.WinForms.Guna2Panel();
+            PHPSYMBOL = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            currencyEquiv = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            amountLabel = new Guna.UI2.WinForms.Guna2TextBox();
             priceChanges = new Guna.UI2.WinForms.Guna2HtmlLabel();
             selectOption = new Guna.UI2.WinForms.Guna2HtmlLabel();
             dropDownBuy = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -78,12 +86,12 @@
             buyPanel.Controls.Add(buy);
             buyPanel.Controls.Add(separator2);
             buyPanel.Controls.Add(separator1);
-            buyPanel.CustomizableEdges = customizableEdges23;
+            buyPanel.CustomizableEdges = customizableEdges15;
             buyPanel.FillColor = Color.FromArgb(34, 35, 37);
             buyPanel.FillColor2 = Color.FromArgb(34, 35, 37);
             buyPanel.Location = new Point(0, 0);
             buyPanel.Name = "buyPanel";
-            buyPanel.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            buyPanel.ShadowDecoration.CustomizableEdges = customizableEdges16;
             buyPanel.Size = new Size(1136, 733);
             buyPanel.TabIndex = 72;
             buyPanel.Paint += exchangePanel_Paint;
@@ -93,29 +101,108 @@
             guna2Panel1.BorderColor = Color.White;
             guna2Panel1.BorderRadius = 20;
             guna2Panel1.BorderThickness = 1;
+            guna2Panel1.Controls.Add(actionButton);
             guna2Panel1.Controls.Add(EntryField);
-            guna2Panel1.CustomizableEdges = customizableEdges17;
+            guna2Panel1.CustomizableEdges = customizableEdges9;
             guna2Panel1.FillColor = Color.Transparent;
             guna2Panel1.Location = new Point(261, 102);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges10;
             guna2Panel1.Size = new Size(615, 529);
             guna2Panel1.TabIndex = 72;
+            // 
+            // actionButton
+            // 
+            actionButton.BackColor = Color.Transparent;
+            actionButton.BorderRadius = 20;
+            actionButton.Cursor = Cursors.Hand;
+            actionButton.CustomizableEdges = customizableEdges1;
+            actionButton.DisabledState.BorderColor = Color.DarkGray;
+            actionButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            actionButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            actionButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            actionButton.FillColor = Color.MediumSpringGreen;
+            actionButton.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            actionButton.ForeColor = Color.White;
+            actionButton.Location = new Point(77, 321);
+            actionButton.Name = "actionButton";
+            actionButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            actionButton.Size = new Size(468, 65);
+            actionButton.TabIndex = 75;
+            actionButton.Tag = "buy";
+            actionButton.Text = "Confirm";
+            actionButton.Click += actionButton_Click;
             // 
             // EntryField
             // 
             EntryField.BorderRadius = 15;
+            EntryField.Controls.Add(PHPSYMBOL);
+            EntryField.Controls.Add(currencyEquiv);
+            EntryField.Controls.Add(amountLabel);
             EntryField.Controls.Add(priceChanges);
             EntryField.Controls.Add(selectOption);
             EntryField.Controls.Add(dropDownBuy);
             EntryField.Controls.Add(currencyLabel);
-            EntryField.CustomizableEdges = customizableEdges15;
+            EntryField.CustomizableEdges = customizableEdges7;
             EntryField.FillColor = Color.FromArgb(60, 63, 64);
             EntryField.Location = new Point(22, 126);
             EntryField.Name = "EntryField";
-            EntryField.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            EntryField.ShadowDecoration.CustomizableEdges = customizableEdges8;
             EntryField.Size = new Size(570, 163);
             EntryField.TabIndex = 0;
+            // 
+            // PHPSYMBOL
+            // 
+            PHPSYMBOL.BackColor = Color.Transparent;
+            PHPSYMBOL.Font = new Font("Century Gothic", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            PHPSYMBOL.ForeColor = Color.LightGray;
+            PHPSYMBOL.Location = new Point(314, 115);
+            PHPSYMBOL.Name = "PHPSYMBOL";
+            PHPSYMBOL.Size = new Size(38, 25);
+            PHPSYMBOL.TabIndex = 88;
+            PHPSYMBOL.Text = "PHP";
+            // 
+            // currencyEquiv
+            // 
+            currencyEquiv.BackColor = Color.Transparent;
+            currencyEquiv.Font = new Font("Century Gothic", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            currencyEquiv.ForeColor = Color.LightGray;
+            currencyEquiv.Location = new Point(356, 114);
+            currencyEquiv.Name = "currencyEquiv";
+            currencyEquiv.Size = new Size(14, 25);
+            currencyEquiv.TabIndex = 87;
+            currencyEquiv.Text = "0";
+            currencyEquiv.Visible = false;
+            // 
+            // amountLabel
+            // 
+            amountLabel.BackColor = Color.Transparent;
+            amountLabel.BorderRadius = 15;
+            amountLabel.BorderThickness = 0;
+            amountLabel.Cursor = Cursors.IBeam;
+            amountLabel.CustomizableEdges = customizableEdges3;
+            amountLabel.DefaultText = "";
+            amountLabel.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            amountLabel.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            amountLabel.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            amountLabel.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            amountLabel.FillColor = Color.FromArgb(60, 63, 64);
+            amountLabel.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            amountLabel.Font = new Font("Century Gothic", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            amountLabel.ForeColor = Color.White;
+            amountLabel.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            amountLabel.Location = new Point(317, 54);
+            amountLabel.Margin = new Padding(11, 9, 11, 9);
+            amountLabel.Name = "amountLabel";
+            amountLabel.PlaceholderForeColor = Color.White;
+            amountLabel.PlaceholderText = "0";
+            amountLabel.SelectedText = "";
+            amountLabel.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            amountLabel.Size = new Size(242, 64);
+            amountLabel.TabIndex = 86;
+            amountLabel.TextAlign = HorizontalAlignment.Right;
+            amountLabel.TextChanged += amountLabel_TextChanged;
+            amountLabel.KeyPress += amountLabel_KeyPress;
             // 
             // priceChanges
             // 
@@ -145,7 +232,7 @@
             // 
             dropDownBuy.BackColor = Color.Transparent;
             dropDownBuy.BorderThickness = 0;
-            dropDownBuy.CustomizableEdges = customizableEdges13;
+            dropDownBuy.CustomizableEdges = customizableEdges5;
             dropDownBuy.DrawMode = DrawMode.OwnerDrawFixed;
             dropDownBuy.DropDownStyle = ComboBoxStyle.DropDownList;
             dropDownBuy.FillColor = Color.FromArgb(60, 63, 64);
@@ -157,7 +244,7 @@
             dropDownBuy.Items.AddRange(new object[] { "BTC", "ETH", "BNB", "SOL", "XRP", "DOGE", "ADA", "AVAX", "BCH", "DOT" });
             dropDownBuy.Location = new Point(14, 72);
             dropDownBuy.Name = "dropDownBuy";
-            dropDownBuy.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            dropDownBuy.ShadowDecoration.CustomizableEdges = customizableEdges6;
             dropDownBuy.Size = new Size(175, 36);
             dropDownBuy.TabIndex = 1;
             dropDownBuy.SelectedIndexChanged += dropDownBuy_SelectedIndexChanged;
@@ -176,7 +263,7 @@
             // 
             // sell
             // 
-            sell.CustomizableEdges = customizableEdges19;
+            sell.CustomizableEdges = customizableEdges11;
             sell.DisabledState.BorderColor = Color.DarkGray;
             sell.DisabledState.CustomBorderColor = Color.DarkGray;
             sell.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -188,7 +275,7 @@
             sell.HoverState.ForeColor = Color.White;
             sell.Location = new Point(570, 24);
             sell.Name = "sell";
-            sell.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            sell.ShadowDecoration.CustomizableEdges = customizableEdges12;
             sell.Size = new Size(308, 56);
             sell.TabIndex = 71;
             sell.Text = "Sell";
@@ -196,7 +283,7 @@
             // 
             // buy
             // 
-            buy.CustomizableEdges = customizableEdges21;
+            buy.CustomizableEdges = customizableEdges13;
             buy.DisabledState.BorderColor = Color.DarkGray;
             buy.DisabledState.CustomBorderColor = Color.DarkGray;
             buy.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -208,7 +295,7 @@
             buy.HoverState.ForeColor = Color.White;
             buy.Location = new Point(263, 24);
             buy.Name = "buy";
-            buy.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            buy.ShadowDecoration.CustomizableEdges = customizableEdges14;
             buy.Size = new Size(308, 56);
             buy.TabIndex = 70;
             buy.Text = "Buy";
@@ -258,5 +345,9 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel selectOption;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
         public Guna.UI2.WinForms.Guna2HtmlLabel priceChanges;
+        private Guna.UI2.WinForms.Guna2TextBox amountLabel;
+        private Guna.UI2.WinForms.Guna2Button actionButton;
+        public Guna.UI2.WinForms.Guna2HtmlLabel currencyEquiv;
+        public Guna.UI2.WinForms.Guna2HtmlLabel PHPSYMBOL;
     }
 }

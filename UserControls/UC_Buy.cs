@@ -10,21 +10,21 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using WebSocketStreamingWithUI.TestWebSocket;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
-
+using WebSocketStreamingWithUI.Data;
 namespace WebSocketStreamingWithUI.UserControls
 {
     public partial class UC_Buy : UserControl
     {
-
+        User newUser = new User();
         private Dictionary<string, Guna2HtmlLabel> priceLabels = new();
-
+        
         private string currentSelectedPair = null;
         WebSocketPriceClient ws;
         public UC_Buy()
         {
             InitializeComponent();
             this.Load += UC_Buy_Load;
-            
+
 
         }
 
@@ -51,32 +51,53 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             try
             {
-             
-           
-                    if (pairSymbol != currentSelectedPair) return;
-
-                    float prevPrice = float.TryParse(priceChanges.Text, out float val) ? val : 0;
-
-                    priceChanges.ForeColor = newPrice > prevPrice ? Color.Green :
-                                           newPrice < prevPrice ? Color.Red : priceChanges.ForeColor;
-
-                    priceChanges.Text = newPrice.ToString("N2");
 
 
+                if (pairSymbol != currentSelectedPair) return;
 
+                float prevPrice = float.TryParse(priceChanges.Text, out float val) ? val : 0;
 
-                    //float a = float.Parse(priceOfFromCurrency.Text);
-                    //if (amountLabel.Text == "")
-                    //{
-
-                    //    return;
-                    //}
-                    //float b = float.Parse(amountLabel.Text);
-
-                    //float calculated = a * b;
-                    //float converted = calculated / float.Parse(priceOfToCurrency.Text);
-                    //amountTo.Text = converted.ToString();
+                priceChanges.ForeColor = newPrice > prevPrice ? Color.Green :
+                                       newPrice < prevPrice ? Color.Red : priceChanges.ForeColor;
                 
+                priceChanges.Text = newPrice.ToString("N2");
+
+
+                if (amountLabel.Text == "")
+                {
+                    currencyEquiv.Text = "0";
+                    return;
+
+                }
+
+                float calculated = (float.Parse(amountLabel.Text) * float.Parse(priceChanges.Text));
+
+                currencyEquiv.Text = calculated.ToString("N");
+                currencyEquiv.Visible = true;
+              
+                float epsilon = 0.00001f;
+
+                if (float.Parse(currencyEquiv.Text.ToString()) < epsilon || currencyEquiv.Text.ToString() == "")
+                {
+                    actionButton.Text = "Enter an Amount";
+                    actionButton.FillColor = Color.IndianRed;
+                }
+                else
+                {
+                    if (newUser.CheckUserBalance(currencyEquiv.Text.ToString()))
+                    {
+                        actionButton.Text = "Confirm";
+                        actionButton.FillColor = Color.MediumSpringGreen;
+                    }
+                    else
+                    {
+                        actionButton.Text = "Your Balance is Less";
+                        actionButton.FillColor = Color.IndianRed;
+                    }
+                }
+
+
+
 
 
 
@@ -103,6 +124,8 @@ namespace WebSocketStreamingWithUI.UserControls
             separator2.FillColor = Color.Black;
             buy.ForeColor = Color.White;
             sell.ForeColor = Color.DarkGray;
+
+            actionButton.FillColor = Color.MediumSpringGreen;
         }
 
         private void sell_Click(object sender, EventArgs e)
@@ -114,6 +137,9 @@ namespace WebSocketStreamingWithUI.UserControls
 
             separator1.FillColor = Color.Black;
             separator2.FillColor = Color.White;
+
+
+            actionButton.FillColor = Color.IndianRed;
 
         }
 
@@ -138,22 +164,49 @@ namespace WebSocketStreamingWithUI.UserControls
 
         }
 
-        
+
         private void dropDownBuy_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-           
 
             selectOption.Visible = false;
             int selectedIndex = dropDownBuy.SelectedIndex;
 
             if (selectedIndex < 0 || selectedIndex >= dropDownBuy.Items.Count) return;
 
-             currentSelectedPair = dropDownBuy.Items[selectedIndex].ToString();
+            currentSelectedPair = dropDownBuy.Items[selectedIndex].ToString();
 
-           
+
 
             ChangePlaceHolderFrom(priceChanges, currentSelectedPair);
+        }
+
+        private void amountLabel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void actionButton_Click(object sender, EventArgs e)
+        {
+            if (newUser.CheckHoldings(currentSelectedPair))
+            {
+                newUser.UpdateHoldings(currentSelectedPair, float.Parse(amountLabel.Text), "+");
+            }else
+            {
+                newUser.InsertToHoldings(currentSelectedPair, float.Parse(amountLabel.Text));
+            }
+           
+        }
+
+        private void amountLabel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == '.' && (sender as Guna.UI2.WinForms.Guna2TextBox).Text.Contains("."))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

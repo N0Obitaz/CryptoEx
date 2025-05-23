@@ -25,12 +25,12 @@ namespace WebSocketStreamingWithUI.UserControls
             FetchHistoryData();
         }
 
-       
+
 
         private void FetchHistoryData()
         {
 
-           
+
             try
             {
                 using (MySqlConnection connect = new MySqlConnection(connection.GetConnectionString()))
@@ -50,10 +50,10 @@ namespace WebSocketStreamingWithUI.UserControls
                                 return;
                             }
                             int count = 0;
-                           
+
                             int j = 20;
-                        
-                           List<HistoryItem> items = new List<HistoryItem>();
+
+                            List<HistoryItem> items = new List<HistoryItem>();
 
                             while (reader.Read())
                             {
@@ -99,7 +99,7 @@ namespace WebSocketStreamingWithUI.UserControls
                                         Size = new Size(850, 0),
                                         Location = new Point(10, yOffset),
                                         FillColor = Color.Transparent,
-                                        
+
                                         BorderColor = Color.LightGray,
                                         AutoSize = true,
                                         AutoSizeMode = AutoSizeMode.GrowAndShrink
@@ -148,10 +148,10 @@ namespace WebSocketStreamingWithUI.UserControls
                                             Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0),
                                             Location = new Point(620, 10),
                                             Size = new Size(150, 25),
-                                            ForeColor = (item.Action == "BUY" || item.Action == "DEPOSIT") 
+                                            ForeColor = (item.Action == "BUY" || item.Action == "DEPOSIT")
                                                 ? Color.Green : Color.Red,
                                             TextAlign = ContentAlignment.MiddleRight,
-                                          
+
                                         });
                                         historyBox.Controls.Add(new Label
                                         {
@@ -184,7 +184,7 @@ namespace WebSocketStreamingWithUI.UserControls
             }
             catch (Exception ex)
             {
-             
+
                 MessageBox.Show("Error: " + ex.Message);
             }
 
@@ -200,7 +200,10 @@ namespace WebSocketStreamingWithUI.UserControls
 
         }
 
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 
 

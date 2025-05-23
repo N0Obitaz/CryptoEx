@@ -27,7 +27,7 @@ namespace WebSocketStreamingWithUI.UserControls
         public UC_Exchange()
         {
             InitializeComponent();
-           
+
             this.Load += UC_Exchange_Load;
         }
         public async void UC_Exchange_Load(object sender, EventArgs e)
@@ -75,33 +75,34 @@ namespace WebSocketStreamingWithUI.UserControls
 
                 if (amountLabel.Text == "")
                 {
+                    amountTo.Text = "0";
                     return;
+
                 }
 
 
                 float a = float.Parse(priceOfFromCurrency.Text);
                 float b = float.Parse(amountLabel.Text);
-
-                float phpRate = phpClient.GetPrice();
+                float c = float.Parse(priceOfToCurrency.Text);
 
                 float calculated = a * b;
-                float converted = calculated / float.Parse(priceOfToCurrency.Text);
-                phpEquiv.Text = $"PHP {(converted * phpRate).ToString("N")}";
+                float converted = calculated / c;
+                phpEquiv.Text = $"PHP {((converted * c )).ToString("N5")}";
 
-               
+
                 phpEquiv.Visible = true;
                 amountTo.Text = converted.ToString();
 
-                
+
 
 
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Invalid Input!" + ex.Message);
+                exchangeButton.Text = "Invalid Input";
 
-                return;
+                InitializeComponent();
             }
 
         }
@@ -161,6 +162,16 @@ namespace WebSocketStreamingWithUI.UserControls
             {
                 e.Handled = true;
             }
+
+        }
+
+        private void SelectedLabelFrom_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SelectedLabelFrom_Click_1(object sender, EventArgs e)
+        {
 
         }
     }

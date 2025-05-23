@@ -26,7 +26,7 @@ namespace WebSocketStreamingWithUI.UserControls
                 
             if (amountLabel.Text != "" && float.Parse(amountLabel.Text) > 0)
             {
-                newUser.UpdateUserBalance(amountLabel.Text.ToString(), "+");
+                newUser.UpdateUserBalance(amountLabel.Text.ToString(), "+DEPOSIT", "PHP");
                 depositConfirmButton.Text = "Deposit Successful!";                } else
             {
                 depositConfirmButton.FillColor = Color.IndianRed;
