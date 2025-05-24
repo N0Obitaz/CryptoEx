@@ -36,7 +36,7 @@ namespace WebSocketStreamingWithUI.TestWebSocket
                 var propertyPrice = priceData.GetProperty("tether").GetProperty("php").GetDecimal();
                 
                 phpPrice = float.Parse(propertyPrice.ToString());
-               
+                await Task.Delay(5000);
                 hasFetch = true;
                 
             }

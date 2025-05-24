@@ -199,14 +199,31 @@ namespace WebSocketStreamingWithUI.UserControls
         }
 
         
-
+        private void SellAction(string pair, float amount, string oper2)
+        {
+            if (oper2 == "-SELL")
+            {
+                oper2 = "+SELL";
+            }
+            if (newUser.CheckHoldings(pair))
+            {
+                newUser.UpdateHoldings(pair, amount, oper2);
+                newUser.UpdateBalance(amountToPass, oper2, pair);
+            }
+        }
         private void actionButton_Click(object sender, EventArgs e)
         {
+            if (operation == "-SELL")
+            {
+                SellAction(currentSelectedPair, float.Parse(amountLabel.Text), operation);
+                return;
+            }
             if (newUser.CheckHoldings(currentSelectedPair))
             {
                 MessageBox.Show(operation);
                 newUser.UpdateHoldings(currentSelectedPair, float.Parse(amountLabel.Text), operation);
-                newUser.UpdateBalance(amountToPass, $"-{operation}", currentSelectedPair);
+                
+                newUser.UpdateBalance(amountToPass, operation, currentSelectedPair);
             }else
             {
                 newUser.InsertToHoldings(currentSelectedPair, float.Parse(amountLabel.Text), operation);
