@@ -61,7 +61,7 @@ namespace WebSocketStreamingWithUI.TestWebSocket
                 string pair = json["data"]["s"].ToString().Split("USDT")[0];
                 
                 //Change to real price of PHP(it's not yet implemented)
-                float price = float.Parse(json["data"]["p"].ToString()) * 55.50f ;
+                float price = float.Parse(json["data"]["p"].ToString()) * HttpClientPHP.phpPrice ;
                 //MessageBox.Show(phpClient.phpPrice.ToString());
 
                 OnPriceUpdate?.Invoke(pair, price);
