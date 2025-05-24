@@ -13,13 +13,16 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 using WebSocketStreamingWithUI.Data;
 namespace WebSocketStreamingWithUI.UserControls
 {
-    public partial class UC_Buy : UserControl
+    public partial class UC_Buy : UserControl, IDisposable
     {
         User newUser = new User();
         private Dictionary<string, Guna2HtmlLabel> priceLabels = new();
         public float amountToPass = 0;
         private string currentSelectedPair = null;
         WebSocketPriceClient ws;
+        HttpClientPHP _phpClient = new HttpClientPHP();
+
+        private string operation;
         public UC_Buy()
         {
             InitializeComponent();
@@ -27,11 +30,13 @@ namespace WebSocketStreamingWithUI.UserControls
 
 
         }
+        
 
         public async void UC_Buy_Load(object sender, EventArgs e)
         {
             ws = new WebSocketPriceClient();
             ws.OnPriceUpdate += WsClient_OnPriceUpdate;
+            await _phpClient.GetPHPRate();
             await ws.ConnectAsync();
         }
 
@@ -51,7 +56,6 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             try
             {
-
 
                 if (pairSymbol != currentSelectedPair) return;
 
@@ -117,7 +121,17 @@ namespace WebSocketStreamingWithUI.UserControls
         }
 
 
+        public void AssignOperator(string ope)
+        {
+            if (ope == "SELL")
+            {
+                operation = "-" + ope;
+                return;
+            }
+            operation = "+" + ope;
+            
 
+        }
         private void buy_Click(object sender, EventArgs e)
         {
             separator1.FillColor = Color.White;
@@ -173,6 +187,10 @@ namespace WebSocketStreamingWithUI.UserControls
 
             if (selectedIndex < 0 || selectedIndex >= dropDownBuy.Items.Count) return;
 
+            if (newUser.CheckHoldings(selectedIndex.ToString()))
+            {
+                MessageBox.Show("true");
+            }
             currentSelectedPair = dropDownBuy.Items[selectedIndex].ToString();
 
 
@@ -180,24 +198,23 @@ namespace WebSocketStreamingWithUI.UserControls
             ChangePlaceHolderFrom(priceChanges, currentSelectedPair);
         }
 
-        private void amountLabel_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void actionButton_Click(object sender, EventArgs e)
         {
             if (newUser.CheckHoldings(currentSelectedPair))
             {
-                newUser.UpdateHoldings(currentSelectedPair, float.Parse(amountLabel.Text), "+BUY");
-                newUser.UpdateBalance(amountToPass, "-BUY", currentSelectedPair);
+                MessageBox.Show(operation);
+                newUser.UpdateHoldings(currentSelectedPair, float.Parse(amountLabel.Text), operation);
+                newUser.UpdateBalance(amountToPass, $"-{operation}", currentSelectedPair);
             }else
             {
-                newUser.InsertToHoldings(currentSelectedPair, float.Parse(amountLabel.Text), "+BUY");
-                newUser.UpdateBalance(amountToPass, "-BUY", currentSelectedPair);
+                newUser.InsertToHoldings(currentSelectedPair, float.Parse(amountLabel.Text), operation);
+                newUser.UpdateBalance(amountToPass, $"-{operation}", currentSelectedPair);
 
 
             }
+            operation = "";
            
         }
 
@@ -211,6 +228,10 @@ namespace WebSocketStreamingWithUI.UserControls
             {
                 e.Handled = true;
             }
+        }
+        private void amountLabel_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

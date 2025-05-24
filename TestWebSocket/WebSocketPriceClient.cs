@@ -8,11 +8,18 @@ using Newtonsoft.Json.Linq;
 
 namespace WebSocketStreamingWithUI.TestWebSocket
 {
-    public class WebSocketPriceClient
+    public class WebSocketPriceClient: IDisposable
     {
-        private float phpRate = 55.76f;
+        HttpClientPHP phpClient = new HttpClientPHP();
+
+
+        private float phpRate;
+        
         public delegate void PriceUpdateHandler(string pair, float price);
         public event PriceUpdateHandler OnPriceUpdate;
+
+        
+
 
         public readonly string[] pairs = {
         "btcusdt", "ethusdt", "bnbusdt", "solusdt",
@@ -25,6 +32,7 @@ namespace WebSocketStreamingWithUI.TestWebSocket
 
         public async Task ConnectAsync()
         {
+            phpClient.GetPHPRate();   
             try
             {
                 using var ws = new ClientWebSocket();
@@ -46,16 +54,23 @@ namespace WebSocketStreamingWithUI.TestWebSocket
 
         private void HandleMessage(string jsonMessage)
         {
-
+            
             try
             {
                 var json = JObject.Parse(jsonMessage);
                 string pair = json["data"]["s"].ToString().Split("USDT")[0];
-                float price = float.Parse(json["data"]["p"].ToString()) * phpRate;
+                
+                //Change to real price of PHP(it's not yet implemented)
+                float price = float.Parse(json["data"]["p"].ToString()) * phpClient.phpPrice ;
+                //MessageBox.Show(phpClient.phpPrice.ToString());
 
                 OnPriceUpdate?.Invoke(pair, price);
             }
             catch { /* Ignore malformed messages */ }
+        }
+        public new void Dispose()
+        {
+
         }
     }
 

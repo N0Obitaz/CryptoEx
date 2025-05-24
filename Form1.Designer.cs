@@ -204,6 +204,7 @@
             settingsButton.TabIndex = 4;
             settingsButton.Text = "Settings";
             settingsButton.TextOffset = new Point(-5, 0);
+            settingsButton.Click += settingsButton_Click;
             // 
             // historyButton
             // 

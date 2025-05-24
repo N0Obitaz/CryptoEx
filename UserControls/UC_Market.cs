@@ -16,12 +16,18 @@ namespace WebSocketStreamingWithUI.UserControls
         private Task _webSocketTask;
         Form1 GetFormMethod = new Form1();
         HttpClientPHP phpClient = new HttpClientPHP();
+        public Dictionary<int, Guna2Panel> panels;
+        private readonly Dictionary<string, string> priceTable = [];
+
+        private string pair;
+        public Dictionary<string, Label> priceLabels;
+        private Dictionary<string, Label> tickerLabels;
 
         public UC_Market()
         {
             InitializeComponent();
             this.Load += UC_Market_Load;
-            
+
             priceLabels = new Dictionary<string, Label>
             {
                 { "BTC", labelBTC },
@@ -64,7 +70,7 @@ namespace WebSocketStreamingWithUI.UserControls
             };
         }
 
-        
+
         public new void Dispose()
         {
             _cancellationTokenSource?.Cancel();
@@ -84,12 +90,7 @@ namespace WebSocketStreamingWithUI.UserControls
             base.Dispose();
         }
 
-        public Dictionary<int, Guna2Panel> panels;
-        private readonly Dictionary<string, string> priceTable = [];
-
-        private string pair;
-        public Dictionary<string, Label> priceLabels;
-        private Dictionary<string, Label> tickerLabels;
+        
 
 
         // faster real time fetching of currency exchanges
@@ -118,19 +119,19 @@ namespace WebSocketStreamingWithUI.UserControls
 
             try
             {
-                    await _webSocket.ConnectAsync(new Uri(Uri), CancellationToken.None);
+                await _webSocket.ConnectAsync(new Uri(Uri), CancellationToken.None);
 
 
-                    byte[] buffer = new byte[4096];
+                byte[] buffer = new byte[4096];
 
-                    // Start ping loop
-                    while (_webSocket.State == WebSocketState.Open)
-                    {
-                        var result = await _webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-                        string message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                        UpdatePriceTable(message);
-                    }
-                
+                // Start ping loop
+                while (_webSocket.State == WebSocketState.Open)
+                {
+                    var result = await _webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                    string message = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                    UpdatePriceTable(message);
+                }
+
             }
             catch (OperationCanceledException ex)
             {
@@ -140,7 +141,7 @@ namespace WebSocketStreamingWithUI.UserControls
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-            
+
 
         }
         public void UpdatePriceTable(string jsonMessage)
@@ -159,7 +160,7 @@ namespace WebSocketStreamingWithUI.UserControls
                 //binance price format
                 string price = json["data"]["p"].ToString();
                 float phpRate = phpClient.GetPrice();
-                
+
                 float convertedPrice = (float)Math.Round(float.Parse(price), 2) * phpRate;
 
                 priceTable[pair] = price; // Store latest price
@@ -195,7 +196,7 @@ namespace WebSocketStreamingWithUI.UserControls
             float previousPrice = (float)Math.Round(float.Parse(priceLabels[pairSymbol].Text), 2);
 
 
-            foreach (var pair in priceLabels) 
+            foreach (var pair in priceLabels)
             {
 
                 Label label = pair.Value;
@@ -232,17 +233,17 @@ namespace WebSocketStreamingWithUI.UserControls
         private async void UC_Market_Load(object sender, EventArgs e)
         {
             phpClient.GetPHPRate();
-            
+
             GetUser();
             CreateActionButtons();
             _webSocketTask = ConnectAndReceiveAsync(GetWsUrl());
         }
         private async void GetUser()
         {
-            
+
             User newUser = new User();
             newUser.GetUserDetails();
-             
+
             balance.Text = newUser.GetBalance().ToString("N2");
         }
         private void Button_Click(object sender, EventArgs e)
@@ -256,7 +257,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
                         UC_Exchange uC_Exchange = new UC_Exchange();
                         uC_Exchange.ChangePlaceHolder(currency);
-                        
+
 
 
                         GetFormMethod.AddUserControl(uC_Exchange, marketPanel);
@@ -323,8 +324,24 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private void buyButton_Click(object sender, EventArgs e)
         {
-            UC_Buy uC_Buy = new UC_Buy();
-            GetFormMethod.AddUserControl(uC_Buy, marketPanel);
+            if (sender is Guna2Button btn && btn.Tag is string operation)
+            {
+                UC_Buy uC_Buy = new UC_Buy();
+                uC_Buy.AssignOperator(operation);
+                GetFormMethod.AddUserControl(uC_Buy, marketPanel);
+            }
+        }
+
+        private void sellButton_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show(sender.ToString());
+            if (sender is Guna2Button btn && btn.Tag is string operation)
+            {
+
+                UC_Buy uC_Buy = new UC_Buy();
+                uC_Buy.AssignOperator(operation);
+                GetFormMethod.AddUserControl(uC_Buy, marketPanel);
+            }
         }
     }
 }

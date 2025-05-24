@@ -19,7 +19,7 @@ namespace WebSocketStreamingWithUI.Data
         
     {
 
-        bool alreadyInsertedHistory = false;
+        public bool alreadyInsertedHistory = false;
         private string user = "hihi";
         
         private string password;
@@ -96,7 +96,7 @@ namespace WebSocketStreamingWithUI.Data
                         cmd.Parameters.AddWithValue("@username", GetUser());
                         cmd.Parameters.AddWithValue("@currency", currency);
 
-
+                        
                         return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
                     }
 
@@ -108,8 +108,11 @@ namespace WebSocketStreamingWithUI.Data
             }
             return false;
         }
+        
         public void UpdateHoldings(string currency, float amount, string operation)
         {
+            
+            // Split the sign and word from operation
             string sign = operation.Substring(0, 1);
             string word = operation.Substring(1);
             try
@@ -129,13 +132,21 @@ namespace WebSocketStreamingWithUI.Data
 
                         if (int.Parse(result.ToString()) > 0)
                         {
-                            InsertToHistory(GetUser(), word, amount, currency);
+                            // Save to History
+                            if (alreadyInsertedHistory)
+                            {
+                                InsertToHistory(GetUser(), word, amount, currency);
+                            }
+                           
                             alreadyInsertedHistory = true;
+
                         }
 
                     }
+                    
 
                 }
+
             }
             catch (Exception ex)
             {
@@ -147,7 +158,7 @@ namespace WebSocketStreamingWithUI.Data
         
         public void InsertToHoldings(string currency, float amount, string operation)
         {
-       
+            MessageBox.Show(amount.ToString());
             string word = operation.Substring(1);
             try
             {
@@ -181,7 +192,6 @@ namespace WebSocketStreamingWithUI.Data
             string sign = operation.Substring(0, 1);
             string word = operation.Substring(1);
 
-           
            
             try
             {
@@ -260,6 +270,7 @@ namespace WebSocketStreamingWithUI.Data
 
         public void InsertToHistory(string username, string action, float amount, string currency)
         {
+            MessageBox.Show(action.ToString());
             try
             {
                 using (var conn = new MySqlConnection(connection.GetConnectionString()))

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace WebSocketStreamingWithUI.TestWebSocket
 {
-    public class HttpClientPHP : IDisposable
+    public class HttpClientPHP
     {
-        private float phpPrice;
+        public float phpPrice;
         private readonly HttpClient _httpClient;
-        public float GetPrice()
+        public  float GetPrice()
         {
-           
+
             return phpPrice;
         }
         public HttpClientPHP()
@@ -21,27 +22,31 @@ namespace WebSocketStreamingWithUI.TestWebSocket
             _httpClient = new HttpClient();
         }
 
-
+        bool hasFetch = false;
         public async Task GetPHPRate()
         {
+            if (hasFetch)
+            {
+                return;
+            }
             try
             {
                 var response = await _httpClient.GetStringAsync("https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=php");
                 var priceData = JsonSerializer.Deserialize<JsonElement>(response);
                 var propertyPrice = priceData.GetProperty("tether").GetProperty("php").GetDecimal();
-
+                
                 phpPrice = float.Parse(propertyPrice.ToString());
+               
+                hasFetch = true;
+                
             }
             catch (Exception ex)
             {
                 // Handle network or parsing errors
-                Console.WriteLine("Error fetching PHP rate: " + ex.Message);
+                MessageBox.Show("Error fetching PHP rate: " + ex.Message);
             }
         }
-        public void Dispose()
-        {
-            _httpClient?.Dispose();
-        }
+        
 
 
     }

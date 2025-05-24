@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using Org.BouncyCastle.Utilities;
 using WebSocketStreamingWithUI.TestWebSocket;
+using WebSocketStreamingWithUI.Data;
 
 namespace WebSocketStreamingWithUI.UserControls
 {
@@ -27,7 +28,7 @@ namespace WebSocketStreamingWithUI.UserControls
         public UC_Exchange()
         {
             InitializeComponent();
-
+            phpClient.GetPHPRate();
             this.Load += UC_Exchange_Load;
         }
         public async void UC_Exchange_Load(object sender, EventArgs e)
@@ -35,7 +36,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
             wsClient = new WebSocketPriceClient();
             wsClient.OnPriceUpdate += WsClient_OnPriceUpdate;
-            await phpClient.GetPHPRate();
+
             await wsClient.ConnectAsync();
         }
 
@@ -62,7 +63,9 @@ namespace WebSocketStreamingWithUI.UserControls
                     float prev = float.TryParse(priceOfFromCurrency.Text, out float val) ? val : 0;
                     priceOfFromCurrency.ForeColor = newPrice > prev ? Color.Green :
                                                newPrice < prev ? Color.Red : priceOfFromCurrency.ForeColor;
+
                     priceOfFromCurrency.Text = newPrice.ToString("N2");
+
                 }
 
                 if (pairSymbol == selectedToPair)
@@ -85,9 +88,10 @@ namespace WebSocketStreamingWithUI.UserControls
                 float b = float.Parse(amountLabel.Text);
                 float c = float.Parse(priceOfToCurrency.Text);
 
+
                 float calculated = a * b;
                 float converted = calculated / c;
-                phpEquiv.Text = $"PHP {((converted * c )).ToString("N5")}";
+                phpEquiv.Text = $"PHP {((converted * c)).ToString("N5")}";
 
 
                 phpEquiv.Visible = true;
@@ -173,6 +177,55 @@ namespace WebSocketStreamingWithUI.UserControls
         private void SelectedLabelFrom_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void exchangeButton_Click(object sender, EventArgs e)
+        {
+            User newUser = new User();
+
+            int selectedIndex = dropDownFrom.SelectedIndex;
+            int indexTo = dropDownTo.SelectedIndex;
+            if (dropDownTo.SelectedIndex >=0 && selectedLabelTo.Visible == false)
+            {
+                if (newUser.CheckHoldings(dropDownFrom.Items[selectedIndex].ToString()))
+                {
+                    if (amountLabel.Text != "0" && amountLabel.Text != string.Empty)
+                    {
+                        exchangeButton.Text = "Exchange";
+                        // Perform the Exchange Function
+                       
+                        if (newUser.CheckHoldings(dropDownTo.Items[indexTo].ToString()))
+                        {
+                           
+                            newUser.UpdateHoldings(dropDownTo.Items[indexTo].ToString(), float.Parse(amountTo.Text), "+SWAP");
+                           
+                        }
+                        else
+                        {
+                            newUser.InsertToHoldings(dropDownTo.Items[indexTo].ToString(), float.Parse(amountTo.Text), "+SWAP");
+                           
+                        }
+                        
+                        newUser.UpdateHoldings(dropDownFrom.Items[selectedIndex].ToString(), float.Parse(amountLabel.Text), "+SWAP");
+
+                    }
+                    else
+                    {
+                        exchangeButton.Text = "Enter Amount First";
+                    }
+                    
+                }else
+                {
+                    exchangeButton.Text = "You Dont Have that Currency";
+                }
+                
+
+            }
+            else
+            {
+                exchangeButton.Text= "Please Select Currency First";
+                
+            }
         }
     }
 }

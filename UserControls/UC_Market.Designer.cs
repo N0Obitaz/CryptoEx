@@ -38,7 +38,7 @@ namespace WebSocketStreamingWithUI.UserControls
                 actionBtn.Name = "actionBtn" + i;
                 actionBtn.Text = "Trade";
                 actionBtn.Size = new Size(80, 35);
-                actionBtn.Location = new Point(677, 13);
+                actionBtn.Location = new Point(631, 13);
                 actionBtn.Click += Button_Click;
                 
                 actionBtn.Tag = currency;
@@ -157,6 +157,7 @@ namespace WebSocketStreamingWithUI.UserControls
             favoriteLabel = new Guna2HtmlLabel();
             transactionPanel = new Guna2Panel();
             walletPanel = new Guna2Panel();
+            phpSIgn = new Label();
             sellButton = new Guna2Button();
             buyButton = new Guna2Button();
             withdrawButton = new Guna2Button();
@@ -165,7 +166,6 @@ namespace WebSocketStreamingWithUI.UserControls
             myBalanceLabel = new Label();
             walletSeparator = new Guna2Separator();
             guna2Panel1 = new Guna2Panel();
-            phpSIgn = new Label();
             marketPanel.SuspendLayout();
             Panel10.SuspendLayout();
             Panel9.SuspendLayout();
@@ -347,7 +347,7 @@ namespace WebSocketStreamingWithUI.UserControls
             actionLabel.FlatStyle = FlatStyle.Popup;
             actionLabel.Font = new Font("Times New Roman", 16F, FontStyle.Bold);
             actionLabel.ForeColor = Color.White;
-            actionLabel.Location = new Point(677, 13);
+            actionLabel.Location = new Point(631, 13);
             actionLabel.Margin = new Padding(0);
             actionLabel.Name = "actionLabel";
             actionLabel.Size = new Size(91, 31);
@@ -712,7 +712,7 @@ namespace WebSocketStreamingWithUI.UserControls
             Panel10.Location = new Point(18, 648);
             Panel10.Name = "Panel10";
             Panel10.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            Panel10.Size = new Size(770, 55);
+            Panel10.Size = new Size(740, 55);
             Panel10.TabIndex = 83;
             // 
             // Panel9
@@ -724,7 +724,7 @@ namespace WebSocketStreamingWithUI.UserControls
             Panel9.Location = new Point(18, 592);
             Panel9.Name = "Panel9";
             Panel9.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            Panel9.Size = new Size(770, 55);
+            Panel9.Size = new Size(740, 55);
             Panel9.TabIndex = 82;
             // 
             // Panel8
@@ -736,7 +736,7 @@ namespace WebSocketStreamingWithUI.UserControls
             Panel8.Location = new Point(18, 536);
             Panel8.Name = "Panel8";
             Panel8.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            Panel8.Size = new Size(770, 55);
+            Panel8.Size = new Size(740, 55);
             Panel8.TabIndex = 81;
             // 
             // Panel7
@@ -748,7 +748,7 @@ namespace WebSocketStreamingWithUI.UserControls
             Panel7.Location = new Point(18, 480);
             Panel7.Name = "Panel7";
             Panel7.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            Panel7.Size = new Size(770, 55);
+            Panel7.Size = new Size(740, 55);
             Panel7.TabIndex = 80;
             // 
             // Panel6
@@ -760,7 +760,7 @@ namespace WebSocketStreamingWithUI.UserControls
             Panel6.Location = new Point(18, 424);
             Panel6.Name = "Panel6";
             Panel6.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            Panel6.Size = new Size(770, 55);
+            Panel6.Size = new Size(740, 55);
             Panel6.TabIndex = 79;
             // 
             // Panel5
@@ -772,7 +772,7 @@ namespace WebSocketStreamingWithUI.UserControls
             Panel5.Location = new Point(18, 368);
             Panel5.Name = "Panel5";
             Panel5.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            Panel5.Size = new Size(770, 55);
+            Panel5.Size = new Size(740, 55);
             Panel5.TabIndex = 78;
             // 
             // Panel4
@@ -784,7 +784,7 @@ namespace WebSocketStreamingWithUI.UserControls
             Panel4.Location = new Point(18, 312);
             Panel4.Name = "Panel4";
             Panel4.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            Panel4.Size = new Size(770, 55);
+            Panel4.Size = new Size(740, 55);
             Panel4.TabIndex = 0;
             // 
             // Panel3
@@ -796,7 +796,7 @@ namespace WebSocketStreamingWithUI.UserControls
             Panel3.Location = new Point(18, 256);
             Panel3.Name = "Panel3";
             Panel3.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            Panel3.Size = new Size(770, 55);
+            Panel3.Size = new Size(740, 55);
             Panel3.TabIndex = 42;
             // 
             // Panel2
@@ -808,7 +808,7 @@ namespace WebSocketStreamingWithUI.UserControls
             Panel2.Location = new Point(18, 200);
             Panel2.Name = "Panel2";
             Panel2.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            Panel2.Size = new Size(770, 55);
+            Panel2.Size = new Size(740, 55);
             Panel2.TabIndex = 77;
             // 
             // Panel1
@@ -820,7 +820,7 @@ namespace WebSocketStreamingWithUI.UserControls
             Panel1.Location = new Point(18, 144);
             Panel1.Name = "Panel1";
             Panel1.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            Panel1.Size = new Size(770, 55);
+            Panel1.Size = new Size(740, 55);
             Panel1.TabIndex = 76;
             // 
             // guna2Panel2
@@ -832,7 +832,7 @@ namespace WebSocketStreamingWithUI.UserControls
             guna2Panel2.Location = new Point(18, 83);
             guna2Panel2.Name = "guna2Panel2";
             guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            guna2Panel2.Size = new Size(770, 55);
+            guna2Panel2.Size = new Size(740, 55);
             guna2Panel2.TabIndex = 75;
             // 
             // favoriteLabel
@@ -878,6 +878,19 @@ namespace WebSocketStreamingWithUI.UserControls
             walletPanel.Size = new Size(319, 198);
             walletPanel.TabIndex = 72;
             // 
+            // phpSIgn
+            // 
+            phpSIgn.AutoSize = true;
+            phpSIgn.BackColor = Color.Transparent;
+            phpSIgn.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold);
+            phpSIgn.ForeColor = Color.White;
+            phpSIgn.Location = new Point(45, 93);
+            phpSIgn.Name = "phpSIgn";
+            phpSIgn.Size = new Size(54, 27);
+            phpSIgn.TabIndex = 58;
+            phpSIgn.Text = "PHP";
+            phpSIgn.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // sellButton
             // 
             sellButton.BackColor = Color.Transparent;
@@ -896,7 +909,9 @@ namespace WebSocketStreamingWithUI.UserControls
             sellButton.ShadowDecoration.CustomizableEdges = customizableEdges32;
             sellButton.Size = new Size(75, 29);
             sellButton.TabIndex = 57;
+            sellButton.Tag = "SELL";
             sellButton.Text = "Sell";
+            sellButton.Click += sellButton_Click;
             // 
             // buyButton
             // 
@@ -916,6 +931,7 @@ namespace WebSocketStreamingWithUI.UserControls
             buyButton.ShadowDecoration.CustomizableEdges = customizableEdges34;
             buyButton.Size = new Size(75, 29);
             buyButton.TabIndex = 56;
+            buyButton.Tag = "BUY";
             buyButton.Text = "Buy";
             buyButton.Click += buyButton_Click;
             // 
@@ -1006,19 +1022,6 @@ namespace WebSocketStreamingWithUI.UserControls
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges42;
             guna2Panel1.Size = new Size(1243, 795);
             guna2Panel1.TabIndex = 74;
-            // 
-            // phpSIgn
-            // 
-            phpSIgn.AutoSize = true;
-            phpSIgn.BackColor = Color.Transparent;
-            phpSIgn.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold);
-            phpSIgn.ForeColor = Color.White;
-            phpSIgn.Location = new Point(45, 93);
-            phpSIgn.Name = "phpSIgn";
-            phpSIgn.Size = new Size(54, 27);
-            phpSIgn.TabIndex = 58;
-            phpSIgn.Text = "PHP";
-            phpSIgn.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // UC_Market
             // 
