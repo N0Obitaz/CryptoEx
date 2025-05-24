@@ -32,7 +32,7 @@ namespace WebSocketStreamingWithUI.TestWebSocket
 
         public async Task ConnectAsync()
         {
-            phpClient.GetPHPRate();   
+            
             try
             {
                 using var ws = new ClientWebSocket();
@@ -61,7 +61,7 @@ namespace WebSocketStreamingWithUI.TestWebSocket
                 string pair = json["data"]["s"].ToString().Split("USDT")[0];
                 
                 //Change to real price of PHP(it's not yet implemented)
-                float price = float.Parse(json["data"]["p"].ToString()) * phpClient.phpPrice ;
+                float price = float.Parse(json["data"]["p"].ToString()) * 55.50f ;
                 //MessageBox.Show(phpClient.phpPrice.ToString());
 
                 OnPriceUpdate?.Invoke(pair, price);

@@ -232,7 +232,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private async void UC_Market_Load(object sender, EventArgs e)
         {
-            phpClient.GetPHPRate();
+            //phpClient.GetPHPRate();
 
             GetUser();
             CreateActionButtons();

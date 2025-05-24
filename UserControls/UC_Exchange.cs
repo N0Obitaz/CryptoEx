@@ -28,7 +28,7 @@ namespace WebSocketStreamingWithUI.UserControls
         public UC_Exchange()
         {
             InitializeComponent();
-            phpClient.GetPHPRate();
+            //phpClient.GetPHPRate();
             this.Load += UC_Exchange_Load;
         }
         public async void UC_Exchange_Load(object sender, EventArgs e)

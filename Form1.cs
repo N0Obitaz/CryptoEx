@@ -6,18 +6,20 @@ using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System;
 using WebSocketStreamingWithUI.UserControls;
-
+using WebSocketStreamingWithUI.TestWebSocket;
+using MySqlX.XDevAPI;
 namespace WebSocketStreamingWithUI
 
 
 {
     public partial class Form1 : Form
     {
-
+        HttpClientPHP _client = new HttpClientPHP();
         public Form1()
         {
             InitializeComponent();
             this.Load += Form1_Load_1;
+            HttpClientPHP.GetPHPRate();
 
         }
         public void AddUserControl(UserControl userControl, Guna.UI2.WinForms.Guna2Panel customizingPanel)
@@ -34,8 +36,10 @@ namespace WebSocketStreamingWithUI
 
         private async void Form1_Load_1(object sender, EventArgs e)
         {
+            
             UC_Market uc = new UC_Market();
             AddUserControl(uc, Mainpanel1);
+          
 
         }
         private void dashboardButton_Click(object sender, EventArgs e)

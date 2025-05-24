@@ -36,7 +36,7 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             ws = new WebSocketPriceClient();
             ws.OnPriceUpdate += WsClient_OnPriceUpdate;
-            await _phpClient.GetPHPRate();
+            //await _phpClient.GetPHPRate();
             await ws.ConnectAsync();
         }
 
