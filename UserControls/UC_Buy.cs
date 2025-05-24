@@ -20,9 +20,8 @@ namespace WebSocketStreamingWithUI.UserControls
         public float amountToPass = 0;
         private string currentSelectedPair = null;
         WebSocketPriceClient ws;
-        HttpClientPHP _phpClient = new HttpClientPHP();
-
-        private string operation;
+       
+       
         public UC_Buy()
         {
             InitializeComponent();
@@ -75,7 +74,10 @@ namespace WebSocketStreamingWithUI.UserControls
                 }
 
                 float calculated = (float.Parse(amountLabel.Text) * float.Parse(priceChanges.Text));
+                //Used for passing to UpdateBalance query
                 amountToPass = calculated;
+
+                //Used for Displaying to the panel
                 currencyEquiv.Text = calculated.ToString("N");
                 currencyEquiv.Visible = true;
               
@@ -121,17 +123,7 @@ namespace WebSocketStreamingWithUI.UserControls
         }
 
 
-        public void AssignOperator(string ope)
-        {
-            if (ope == "SELL")
-            {
-                operation = "-" + ope;
-                return;
-            }
-            operation = "+" + ope;
-            
-
-        }
+        
         private void buy_Click(object sender, EventArgs e)
         {
             separator1.FillColor = Color.White;
@@ -198,26 +190,21 @@ namespace WebSocketStreamingWithUI.UserControls
             ChangePlaceHolderFrom(priceChanges, currentSelectedPair);
         }
 
-        
-        private void SellAction(string pair, float amount, string oper2)
+
+        private string operation;
+        public void AssignOperator(string ope)
         {
-            if (oper2 == "-SELL")
+            if (ope == "SELL")
             {
-                oper2 = "+SELL";
-            }
-            if (newUser.CheckHoldings(pair))
-            {
-                newUser.UpdateHoldings(pair, amount, oper2);
-                newUser.UpdateBalance(amountToPass, oper2, pair);
-            }
-        }
-        private void actionButton_Click(object sender, EventArgs e)
-        {
-            if (operation == "-SELL")
-            {
-                SellAction(currentSelectedPair, float.Parse(amountLabel.Text), operation);
+                operation = "+" + ope;
                 return;
             }
+            operation = "-" + ope;
+        }
+
+        private void actionButton_Click(object sender, EventArgs e)
+        {
+            
             if (newUser.CheckHoldings(currentSelectedPair))
             {
                 MessageBox.Show(operation);
@@ -227,7 +214,7 @@ namespace WebSocketStreamingWithUI.UserControls
             }else
             {
                 newUser.InsertToHoldings(currentSelectedPair, float.Parse(amountLabel.Text), operation);
-                newUser.UpdateBalance(amountToPass, $"-{operation}", currentSelectedPair);
+                newUser.UpdateBalance(amountToPass, operation, currentSelectedPair);
 
 
             }

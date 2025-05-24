@@ -133,10 +133,10 @@ namespace WebSocketStreamingWithUI.Data
                         if (int.Parse(result.ToString()) > 0)
                         {
                             // Save to History
-                            if (alreadyInsertedHistory)
-                            {
+                            
                                 InsertToHistory(GetUser(), word, amount, currency);
-                            }
+                               
+                            
                            
                             alreadyInsertedHistory = true;
 
@@ -158,7 +158,7 @@ namespace WebSocketStreamingWithUI.Data
         
         public void InsertToHoldings(string currency, float amount, string operation)
         {
-            MessageBox.Show(amount.ToString());
+            
             string word = operation.Substring(1);
             try
             {
@@ -174,8 +174,13 @@ namespace WebSocketStreamingWithUI.Data
                         object result = cmd.ExecuteNonQuery();
                         MessageBox.Show("Currency Successfully Bought!");
 
-                        alreadyInsertedHistory = true;
-                        InsertToHistory(GetUser(), word, amount, currency);
+                        if (!alreadyInsertedHistory)
+                        {
+                            InsertToHistory(GetUser(), word, amount, currency);
+                            alreadyInsertedHistory = true;
+                        }
+                        
+                       
                     }
 
                 }

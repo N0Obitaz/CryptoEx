@@ -126,10 +126,11 @@ namespace WebSocketStreamingWithUI.UserControls
                                     {
                                         Text = amount,
                                         Font = new Font("Century Gothic", 12F, FontStyle.Bold),
-                                        Location = new Point(580, 10),
-                                        ForeColor = (item.Action == "BUY" || item.Action == "DEPOSIT"||item.Action == "SWAP")
+                                        Location = new Point(600, 10),
+                                        ForeColor = (item.Action == "BUY" || item.Action == "DEPOSIT" || item.Action == "SWAP")
                                             ? Color.Green : Color.Red,
-                                        AutoSize = true
+                                        TextAlign = ContentAlignment.MiddleRight,
+                                        Size = new Size(180, 30)
                                     });
 
                                     historyBox.Controls.Add(new Label
