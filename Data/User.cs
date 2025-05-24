@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Mozilla;
+using WebSocketSharp;
 using WebSocketStreamingWithUI.TestWebSocket;
 using WebSocketStreamingWithUI.UserControls;
 
@@ -82,22 +83,31 @@ namespace WebSocketStreamingWithUI.Data
             
             UpdateBalance(float.Parse(amount), operation, currency);
         }
-        public bool CheckHoldings(string currency)
+        public float CheckHoldings(string currency)
         {
             try
             {
                 using (var conn = new MySqlConnection(connection.GetConnectionString()))
                 {
                     conn.Open();
-                    string CheckQuery = "SELECT COUNT(*) from Holdings WHERE fk_username = @username AND currency = @currency";
+                    string CheckQuery = "SELECT * from Holdings WHERE fk_username = @username AND currency = @currency";
 
                     using (var cmd = new MySqlCommand(CheckQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@username", GetUser());
                         cmd.Parameters.AddWithValue("@currency", currency);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    return float.Parse(reader["quantity"].ToString());
+                                }
+                            }
+                        }
 
-                        
-                        return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                            
                     }
 
                 }
@@ -106,21 +116,33 @@ namespace WebSocketStreamingWithUI.Data
 
                 MessageBox.Show("Error: " + ex.Message);
             }
-            return false;
+            return 0.00000f;
         }
         
         public void UpdateHoldings(string currency, float amount, string operation)
         {
-            
-            // Split the sign and word from operation
-            string sign = operation.Substring(0, 1);
-            string word = operation.Substring(1);
+
             try
             {
+                string sign = "";
+                string word = "";
+                
+                if (!string.IsNullOrEmpty(operation) && operation.Length > 1)
+                {
+                    // Split the sign and word from operation
+                    sign = operation.Substring(0, 1);
+                     word = operation.Substring(1);
+                }
+
+                string signForCalculation = word == "SWAP" && sign == "+"? "+" :
+                                        word == "SWAP" && sign == "-"? "-":
+                                        sign == "+" && word == "BUY" || word == "SELL" ? "-" : 
+                                        sign == "-" && word == "BUY" || word == "SELL" ? "+" : sign;
+            
                 using (var conn = new MySqlConnection(connection.GetConnectionString()))
                 {
                     conn.Open();
-                    string UpdateQuery = $"UPDATE Holdings SET quantity = quantity {sign} @amount WHERE fk_username = @username AND @currency = currency";
+                    string UpdateQuery = $"UPDATE Holdings SET quantity = quantity {signForCalculation} @amount WHERE fk_username = @username AND @currency = currency";
 
                     using (var cmd = new MySqlCommand(UpdateQuery, conn))
                     {
@@ -132,15 +154,17 @@ namespace WebSocketStreamingWithUI.Data
 
                         if (int.Parse(result.ToString()) > 0)
                         {
-                            // Save to History
-                            
-                                InsertToHistory(GetUser(), word, amount, currency);
-                               
-                            
-                           
+                                if (!alreadyInsertedHistory)
+                                {
+                                    // Save to History
+                                    InsertToHistory(GetUser(), word, amount, currency);
+
+                                }
+
                             alreadyInsertedHistory = true;
 
                         }
+                      
 
                     }
                     
@@ -194,12 +218,21 @@ namespace WebSocketStreamingWithUI.Data
         public void UpdateBalance(float amount, string operation, string currency)
         {
         
-            string sign = operation.Substring(0, 1);
-            string word = operation.Substring(1);
+           
 
            
             try
             {
+                string sign = "";
+                string word = "";
+                if (!string.IsNullOrEmpty(operation) && operation.Length > 1)
+                {
+                     sign = operation.Substring(0, 1);
+                     word = operation.Substring(1);
+                }
+                
+
+
                 using (var conn = new MySqlConnection(connection.GetConnectionString()))
                 {
                     conn.Open();

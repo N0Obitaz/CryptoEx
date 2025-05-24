@@ -20,8 +20,8 @@ namespace WebSocketStreamingWithUI.UserControls
         public float amountToPass = 0;
         private string currentSelectedPair = null;
         WebSocketPriceClient ws;
-       
-       
+        public float epsilon = 0.0000001f;
+
         public UC_Buy()
         {
             InitializeComponent();
@@ -81,7 +81,7 @@ namespace WebSocketStreamingWithUI.UserControls
                 currencyEquiv.Text = calculated.ToString("N");
                 currencyEquiv.Visible = true;
               
-                float epsilon = 0.00001f;
+               
 
                 if (float.Parse(currencyEquiv.Text.ToString()) < epsilon || currencyEquiv.Text.ToString() == "")
                 {
@@ -170,7 +170,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
         }
 
-
+        
         private void dropDownBuy_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -179,10 +179,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
             if (selectedIndex < 0 || selectedIndex >= dropDownBuy.Items.Count) return;
 
-            if (newUser.CheckHoldings(selectedIndex.ToString()))
-            {
-                MessageBox.Show("true");
-            }
+           
             currentSelectedPair = dropDownBuy.Items[selectedIndex].ToString();
 
 
@@ -204,20 +201,30 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private void actionButton_Click(object sender, EventArgs e)
         {
-            
-            if (newUser.CheckHoldings(currentSelectedPair))
+            float amount = float.Parse(amountLabel.Text);
+            if (amount <= newUser.CheckHoldings(currentSelectedPair))
             {
-                MessageBox.Show(operation);
-                newUser.UpdateHoldings(currentSelectedPair, float.Parse(amountLabel.Text), operation);
-                
-                newUser.UpdateBalance(amountToPass, operation, currentSelectedPair);
-            }else
-            {
-                newUser.InsertToHoldings(currentSelectedPair, float.Parse(amountLabel.Text), operation);
-                newUser.UpdateBalance(amountToPass, operation, currentSelectedPair);
+                if (newUser.CheckHoldings(currentSelectedPair) > epsilon)
+                {
+
+                    newUser.UpdateHoldings(currentSelectedPair, amount, operation);
+
+                    newUser.UpdateBalance(amountToPass, operation, currentSelectedPair);
+                }
+                else
+                {
+                    newUser.InsertToHoldings(currentSelectedPair, amount, operation);
+                    newUser.UpdateBalance(amountToPass, operation, currentSelectedPair);
 
 
+                }
+                actionButton.Text = "Confirm";
             }
+            else
+            {
+                actionButton.Text = "Insufficient Balance";
+            }
+            
             operation = "";
            
         }

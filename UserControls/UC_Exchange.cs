@@ -24,7 +24,7 @@ namespace WebSocketStreamingWithUI.UserControls
         HttpClientPHP phpClient = new HttpClientPHP();
 
         private WebSocketPriceClient wsClient;
-
+        public float epsilon = 0.0000001f;
         public UC_Exchange()
         {
             InitializeComponent();
@@ -187,27 +187,32 @@ namespace WebSocketStreamingWithUI.UserControls
             int indexTo = dropDownTo.SelectedIndex;
             if (dropDownTo.SelectedIndex >=0 && selectedLabelTo.Visible == false)
             {
-                if (newUser.CheckHoldings(dropDownFrom.Items[selectedIndex].ToString()))
+                if (newUser.CheckHoldings(dropDownFrom.Items[selectedIndex].ToString()) > epsilon)
                 {
+
                     if (amountLabel.Text != "0" && amountLabel.Text != string.Empty)
                     {
                         exchangeButton.Text = "Exchange";
-                        // Perform the Exchange Function
-                       
-                        if (newUser.CheckHoldings(dropDownTo.Items[indexTo].ToString()))
+                        if (float.Parse(amountLabel.Text) <= newUser.CheckHoldings(dropDownFrom.Items[selectedIndex].ToString()))
                         {
-                           
-                            newUser.UpdateHoldings(dropDownTo.Items[indexTo].ToString(), float.Parse(amountTo.Text), "+SWAP");
-                           
-                        }
-                        else
-                        {
-                            newUser.InsertToHoldings(dropDownTo.Items[indexTo].ToString(), float.Parse(amountTo.Text), "+SWAP");
-                           
-                        }
-                        
-                        newUser.UpdateHoldings(dropDownFrom.Items[selectedIndex].ToString(), float.Parse(amountLabel.Text), "+SWAP");
+                            // Perform the Exchange Function
+                            if (newUser.CheckHoldings(dropDownTo.Items[indexTo].ToString()) > epsilon)
+                            {
 
+                                newUser.UpdateHoldings(dropDownTo.Items[indexTo].ToString(), float.Parse(amountTo.Text), "+SWAP");
+
+                            }
+                            else
+                            {
+                                newUser.InsertToHoldings(dropDownTo.Items[indexTo].ToString(), float.Parse(amountTo.Text), "+SWAP");
+
+                            }
+
+                            newUser.UpdateHoldings(dropDownFrom.Items[selectedIndex].ToString(), float.Parse(amountLabel.Text), "-SWAP");
+                        } else
+                        {
+                            exchangeButton.Text = "Insufficient Amount";
+                        }
                     }
                     else
                     {

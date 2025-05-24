@@ -36,10 +36,10 @@ namespace WebSocketStreamingWithUI
 
         private async void Form1_Load_1(object sender, EventArgs e)
         {
-            
+
             UC_Market uc = new UC_Market();
             AddUserControl(uc, Mainpanel1);
-          
+
 
         }
         private void dashboardButton_Click(object sender, EventArgs e)
@@ -62,9 +62,9 @@ namespace WebSocketStreamingWithUI
 
         private void walletButton_Click(object sender, EventArgs e)
         {
-            Wallet wc = new Wallet();
+            UC_Wallet wc = new UC_Wallet();
             AddUserControl(wc, Mainpanel1);
-           
+
         }
 
         private void exchangeButton_Click(object sender, EventArgs e)
@@ -82,6 +82,11 @@ namespace WebSocketStreamingWithUI
             //AddUserControl(sec, Mainpanel1);
             //PersonalInfo personalInfo = new PersonalInfo();
             //AddUserControl(personalInfo, Mainpanel1);
+        }
+
+        private void Mainpanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
