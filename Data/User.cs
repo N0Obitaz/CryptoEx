@@ -32,6 +32,8 @@ namespace WebSocketStreamingWithUI.Data
         private float epsilon = 0.0000001f;
 
         Connection connection = new Connection();
+
+        //Dito mo kunin yung reference ng user, 
         public string GetUser()
         {
             return user;
