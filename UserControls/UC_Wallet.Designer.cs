@@ -477,6 +477,7 @@
             holdingsInsidePanel.ShadowDecoration.CustomizableEdges = customizableEdges28;
             holdingsInsidePanel.Size = new Size(726, 209);
             holdingsInsidePanel.TabIndex = 7;
+            holdingsInsidePanel.Paint += holdingsInsidePanel_Paint;
             // 
             // guna2HtmlLabel11
             // 

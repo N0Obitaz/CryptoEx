@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Management;
 using System.Text;
 using System.Threading.Tasks;
+using Guna.UI2.WinForms;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Mozilla;
 using WebSocketSharp;
@@ -14,18 +16,20 @@ using WebSocketStreamingWithUI.UserControls;
 
 namespace WebSocketStreamingWithUI.Data
 {
-    
+
 
     public class User
-        
+
     {
 
         public bool alreadyInsertedHistory = false;
         private string user = "hihi";
-        
+
         private string password;
         private string email;
         private float balance;
+
+        private float epsilon = 0.0000001f;
 
         Connection connection = new Connection();
         public string GetUser()
@@ -43,11 +47,11 @@ namespace WebSocketStreamingWithUI.Data
             {
                 using (MySqlConnection conn = new MySqlConnection(connection.GetConnectionString()))
                 {
-                    
+
                     conn.Open();
                     string selectQuery = "SELECT username, email, balance from users WHERE username = @user";
 
-                    
+
                     using (MySqlCommand cmd = new MySqlCommand(selectQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@user", user);
@@ -63,9 +67,9 @@ namespace WebSocketStreamingWithUI.Data
                             while (reader.Read())
                             {
                                 email = reader["email"].ToString();
-                                balance = float.Parse(reader["balance"].ToString());                                
+                                balance = float.Parse(reader["balance"].ToString());
                             }
-                            
+
                         }
 
                     }
@@ -76,11 +80,11 @@ namespace WebSocketStreamingWithUI.Data
                 MessageBox.Show("error" + ex.Message);
             }
 
-            
+
         }
         public void UpdateUserBalance(string amount, string operation, string currency)
         {
-            
+
             UpdateBalance(float.Parse(amount), operation, currency);
         }
         public float CheckHoldings(string currency)
@@ -107,18 +111,41 @@ namespace WebSocketStreamingWithUI.Data
                             }
                         }
 
-                            
+
                     }
 
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
                 MessageBox.Show("Error: " + ex.Message);
             }
             return 0.00000f;
         }
-        
+
+        public void DeleteHolding(string currency)
+        {
+            
+            try
+            {
+                using (var conn = new MySqlConnection(connection.GetConnectionString()))
+                {
+                    conn.Open();
+                    string delQuery = "DELETE FROM holdings WHERE currency = @currency AND quantity < @epsilon";
+                    using (var cmd = new MySqlCommand(delQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@currency", currency);
+                        cmd.Parameters.AddWithValue("@epsilon", epsilon);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message);
+            }
+        }
         public void UpdateHoldings(string currency, float amount, string operation)
         {
 
@@ -126,19 +153,19 @@ namespace WebSocketStreamingWithUI.Data
             {
                 string sign = "";
                 string word = "";
-                
+
                 if (!string.IsNullOrEmpty(operation) && operation.Length > 1)
                 {
                     // Split the sign and word from operation
                     sign = operation.Substring(0, 1);
-                     word = operation.Substring(1);
+                    word = operation.Substring(1);
                 }
 
-                string signForCalculation = word == "SWAP" && sign == "+"? "+" :
-                                        word == "SWAP" && sign == "-"? "-":
-                                        sign == "+" && word == "BUY" || word == "SELL" ? "-" : 
+                string signForCalculation = word == "SWAP" && sign == "+" ? "+" :
+                                        word == "SWAP" && sign == "-" ? "-" :
+                                        sign == "+" && word == "BUY" || word == "SELL" ? "-" :
                                         sign == "-" && word == "BUY" || word == "SELL" ? "+" : sign;
-            
+
                 using (var conn = new MySqlConnection(connection.GetConnectionString()))
                 {
                     conn.Open();
@@ -154,21 +181,20 @@ namespace WebSocketStreamingWithUI.Data
 
                         if (int.Parse(result.ToString()) > 0)
                         {
-                                if (!alreadyInsertedHistory)
-                                {
-                                    // Save to History
-                                    InsertToHistory(GetUser(), word, amount, currency);
+                            if (!alreadyInsertedHistory)
+                            {
+                                // Save to History
+                                InsertToHistory(GetUser(), word, amount, currency);
 
-                                }
+                            }
 
                             alreadyInsertedHistory = true;
-
+                            if (CheckHoldings(currency) < epsilon)
+                            {
+                                DeleteHolding(currency);
+                            }
                         }
-                      
-
                     }
-                    
-
                 }
 
             }
@@ -179,10 +205,10 @@ namespace WebSocketStreamingWithUI.Data
             }
 
         }
-        
+
         public void InsertToHoldings(string currency, float amount, string operation)
         {
-            
+
             string word = operation.Substring(1);
             try
             {
@@ -203,8 +229,8 @@ namespace WebSocketStreamingWithUI.Data
                             InsertToHistory(GetUser(), word, amount, currency);
                             alreadyInsertedHistory = true;
                         }
-                        
-                       
+
+
                     }
 
                 }
@@ -217,20 +243,17 @@ namespace WebSocketStreamingWithUI.Data
 
         public void UpdateBalance(float amount, string operation, string currency)
         {
-        
-           
 
-           
             try
             {
                 string sign = "";
                 string word = "";
                 if (!string.IsNullOrEmpty(operation) && operation.Length > 1)
                 {
-                     sign = operation.Substring(0, 1);
-                     word = operation.Substring(1);
+                    sign = operation.Substring(0, 1);
+                    word = operation.Substring(1);
                 }
-                
+
 
 
                 using (var conn = new MySqlConnection(connection.GetConnectionString()))
@@ -243,15 +266,15 @@ namespace WebSocketStreamingWithUI.Data
                         cmd.Parameters.AddWithValue("@amount", amount);
                         cmd.Parameters.AddWithValue("@username", GetUser().ToString());
 
-                        object result =  cmd.ExecuteNonQuery();
+                        object result = cmd.ExecuteNonQuery();
                         if (int.Parse(result.ToString()) > 0)
                         {
-                            if(!alreadyInsertedHistory)
+                            if (!alreadyInsertedHistory)
                             {
                                 InsertToHistory(GetUser(), word, amount, currency);
                                 alreadyInsertedHistory = false;
                             }
-                           
+
                         }
                     }
                 }
@@ -262,7 +285,7 @@ namespace WebSocketStreamingWithUI.Data
             }
         }
 
-       public bool CheckUserBalance(string amount)
+        public bool CheckUserBalance(string amount)
         {
             float convertAmount = float.Parse(amount);
             float balanceFrom;
@@ -279,7 +302,7 @@ namespace WebSocketStreamingWithUI.Data
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (!reader.HasRows) return false;
-                            
+
                             while (reader.Read())
                             {
                                 balanceFrom = float.Parse(reader["balance"].ToString());
@@ -293,7 +316,7 @@ namespace WebSocketStreamingWithUI.Data
                         }
 
                     }
-                  
+
                 }
             }
             catch (Exception ex)
@@ -332,14 +355,151 @@ namespace WebSocketStreamingWithUI.Data
                     }
 
                 }
-            } catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
 
             }
         }
 
+        public List<string> FetchFavorites()
+        {
+            List<string> collections = new List<string>();
+            try
+            {
+                string currencies = "";
+                using (var connect = new MySqlConnection(connection.GetConnectionString()))
+                {
+                    connect.Open();
+                    string fetchQuery = "SELECT favorite_currency FROM favorites WHERE username = @username";
+
+                    using (var cmd = new MySqlCommand(fetchQuery, connect))
+                    {
+                        cmd.Parameters.AddWithValue("@username", GetUser());
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                currencies = reader["favorite_currency"].ToString();
+                            }
+                           
+                        }
+
+                    }
 
 
+                }
+                string[] currencyList = currencies.Split(new[] { " - " }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string currency in currencyList)
+                {
+                    collections.Add(currency);
+                }
+                
+                return collections;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            return [];
+        }
+        public void AddToFavorite(string currency, UserControl userControl, Guna2Panel panel)
+        {
+            List<string> currencyList = FetchFavorites();
+            bool notExist = true;
+            foreach (string curr in currencyList)
+            {
+                if (currency == curr)
+                {
+                    notExist = false;
+                    break;
+                }
+                
+            }
+            if (notExist)
+            {
+                string result = string.Join(" - ", currencyList);
+                string interpolated = $"{result} - {currency}";
+
+                try
+                {
+                    using (var conn = new MySqlConnection(connection.GetConnectionString()))
+                    {
+                        conn.Open();
+                        string updateQuery = "UPDATE favorites SET favorite_currency = @interpolated WHERE username = @username";
+
+                        using (var cmd = new MySqlCommand(updateQuery, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@interpolated", interpolated);
+                            cmd.Parameters.AddWithValue("@username", GetUser());
+
+
+                            object res = cmd.ExecuteNonQuery();
+                            if (float.Parse(res.ToString()) > 0)
+                            {
+                                RefreshForm(userControl, panel);
+                                
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+
+                }
+
+            }else
+            {
+                MessageBox.Show("Already Exist");
+            }
+        }
+        public void RemoveToFavorite(string currency, UserControl userControl, Guna2Panel panel)
+        {
+            List<string> currencyList = FetchFavorites();
+            currencyList.Remove(currency);
+            
+            string joined = string.Join(" - ", currencyList);
+           
+            try
+            {
+                using (var conn = new MySqlConnection(connection.GetConnectionString()))
+                {
+                    conn.Open();
+                    string updateQuery = "UPDATE favorites SET favorite_currency = @joined WHERE username = @username";
+
+                    using (var cmd = new MySqlCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@joined", joined);
+                        cmd.Parameters.AddWithValue("@username", GetUser());
+
+
+                        object res = cmd.ExecuteNonQuery();
+                        if (float.Parse(res.ToString()) > 0)
+                        {
+                           
+                            RefreshForm(userControl, panel);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+
+            }
+        }
+
+        public void RefreshForm(UserControl userControl, Guna2Panel panel)
+        {
+            Form1 form = new Form1();
+            form.AddUserControl(userControl, panel);
+        }
+
+           
+           
     }
-    
+
 }
+    
+

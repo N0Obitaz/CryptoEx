@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using WebSocketStreamingWithUI.TestWebSocket;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 using WebSocketStreamingWithUI.Data;
+
+
 namespace WebSocketStreamingWithUI.UserControls
 {
     public partial class UC_Buy : UserControl, IDisposable
     {
+        private System.Windows.Forms.Timer _updateTimer;
+
         User newUser = new User();
         private Dictionary<string, Guna2HtmlLabel> priceLabels = new();
         public float amountToPass = 0;
         private string currentSelectedPair = null;
         WebSocketPriceClient ws;
         public float epsilon = 0.0000001f;
+        private Task _wsTask;
 
         public UC_Buy()
         {
@@ -36,85 +34,86 @@ namespace WebSocketStreamingWithUI.UserControls
             ws = new WebSocketPriceClient();
             ws.OnPriceUpdate += WsClient_OnPriceUpdate;
             //await _phpClient.GetPHPRate();
-            await ws.ConnectAsync();
+            _wsTask =  ws.ConnectAsync();
+            StartThrottling();
         }
 
+        private float _latestPrice = 0;
+        private string _latestPair = "";
         private void WsClient_OnPriceUpdate(string pair, float price)
         {
+            _latestPair = pair;
+            _latestPrice = price;
+
             if (this.InvokeRequired)
             {
-                this.Invoke(new Action(() => UpdatePrice(pair, price)));
+                this.Invoke(new Action(() => UpdatePriceThrottled(pair, price)));
             }
             else
             {
-                UpdatePrice(pair, price);
+                UpdatePriceThrottled(pair, price);
             }
         }
 
-        private void UpdatePrice(string pairSymbol, float newPrice)
+
+        private void StartThrottling()
         {
+            _updateTimer = new System.Windows.Forms.Timer();
+            _updateTimer.Interval = 500; // Update UI every 250ms max
+            _updateTimer.Tick += (s, e) =>
+            {
+                UpdatePriceThrottled(_latestPair, _latestPrice);
+            };
+            _updateTimer.Start();
+        }
+
+        private void UpdatePriceThrottled(string pairSymbol, float newPrice)
+        {
+            if (pairSymbol != currentSelectedPair) return;
+
             try
             {
-
-                if (pairSymbol != currentSelectedPair) return;
-
                 float prevPrice = float.TryParse(priceChanges.Text, out float val) ? val : 0;
 
                 priceChanges.ForeColor = newPrice > prevPrice ? Color.Green :
                                        newPrice < prevPrice ? Color.Red : priceChanges.ForeColor;
-                
-                priceChanges.Text = newPrice.ToString("N2");
-                
 
-                if (amountLabel.Text == "")
+                priceChanges.Text = newPrice.ToString("N2");
+
+                if (string.IsNullOrWhiteSpace(amountLabel.Text))
                 {
                     currencyEquiv.Text = "0";
                     return;
-
                 }
 
-                float calculated = (float.Parse(amountLabel.Text) * float.Parse(priceChanges.Text));
-                //Used for passing to UpdateBalance query
+                float calculated = float.Parse(amountLabel.Text) * newPrice;
                 amountToPass = calculated;
-
-                //Used for Displaying to the panel
                 currencyEquiv.Text = calculated.ToString("N");
                 currencyEquiv.Visible = true;
-              
-               
 
-                if (float.Parse(currencyEquiv.Text.ToString()) < epsilon || currencyEquiv.Text.ToString() == "")
+                if (calculated < epsilon)
                 {
                     actionButton.Text = "Enter an Amount";
                     actionButton.FillColor = Color.IndianRed;
                 }
-                else
-                {
-                    if (newUser.CheckUserBalance(currencyEquiv.Text.ToString()))
-                    {
-                        actionButton.Text = "Confirm";
-                        actionButton.FillColor = Color.MediumSpringGreen;
-                    }
-                    else
-                    {
-                        actionButton.Text = "Your Balance is Less";
-                        actionButton.FillColor = Color.IndianRed;
-                    }
-                }
-
-
-
-
-
-
-
+                //else
+                //{
+                //    if (newUser.CheckUserBalance(currencyEquiv.Text))
+                //    {
+                //        actionButton.Text = "Confirm";
+                //        actionButton.FillColor = Color.MediumSpringGreen;
+                //    }
+                //    else
+                //    {
+                //        actionButton.Text = "Your Balance is Less";
+                //        actionButton.FillColor = Color.IndianRed;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
-                return;
+               
             }
-
         }
 
         private void walletLabel_Click(object sender, EventArgs e)
@@ -198,35 +197,52 @@ namespace WebSocketStreamingWithUI.UserControls
             }
             operation = "-" + ope;
         }
-
+        
         private void actionButton_Click(object sender, EventArgs e)
         {
             float amount = float.Parse(amountLabel.Text);
+
             if (amount <= newUser.CheckHoldings(currentSelectedPair))
             {
-                if (newUser.CheckHoldings(currentSelectedPair) > epsilon)
-                {
+                ProcessTransaction(amount);
+                return;
+            }
+            else if(newUser.CheckUserBalance(amountToPass.ToString())) 
 
-                    newUser.UpdateHoldings(currentSelectedPair, amount, operation);
+            {
+                ProcessTransaction(amount);
+            }else
+            {
+                actionButton.Text = "You Can't Afford That";
+                actionButton.FillColor = Color.IndianRed;
+            }
 
-                    newUser.UpdateBalance(amountToPass, operation, currentSelectedPair);
-                }
-                else
-                {
-                    newUser.InsertToHoldings(currentSelectedPair, amount, operation);
-                    newUser.UpdateBalance(amountToPass, operation, currentSelectedPair);
+            operation = "";
+           
+        }
 
+        private void ProcessTransaction(float amount)
+        {
 
-                }
-                actionButton.Text = "Confirm";
+            actionButton.Text = "Confirm";
+            actionButton.FillColor = Color.MediumSpringGreen;
+
+            if (newUser.CheckHoldings(currentSelectedPair) > epsilon)
+            {
+
+                newUser.UpdateHoldings(currentSelectedPair, amount, operation);
+
+                newUser.UpdateBalance(amountToPass, operation, currentSelectedPair);
             }
             else
             {
-                actionButton.Text = "Insufficient Balance";
+                MessageBox.Show("THIS PERFORMED");
+                newUser.InsertToHoldings(currentSelectedPair, amount, operation);
+                newUser.UpdateBalance(amountToPass, operation, currentSelectedPair);
+
+
             }
             
-            operation = "";
-           
         }
 
         private void amountLabel_KeyPress(object sender, KeyPressEventArgs e)

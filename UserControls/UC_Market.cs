@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using WebSocketStreamingWithUI.Data;
 using System.Net.Http;
 using WebSocketStreamingWithUI.TestWebSocket;
+using WebSocketStreamingWithUI.Data;
 
 namespace WebSocketStreamingWithUI.UserControls
 {
@@ -19,14 +20,18 @@ namespace WebSocketStreamingWithUI.UserControls
         public Dictionary<int, Guna2Panel> panels;
         private readonly Dictionary<string, string> priceTable = [];
 
+
         private string pair;
         public Dictionary<string, Label> priceLabels;
         private Dictionary<string, Label> tickerLabels;
 
+        User user = new User();
+        UC_Favorites uc_Favorite = new UC_Favorites();
         public UC_Market()
         {
             InitializeComponent();
             this.Load += UC_Market_Load;
+            
 
             priceLabels = new Dictionary<string, Label>
             {
@@ -69,28 +74,16 @@ namespace WebSocketStreamingWithUI.UserControls
                  {9, Panel10 },
             };
         }
-
-
-        public new void Dispose()
+        private async void UC_Market_Load(object sender, EventArgs e)
         {
-            _cancellationTokenSource?.Cancel();
 
-            try
-            {
-                _webSocket?.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing", CancellationToken.None).Wait();
-            }
-            catch { /* ignore if already closed */ }
 
-            _webSocket?.Dispose();
-            _cancellationTokenSource?.Dispose();
-
-            _webSocket = null;
-            _cancellationTokenSource = null;
-
-            base.Dispose();
+            GetUser();
+            CreateActionButtons();
+            _webSocketTask = ConnectAndReceiveAsync(GetWsUrl());
+            
+            GetFormMethod.AddUserControl(uc_Favorite, favoritesPanel);
         }
-
-        
 
 
         // faster real time fetching of currency exchanges
@@ -119,7 +112,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
             try
             {
-                await _webSocket.ConnectAsync(new Uri(Uri), CancellationToken.None);
+                await _webSocket.ConnectAsync(new Uri(Uri), _cancellationTokenSource.Token);
 
 
                 byte[] buffer = new byte[4096];
@@ -127,7 +120,8 @@ namespace WebSocketStreamingWithUI.UserControls
                 // Start ping loop
                 while (_webSocket.State == WebSocketState.Open)
                 {
-                    var result = await _webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                    //Used _cancellationTokenSource.Token variable
+                    var result = await _webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), _cancellationTokenSource.Token);
                     string message = Encoding.UTF8.GetString(buffer, 0, result.Count);
                     UpdatePriceTable(message);
                 }
@@ -141,8 +135,10 @@ namespace WebSocketStreamingWithUI.UserControls
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-
-
+            finally
+            {
+                Dispose();
+            }
         }
         public void UpdatePriceTable(string jsonMessage)
         {
@@ -230,14 +226,7 @@ namespace WebSocketStreamingWithUI.UserControls
         }
 
 
-        private async void UC_Market_Load(object sender, EventArgs e)
-        {
-            //phpClient.GetPHPRate();
-
-            GetUser();
-            CreateActionButtons();
-            _webSocketTask = ConnectAndReceiveAsync(GetWsUrl());
-        }
+        
         private async void GetUser()
         {
 
@@ -341,6 +330,44 @@ namespace WebSocketStreamingWithUI.UserControls
                 UC_Buy uC_Buy = new UC_Buy();
                 uC_Buy.AssignOperator(operation);
                 GetFormMethod.AddUserControl(uC_Buy, marketPanel);
+            }
+        }
+
+        public void Dispose()
+        {
+            _cancellationTokenSource?.Cancel();
+
+            try
+            {
+                _webSocket?.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing", CancellationToken.None).Wait();
+            }
+            catch { /* ignore if already closed */ }
+
+            _webSocket?.Dispose();
+            _cancellationTokenSource?.Dispose();
+
+            _webSocket = null;
+            _cancellationTokenSource = null;
+
+            base.Dispose();
+        }
+
+        private void transactionPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void AddToFavorite(object sender, EventArgs e)
+        {
+            if (sender is Guna2Button btn && btn.Tag is string currency)
+            {
+                //Perform Adding Favorite Currency
+
+                user.AddToFavorite(currency, uc_Favorite, favoritesPanel);
+            }
+            else
+            {
+                MessageBox.Show("Can't Add To Favorites");
             }
         }
     }

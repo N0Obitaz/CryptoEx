@@ -66,12 +66,12 @@ namespace WebSocketStreamingWithUI
                                 {
                                     string date = reader["date"].ToString();
                                     return date;
-                                    
+
                                 }
                             }
                         }
                     }
-            
+
                 }
             }
             catch (Exception ex)
@@ -109,7 +109,7 @@ namespace WebSocketStreamingWithUI
                             while (reader.Read())
                             {
 
-                               
+
                                 items.Add(new HoldingsItem
                                 {
                                     Currency = reader["currency"].ToString(),
@@ -123,10 +123,10 @@ namespace WebSocketStreamingWithUI
 
 
                             }
-                            
+
 
                             int yOffset = 5;
-                            
+
                             foreach (var item in items)
                             {
                                 Guna2Panel groupingPanel = new Guna2Panel
@@ -139,10 +139,10 @@ namespace WebSocketStreamingWithUI
                                     AutoSizeMode = AutoSizeMode.GrowAndShrink
                                 };
 
-                                
-                                
 
-                                int innerYOffset =  0;
+
+
+                                int innerYOffset = 0;
 
 
                                 Guna2Panel holdingsBox = new Guna2Panel
@@ -150,50 +150,50 @@ namespace WebSocketStreamingWithUI
                                     Size = new Size(650, 44),
                                     Location = new Point(13, innerYOffset),
                                     FillColor = Color.Transparent,
-                                  
-                                   
+
+
                                     BackColor = Color.Transparent
                                 };
 
-                                    string amount = item.Quantity.ToString();
+                                string amount = item.Quantity.ToString();
 
 
 
-                                    holdingsBox.Controls.Add(new Label
-                                    {
-                                        Text = amount,
-                                        Font = new Font("Century Gothic", 12F, FontStyle.Bold),
-                                        Location = new Point(312, 7),
-                                        ForeColor = Color.White,
-                                        TextAlign = ContentAlignment.MiddleLeft,
-                                        Size = new Size(121, 30)
-                                    });
+                                holdingsBox.Controls.Add(new Label
+                                {
+                                    Text = amount,
+                                    Font = new Font("Century Gothic", 12F, FontStyle.Bold),
+                                    Location = new Point(312, 7),
+                                    ForeColor = Color.White,
+                                    TextAlign = ContentAlignment.MiddleLeft,
+                                    Size = new Size(121, 30)
+                                });
 
-                                    holdingsBox.Controls.Add(new Label
-                                    {
-                                        Text = item.Currency,
-                                        Font = new Font("Century Gothic", 12F, FontStyle.Bold),
-                                        ForeColor = Color.White,
-                                        Location = new Point(63, 7),
-                                        TextAlign = ContentAlignment.MiddleCenter,
-                                        Size = new Size(60, 30)
-                                    });
+                                holdingsBox.Controls.Add(new Label
+                                {
+                                    Text = item.Currency,
+                                    Font = new Font("Century Gothic", 12F, FontStyle.Bold),
+                                    ForeColor = Color.White,
+                                    Location = new Point(63, 7),
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Size = new Size(60, 30)
+                                });
 
                                 holdingsBox.Controls.Add(new Label
                                 {
                                     Text = item.DateTime.ToString("HH:mm:ss"),
                                     Font = new Font("Century Gothic", 12F, FontStyle.Bold),
                                     Location = new Point(500, 7),
-                                    
+
                                     ForeColor = Color.White,
                                     Size = new Size(60, 30),
                                     TextAlign = ContentAlignment.MiddleRight
 
                                 });
 
-                                    groupingPanel.Controls.Add(holdingsBox);
-                                    innerYOffset += holdingsBox.Height;
-                                
+                                groupingPanel.Controls.Add(holdingsBox);
+                                innerYOffset += holdingsBox.Height;
+
 
                                 holdingsInsidePanel.Controls.Add(groupingPanel);
                                 yOffset += groupingPanel.Height + 10;
@@ -207,9 +207,15 @@ namespace WebSocketStreamingWithUI
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        private void holdingsInsidePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
     public class HoldingsItem
     {
+        
         public string Currency { get; set; }
         public float Quantity { get; set; }
         public DateTime DateTime { get; set; }

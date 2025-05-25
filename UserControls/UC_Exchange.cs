@@ -198,7 +198,6 @@ namespace WebSocketStreamingWithUI.UserControls
                             // Perform the Exchange Function
                             if (newUser.CheckHoldings(dropDownTo.Items[indexTo].ToString()) > epsilon)
                             {
-
                                 newUser.UpdateHoldings(dropDownTo.Items[indexTo].ToString(), float.Parse(amountTo.Text), "+SWAP");
 
                             }

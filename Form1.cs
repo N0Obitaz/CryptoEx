@@ -34,7 +34,7 @@ namespace WebSocketStreamingWithUI
         }
 
 
-        private async void Form1_Load_1(object sender, EventArgs e)
+        public async void Form1_Load_1(object sender, EventArgs e)
         {
 
             UC_Market uc = new UC_Market();

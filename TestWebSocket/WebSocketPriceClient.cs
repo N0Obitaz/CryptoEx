@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+
 
 namespace WebSocketStreamingWithUI.TestWebSocket
 {
     public class WebSocketPriceClient: IDisposable
     {
-        HttpClientPHP phpClient = new HttpClientPHP();
 
 
-        private float phpRate;
-        
+
+        private CancellationTokenSource _cancellationTokenSource;
+        private ClientWebSocket _webSocket;
+
         public delegate void PriceUpdateHandler(string pair, float price);
         public event PriceUpdateHandler OnPriceUpdate;
 
@@ -32,16 +35,17 @@ namespace WebSocketStreamingWithUI.TestWebSocket
 
         public async Task ConnectAsync()
         {
-            
+            _webSocket = new ClientWebSocket();
+            _cancellationTokenSource = new CancellationTokenSource();
             try
             {
-                using var ws = new ClientWebSocket();
-                await ws.ConnectAsync(new Uri(wsUrl), CancellationToken.None);
+
+                await _webSocket.ConnectAsync(new Uri(wsUrl), _cancellationTokenSource.Token);
 
                 byte[] buffer = new byte[4096];
-                while (ws.State == WebSocketState.Open)
+                while (_webSocket.State == WebSocketState.Open)
                 {
-                    var result = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                    var result = await _webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), _cancellationTokenSource.Token);
                     string message = Encoding.UTF8.GetString(buffer, 0, result.Count);
                     HandleMessage(message);
                 }
@@ -49,6 +53,10 @@ namespace WebSocketStreamingWithUI.TestWebSocket
             catch (Exception ex)
             {
                 MessageBox.Show("WebSocket Error: " + ex.Message);
+            }
+            finally
+            {
+                Dispose();
             }
         }
 
@@ -67,9 +75,23 @@ namespace WebSocketStreamingWithUI.TestWebSocket
                 OnPriceUpdate?.Invoke(pair, price);
             }
             catch { /* Ignore malformed messages */ }
+            
         }
-        public new void Dispose()
+        public void Dispose()
         {
+            _cancellationTokenSource?.Cancel();
+
+            try
+            {
+                _webSocket?.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing", CancellationToken.None).Wait();
+            }
+            catch { /* ignore if already closed */ }
+
+            _webSocket?.Dispose();
+            _cancellationTokenSource?.Dispose();
+
+            _webSocket = null;
+            _cancellationTokenSource = null;
 
         }
     }
