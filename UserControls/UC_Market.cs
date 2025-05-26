@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 using WebSocketStreamingWithUI.Data;
 using System.Net.Http;
 using WebSocketStreamingWithUI.TestWebSocket;
-using WebSocketStreamingWithUI.Data;
+
 
 namespace WebSocketStreamingWithUI.UserControls
 {
@@ -18,7 +18,7 @@ namespace WebSocketStreamingWithUI.UserControls
         Form1 GetFormMethod = new Form1();
         HttpClientPHP phpClient = new HttpClientPHP();
         public Dictionary<int, Guna2Panel> panels;
-        private readonly Dictionary<string, string> priceTable = [];
+        public readonly Dictionary<string, string> priceTable = [];
 
 
         private string pair;
@@ -77,8 +77,6 @@ namespace WebSocketStreamingWithUI.UserControls
         private async void UC_Market_Load(object sender, EventArgs e)
         {
 
-
-            GetUser();
             CreateActionButtons();
             _webSocketTask = ConnectAndReceiveAsync(GetWsUrl());
             
@@ -227,14 +225,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
 
         
-        private async void GetUser()
-        {
-
-            User newUser = new User();
-            newUser.GetUserDetails();
-
-            balance.Text = newUser.GetBalance().ToString("N2");
-        }
+       
         private void Button_Click(object sender, EventArgs e)
         {
             if (sender is Guna2Button btn && btn.Tag is string currency)
@@ -292,25 +283,6 @@ namespace WebSocketStreamingWithUI.UserControls
         {
 
         }
-
-        private void depositButton_Click(object sender, EventArgs e)
-        {
-            var uC_Deposit = new UC_Deposit();
-            GetFormMethod.AddUserControl(uC_Deposit, marketPanel);
-
-        }
-
-        private void labelSOLTicker_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void withdrawButton_Click(object sender, EventArgs e)
-        {
-            var uC_Withdraw = new UC_Withdraw();
-            GetFormMethod.AddUserControl(uC_Withdraw, marketPanel);
-        }
-
         private void buyButton_Click(object sender, EventArgs e)
         {
             if (sender is Guna2Button btn && btn.Tag is string operation)

@@ -11,6 +11,7 @@ using Guna.UI2.WinForms;
 using MySql.Data.MySqlClient;
 using WebSocketStreamingWithUI.UserControls;
 using WebSocketStreamingWithUI.Data;
+using WebSocketStreamingWithUI.TestWebSocket;
 
 namespace WebSocketStreamingWithUI
 {
@@ -18,34 +19,29 @@ namespace WebSocketStreamingWithUI
     {
         Connection connection = new Connection();
         User user = new User();
+        UC_Market uC_Market = new UC_Market();
+
+        public List<HoldingsItem> items = new List<HoldingsItem>();
+
         public UC_Wallet()
         {
             InitializeComponent();
+            this.Load += UC_Wallet_Load;
             FetchHoldingData();
-        }
+            GetAssetsValues();
+   
 
-        private void guna2Panel1_Paint(object sender, PaintEventArgs e)
+        }
+        private async Task CallAsync()
+        {
+            await GlobalServices.PriceClient.ConnectAsync();
+            await GetHoldingValues();
+        }
+        private async void UC_Wallet_Load(object sender, EventArgs e)
         {
 
 
         }
-
-        private void guna2HtmlLabel5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2HtmlLabel3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2Panel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
         private string FetchDateOnlyData(string currency)
         {
             try
@@ -80,6 +76,68 @@ namespace WebSocketStreamingWithUI
             }
             return currency;
         }
+
+        public async Task GetHoldingValues()
+        {
+            var prices = GlobalServices.PriceClient.CurrentPrices;
+            try
+            {
+                Dictionary<string, float> calc = new Dictionary<string, float>();
+
+                float calculate = 0;
+                foreach (var item in items)
+                {
+                    foreach (var pr in prices)
+                    {
+                        string price = pr.Value.ToString("F2"); // formatted
+
+                        if (pr.Key.ToString() == item.Currency)
+                        {
+                            calculate = item.Quantity * pr.Value;
+                            if (!calc.ContainsKey(pr.Key.ToString()))
+                            {
+                                calc[item.Currency] = calculate;
+                            }
+                            
+                        }
+; 
+                    }
+                }
+                float totalAssetValue = 0;
+                foreach (var priceHeld in calc)
+                {
+                    totalAssetValue += priceHeld.Value;
+                }
+                assetHeldValue.Text = totalAssetValue.ToString("N2");
+
+
+            }
+            catch (Exception ex)
+            {
+                //removed catching message here
+
+            }
+            finally
+            {
+
+                GlobalServices.PriceClient.Dispose();
+            }
+
+            
+        }
+        public void GetAssetsValues()
+        {
+            float deposits = user.GetTotalAssets("DEPOSIT");
+            amountDeposit.Text = deposits.ToString("N2");
+            float withdrawn = user.GetTotalAssets("WITHDRAW");
+            totalWithDrawn.Text = withdrawn.ToString("N2");
+
+            //MessageBox.Show(priceClient.currentPrices["BTC"].ToString());
+
+
+
+
+        }
         public void FetchHoldingData()
         {
             try
@@ -104,7 +162,7 @@ namespace WebSocketStreamingWithUI
 
                             int j = 20;
 
-                            List<HoldingsItem> items = new List<HoldingsItem>();
+
 
                             while (reader.Read())
                             {
@@ -212,6 +270,17 @@ namespace WebSocketStreamingWithUI
         {
 
         }
+
+        private void guna2HtmlLabel29_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void refreshButton_Click(object sender, EventArgs e)
+        {
+            GetHoldingValues();
+            await CallAsync();
+        }
     }
     public class HoldingsItem
     {
@@ -220,6 +289,10 @@ namespace WebSocketStreamingWithUI
         public float Quantity { get; set; }
         public DateTime DateTime { get; set; }
 
+    }
+    public static class GlobalServices
+    {
+        public static WebSocketPriceClient PriceClient { get; } = new WebSocketPriceClient();
     }
 
 }

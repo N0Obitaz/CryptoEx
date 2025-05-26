@@ -10,7 +10,7 @@ namespace WebSocketStreamingWithUI.TestWebSocket
 {
     public class HttpClientPHP
     {
-        public static float phpPrice;
+        public static float phpPrice = 0;
         private readonly HttpClient _httpClient;
         public  float GetPrice()
         {

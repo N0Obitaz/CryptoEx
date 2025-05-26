@@ -8,6 +8,7 @@ using System;
 using WebSocketStreamingWithUI.UserControls;
 using WebSocketStreamingWithUI.TestWebSocket;
 using MySqlX.XDevAPI;
+using WebSocketStreamingWithUI.Data;
 namespace WebSocketStreamingWithUI
 
 
@@ -15,6 +16,7 @@ namespace WebSocketStreamingWithUI
     public partial class Form1 : Form
     {
         HttpClientPHP _client = new HttpClientPHP();
+        User user = new User();
         public Form1()
         {
             InitializeComponent();
@@ -36,14 +38,23 @@ namespace WebSocketStreamingWithUI
 
         public async void Form1_Load_1(object sender, EventArgs e)
         {
+           
 
+            GetUser();
             UC_Market uc = new UC_Market();
             AddUserControl(uc, Mainpanel1);
 
 
         }
+        public void GetUser()
+        {
+            user.GetUserDetails();
+
+            balancelabel.Text = user.GetBalance().ToString("N2");
+        }
         private void dashboardButton_Click(object sender, EventArgs e)
         {
+            GetUser();
             UC_Market uc = new UC_Market();
             AddUserControl(uc, Mainpanel1);
 
@@ -85,6 +96,29 @@ namespace WebSocketStreamingWithUI
         }
 
         private void Mainpanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void withdraw_Click(object sender, EventArgs e)
+        {
+            var uC_Withdraw = new UC_Withdraw();
+            AddUserControl(uC_Withdraw, Mainpanel1);
+        }
+
+        private void deposit_Click(object sender, EventArgs e)
+        {
+
+            UC_Deposit uC_Deposit = new UC_Deposit();
+            AddUserControl(uC_Deposit, Mainpanel1);
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            GetUser();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }

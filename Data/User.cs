@@ -498,8 +498,44 @@ namespace WebSocketStreamingWithUI.Data
             form.AddUserControl(userControl, panel);
         }
 
-           
-           
+
+        public float GetTotalAssets(string action)
+        {
+            try
+
+            {
+                float amount = 0;
+                using (var conn = new MySqlConnection(connection.GetConnectionString()))
+                {
+                    conn.Open();
+                    string selectQuery = "SELECT amount FROM history WHERE username = @username AND action = @action";
+
+                    using (var cmd = new MySqlCommand(selectQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", GetUser());
+                        cmd.Parameters.AddWithValue("@action", action);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (!reader.HasRows) return 0;
+
+                            while (reader.Read())
+                            {
+                                amount += float.Parse(reader["amount"].ToString());
+                            }
+                     
+                            return amount;
+                            
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { }
+            return 0;
+        }
+       
+
+
     }
 
 }

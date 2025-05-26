@@ -14,6 +14,7 @@ namespace WebSocketStreamingWithUI.UserControls
     public partial class UC_Withdraw : UserControl
     {
         User newUser = new User();
+        Form1 form = new Form1();
         public UC_Withdraw()
         {
             InitializeComponent();
@@ -23,21 +24,25 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             try
             {
-
-                if (amountLabel.Text != "" && float.Parse(amountLabel.Text) > 0)
+                if (newUser.CheckUserBalance(amountLabel.Text.ToString()))
                 {
-                    newUser.UpdateUserBalance(amountLabel.Text.ToString(), "-WITHDRAW", "PHP");
-                    withdrawConfirmButton.Text = "Withdraw Successful!";
-                }
-                else
+                    if (amountLabel.Text != "" && float.Parse(amountLabel.Text) > 0)
+                    {
+                        newUser.UpdateUserBalance(amountLabel.Text.ToString(), "-WITHDRAW", "PHP");
+                        withdrawConfirmButton.Text = "Withdraw Successful!";
+                        form.GetUser();
+                        
+                    }
+                    else
+                    {
+                        withdrawConfirmButton.FillColor = Color.IndianRed;
+                        withdrawConfirmButton.Text = "Enter Amount First";
+                    }
+                }else
                 {
                     withdrawConfirmButton.FillColor = Color.IndianRed;
-                    withdrawConfirmButton.Text = "Enter Amount First";
+                    withdrawConfirmButton.Text = "Insufficient Amount";
                 }
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -47,8 +52,11 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private void amountLabel_TextChanged(object sender, EventArgs e)
         {
-            withdrawConfirmButton.FillColor = Color.MediumSpringGreen;
-            withdrawConfirmButton.Text = "Withdraw";
+           
+                withdrawConfirmButton.FillColor = Color.MediumSpringGreen;
+                withdrawConfirmButton.Text = "Withdraw";
+            
+           
         }
     }
 }

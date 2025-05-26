@@ -18,6 +18,9 @@ namespace WebSocketStreamingWithUI.TestWebSocket
         private CancellationTokenSource _cancellationTokenSource;
         private ClientWebSocket _webSocket;
 
+        private Dictionary<string, float> currentPrices = new();
+
+        public IReadOnlyDictionary<string, float> CurrentPrices => currentPrices;
         public delegate void PriceUpdateHandler(string pair, float price);
         public event PriceUpdateHandler OnPriceUpdate;
 
@@ -43,20 +46,26 @@ namespace WebSocketStreamingWithUI.TestWebSocket
                 await _webSocket.ConnectAsync(new Uri(wsUrl), _cancellationTokenSource.Token);
 
                 byte[] buffer = new byte[4096];
-                while (_webSocket.State == WebSocketState.Open)
-                {
-                    var result = await _webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), _cancellationTokenSource.Token);
-                    string message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                    HandleMessage(message);
-                }
+               
+                    while (_webSocket != null && _webSocket.State == WebSocketState.Open)
+                    {
+                        var result = await _webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), _cancellationTokenSource.Token);
+                        string message = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                        HandleMessage(message);
+                    }
+                
+               
             }
             catch (Exception ex)
             {
-                MessageBox.Show("WebSocket Error: " + ex.Message);
+
+                //removed this Catching Error
+                //MessageBox.Show("WebSocket Error: Dito" + ex.Message);
             }
             finally
             {
-                Dispose();
+                //removed this dispose Method
+                //Dispose();
             }
         }
 
@@ -68,13 +77,21 @@ namespace WebSocketStreamingWithUI.TestWebSocket
                 var json = JObject.Parse(jsonMessage);
                 string pair = json["data"]["s"].ToString().Split("USDT")[0];
                 
-                //Change to real price of PHP(it's not yet implemented)
-                float price = float.Parse(json["data"]["p"].ToString()) * HttpClientPHP.phpPrice ;
+                //Change to real price of PHP
+                float price = float.Parse(json["data"]["p"].ToString()) * HttpClientPHP.phpPrice;
+               
                 //MessageBox.Show(phpClient.phpPrice.ToString());
+
+                lock (currentPrices)
+                {
+                    currentPrices[pair] = price;
+                }
+               
+               
 
                 OnPriceUpdate?.Invoke(pair, price);
             }
-            catch { /* Ignore malformed messages */ }
+            catch {  }
             
         }
         public void Dispose()
