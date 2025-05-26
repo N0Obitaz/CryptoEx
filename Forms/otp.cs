@@ -25,16 +25,25 @@ namespace WebSocketStreamingWithUI
             string otpcode = otptbox1.Text + otptbox2.Text + otptbox3.Text + otptbox4.Text + otptbox5.Text;
 
 
-            if (Verify.VerifyOtp(userEmail, otpcode)) // This assumes you have a class called Verify
+            if (Verify.VerifyOtp(userEmail, otpcode))
             {
                 MessageBox.Show("OTP verified successfully!");
 
                 Connection db = new Connection();
-                var (fullname, balance) = db.GetUserInfo(userEmail); // Tuple unpacking
+                var (fullname, balance, role) = db.GetUserInfo(userEmail); 
 
-                // ✅ Open the dashboard with user info
-                Form1 dashboard = new Form1();
-                dashboard.Show();
+                if (role == "Admin")
+                {
+                    Admin admin = new Admin();
+                    admin.Show();
+                }
+                else
+                {
+                    
+                    UserDashboard dashboard = new UserDashboard();
+                    dashboard.Show();
+                }
+
                 this.Hide();
             }
             else

@@ -14,20 +14,29 @@ using WebSocketSharp;
 using WebSocketStreamingWithUI.TestWebSocket;
 using WebSocketStreamingWithUI.UserControls;
 
-namespace WebSocketStreamingWithUI.Data
+namespace WebSocketStreamingWithUI.Class
 {
 
 
-    public class User
+    public class Userconnection
 
     {
 
-        public bool alreadyInsertedHistory = false;
-        private string user = "hihi";
 
-        private string password;
-        private string email;
-        private float balance;
+        public bool alreadyInsertedHistory = false;
+
+        private string currentUser;
+
+        public void SetUser(string username)
+        {
+            currentUser = username;
+        }
+
+        public void SetBalance(decimal balance)
+        {
+            this.balance = balance;
+        }
+        private decimal balance;
 
         private float epsilon = 0.0000001f;
 
@@ -36,54 +45,55 @@ namespace WebSocketStreamingWithUI.Data
         //Dito mo kunin yung reference ng user, 
         public string GetUser()
         {
-            return user;
+            return currentUser;
         }
 
-        public float GetBalance()
+        //public float GetBalance()
+        //{
+        //    //return balance;
+        //}
+
+        public Users GetUserDetailsByEmailOrUsername(string emailOrUsername)
         {
-            return balance;
-        }
-        public void GetUserDetails()
-        {
-            try
+            Users user = null;
+
+            using (var conn = new MySqlConnection(connection.GetConnectionString()))
             {
-                using (MySqlConnection conn = new MySqlConnection(connection.GetConnectionString()))
+                conn.Open();
+
+                string query = @"
+                SELECT firstname, lastname, username, email, password, role, balance 
+                FROM users 
+                WHERE username = @input OR email = @input
+                LIMIT 1";
+
+                using (var cmd = new MySqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@input", emailOrUsername);
 
-                    conn.Open();
-                    string selectQuery = "SELECT username, email, balance from users WHERE username = @user";
-
-
-                    using (MySqlCommand cmd = new MySqlCommand(selectQuery, conn))
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        cmd.Parameters.AddWithValue("@user", user);
-                        cmd.Parameters.AddWithValue("@email", email);
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        if (reader.Read())
                         {
-                            if (!reader.HasRows)
-                            {
-                                Console.WriteLine("No records found.");
-
-                                return;
-                            }
-                            while (reader.Read())
-                            {
-                                email = reader["email"].ToString();
-                                balance = float.Parse(reader["balance"].ToString());
-                            }
-
+                            user = new Users(
+                                reader["firstname"].ToString(),
+                                reader["lastname"].ToString(),
+                                reader["username"].ToString(),
+                                reader["email"].ToString(),
+                                reader["password"].ToString(),
+                                "", // cpass - confirm password (optional here)
+                                reader["role"].ToString(),
+                                Convert.ToDecimal(reader["balance"])
+                            );
                         }
-
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("error" + ex.Message);
-            }
 
-
+            return user;
         }
+
+
         public void UpdateUserBalance(string amount, string operation, string currency)
         {
 
@@ -128,7 +138,7 @@ namespace WebSocketStreamingWithUI.Data
 
         public void DeleteHolding(string currency)
         {
-            
+
             try
             {
                 using (var conn = new MySqlConnection(connection.GetConnectionString()))
@@ -384,7 +394,7 @@ namespace WebSocketStreamingWithUI.Data
                             {
                                 currencies = reader["favorite_currency"].ToString();
                             }
-                           
+
                         }
 
                     }
@@ -396,7 +406,7 @@ namespace WebSocketStreamingWithUI.Data
                 {
                     collections.Add(currency);
                 }
-                
+
                 return collections;
             }
             catch (Exception ex)
@@ -416,7 +426,7 @@ namespace WebSocketStreamingWithUI.Data
                     notExist = false;
                     break;
                 }
-                
+
             }
             if (notExist)
             {
@@ -440,7 +450,7 @@ namespace WebSocketStreamingWithUI.Data
                             if (float.Parse(res.ToString()) > 0)
                             {
                                 RefreshForm(userControl, panel);
-                                
+
                             }
                         }
                     }
@@ -451,7 +461,8 @@ namespace WebSocketStreamingWithUI.Data
 
                 }
 
-            }else
+            }
+            else
             {
                 MessageBox.Show("Already Exist");
             }
@@ -460,9 +471,9 @@ namespace WebSocketStreamingWithUI.Data
         {
             List<string> currencyList = FetchFavorites();
             currencyList.Remove(currency);
-            
+
             string joined = string.Join(" - ", currencyList);
-           
+
             try
             {
                 using (var conn = new MySqlConnection(connection.GetConnectionString()))
@@ -479,7 +490,7 @@ namespace WebSocketStreamingWithUI.Data
                         object res = cmd.ExecuteNonQuery();
                         if (float.Parse(res.ToString()) > 0)
                         {
-                           
+
                             RefreshForm(userControl, panel);
                         }
                     }
@@ -494,7 +505,7 @@ namespace WebSocketStreamingWithUI.Data
 
         public void RefreshForm(UserControl userControl, Guna2Panel panel)
         {
-            Form1 form = new Form1();
+            UserDashboard form = new UserDashboard();
             form.AddUserControl(userControl, panel);
         }
 
@@ -523,9 +534,9 @@ namespace WebSocketStreamingWithUI.Data
                             {
                                 amount += float.Parse(reader["amount"].ToString());
                             }
-                     
+
                             return amount;
-                            
+
                         }
                     }
                 }
@@ -533,11 +544,11 @@ namespace WebSocketStreamingWithUI.Data
             catch (Exception ex) { }
             return 0;
         }
-       
-        
+
+
 
     }
 
 }
-    
+
 

@@ -10,15 +10,15 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using Microsoft.VisualBasic.Logging;
 using System.Windows.Forms.Design;
-using WebSocketStreamingWithUI.Data;
+using WebSocketStreamingWithUI.Class;
 
 
 namespace WebSocketStreamingWithUI.UserControls
 {
-    
+
     public partial class UC_Favorites : UserControl
     {
-        User user = new User();
+        Userconnection user = new Userconnection();
        
         public UC_Favorites()
         {

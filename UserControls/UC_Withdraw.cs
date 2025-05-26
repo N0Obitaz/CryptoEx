@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WebSocketStreamingWithUI.Data;
+using WebSocketStreamingWithUI.Class;
 
 namespace WebSocketStreamingWithUI.UserControls
 {
     public partial class UC_Withdraw : UserControl
     {
-        User newUser = new User();
-        Form1 form = new Form1();
+        Userconnection newUser = new Userconnection();
+        UserDashboard form = new UserDashboard();
         public UC_Withdraw()
         {
             InitializeComponent();

@@ -12,7 +12,7 @@ namespace WebSocketStreamingWithUI.Class
         //Constructor: initializes the connection string
         public Connection()
         {
-            string server = "192.168.100.44";
+            string server = "localhost";
             string database = "trydb";
             string uid = "joed";
             string password = "12345678";
@@ -22,16 +22,18 @@ namespace WebSocketStreamingWithUI.Class
         public string GetConnectionString() => _connectionString;
 
         //Public method to insert full user registration
-        public bool InsertData(string fname, string lname, string email, string password)
+        public bool InsertData(string fname, string lname, string username, string email, string password, string role)
         {
-            string query = "INSERT INTO users (Firstname, Lastname, Email, Password, Amount) VALUES (@fname, @lname, @email, @password, @amount)";
+            string query = "INSERT INTO users (Firstname, Lastname,UserName ,Email, Password, balance, Role) VALUES (@fname, @lname,@username, @email, @password, @balance, @role)";
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@fname", fname),
                 new MySqlParameter("@lname", lname),
                 new MySqlParameter("@email", email),
+                new MySqlParameter("@username", username),
                 new MySqlParameter("@password", password),
-                new MySqlParameter("@amount", 1000)
+                new MySqlParameter("@balance", 1000),
+                new MySqlParameter("@role", role)
             };
 
             return ExecuteNonQuery(query, parameters);
@@ -51,17 +53,50 @@ namespace WebSocketStreamingWithUI.Class
         }
 
         //Login Credentials Validation
-        public bool ValidateLogin(string email, string password)
+        public bool ValidateLogin(string emailOrUsername, string password)
         {
-            string query = "SELECT COUNT(*) FROM users WHERE Email = @email AND Password = @password";
-            var parameters = new MySqlParameter[]
+            using (MySqlConnection con = new MySqlConnection(_connectionString))
             {
-                new MySqlParameter("@email", email),
-                new MySqlParameter("@password", password)
-            };
+                con.Open();
+                string query = emailOrUsername.Contains("@")
+                    ? "SELECT * FROM users WHERE email = @input AND password = @password"
+                    : "SELECT * FROM users WHERE username = @input AND password = @password";
 
-            return ExecuteScalarCount(query, parameters) > 0;
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@input", emailOrUsername);
+                    cmd.Parameters.AddWithValue("@password", password);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        return reader.HasRows;
+                    }
+                }
+            }
         }
+        public string GetEmailByUsername(string username)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT Email FROM users WHERE Username = @Username";
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", username);
+                        object result = cmd.ExecuteScalar();
+                        return result?.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching email: " + ex.Message);
+                return null;
+            }
+        }
+
 
         //User exists Check
         public bool UserExists(string email)
@@ -75,39 +110,37 @@ namespace WebSocketStreamingWithUI.Class
             return ExecuteScalarCount(query, parameters) > 0;
         }
 
-        // Get User Info
-        public (string Fullname, string Balance) GetUserInfo(string email)
-        {
-            string fullname = "";
-            string balance = "";
 
-            try
+
+        // Get User Info
+       public (string Fullname, decimal Balance, string Role) GetUserInfo(string emailOrUsername)
+{
+            string fullname = "";
+            decimal balance;
+            string role = "";
+            string query = "SELECT CONCAT(Firstname, ' ', Lastname) AS Fullname, Balance, Role FROM users WHERE Email = @identifier OR Username = @identifier";
+
+    using (MySqlConnection conn = new MySqlConnection(_connectionString))
+    {
+        conn.Open();
+        using (MySqlCommand cmd = new MySqlCommand(query, conn))
+        {
+            cmd.Parameters.AddWithValue("@identifier", emailOrUsername);
+            using (MySqlDataReader reader = cmd.ExecuteReader())
             {
-                using (MySqlConnection connection = new MySqlConnection(_connectionString))
+                if (reader.Read())
                 {
-                    connection.Open();
-                    string query = "SELECT CONCAT(Firstname, ' ', Lastname) AS Fullname, Amount FROM users WHERE Email = @Email";
-                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                fullname = reader["Fullname"].ToString();
-                                balance = reader["Amount"].ToString();
-                            }
-                        }
-                    }
+                    fullname = reader.GetString("Fullname");
+                    balance = reader.GetDecimal("Balance");
+                    role = reader.GetString("Role");
+                    return (fullname, balance, role);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-
-            return (fullname, balance);
         }
+    }
+
+    return (null, 0, null);
+}
 
         // 🔄 Private helper: Execute INSERT, UPDATE, DELETE
         private bool ExecuteNonQuery(string query, MySqlParameter[] parameters)
@@ -152,5 +185,29 @@ namespace WebSocketStreamingWithUI.Class
                 return 0;
             }
         }
+        public string GetRoleByIdentifier(string identifier)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT Role FROM users WHERE Email = @Identifier OR Username = @Identifier";
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Identifier", identifier);
+                        object result = cmd.ExecuteScalar();
+                        return result?.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching role: " + ex.Message);
+                return null;
+            }
+        }
+
     }
+
 }

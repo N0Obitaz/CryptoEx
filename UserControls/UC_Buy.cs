@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using WebSocketStreamingWithUI.TestWebSocket;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
-using WebSocketStreamingWithUI.Data;
+using WebSocketStreamingWithUI.Class;
 
 
 namespace WebSocketStreamingWithUI.UserControls
@@ -12,7 +12,7 @@ namespace WebSocketStreamingWithUI.UserControls
     {
         private System.Windows.Forms.Timer _updateTimer;
 
-        User newUser = new User();
+        Userconnection newUser = new Userconnection();
         private Dictionary<string, Guna2HtmlLabel> priceLabels = new();
         public float amountToPass = 0;
         private string currentSelectedPair = null;

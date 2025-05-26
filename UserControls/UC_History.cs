@@ -7,8 +7,8 @@ using Guna.UI2.WinForms.Suite;
 using Microsoft.VisualBasic.ApplicationServices;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Utilities.Collections;
-using WebSocketStreamingWithUI.Data;
-using newUser = WebSocketStreamingWithUI.Data.User;
+using WebSocketStreamingWithUI.Class;
+using newUser = WebSocketStreamingWithUI.Class;
 
 
 
@@ -26,7 +26,7 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             
             Connection connection = new Connection();
-            newUser user = new newUser();
+            Userconnection user = new Userconnection();
             try
             {
                 using (MySqlConnection connect = new MySqlConnection(connection.GetConnectionString()))

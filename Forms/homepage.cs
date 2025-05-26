@@ -15,6 +15,7 @@ namespace WebSocketStreamingWithUI
         public homepage()
         {
             InitializeComponent();
+            Showthisform(new LoginPage(this));
         }
 
         public void Showthisform(UserControl uc)

@@ -42,13 +42,15 @@ namespace WebSocketStreamingWithUI
             string fname = fntbox.Text;
             string lname = lntbox.Text;
             string email = emailtbox.Text;
+            string username = usernametbox.Text;
             string pass = passtbox.Text;
             string cpass = cpasstbox.Text;
             string hashpass = Passwordhash.HashPassword(pass);
-            
+            string role = rolecb.SelectedItem.ToString();
 
 
-            User NewUser = new User(fname, lname, email, hashpass, cpass);
+
+            Users NewUser = new Users(fname, lname, username, email, hashpass, cpass, role);
 
             if (!NewUser.Isvalidforregister(cpass, checkbox))
             {

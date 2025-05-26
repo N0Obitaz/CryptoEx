@@ -1,6 +1,6 @@
 ﻿ namespace WebSocketStreamingWithUI
 {
-    partial class Form1
+    partial class UserDashboard
     {
         /// <summary>
         ///  Required designer variable.
@@ -32,7 +32,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserDashboard));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -87,7 +87,6 @@
             guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             refreshButton = new Guna.UI2.WinForms.Guna2CircleButton();
-            dollarSymbol = new Label();
             guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             deposit = new Guna.UI2.WinForms.Guna2Button();
             withdraw = new Guna.UI2.WinForms.Guna2Button();
@@ -116,6 +115,7 @@
             guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             dashBoardElipse = new Guna.UI2.WinForms.Guna2Elipse(components);
             guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            Namelabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             guna2ControlBox3 = new Guna.UI2.WinForms.Guna2ControlBox();
             guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
@@ -185,7 +185,6 @@
             // 
             guna2Panel4.BorderRadius = 30;
             guna2Panel4.Controls.Add(refreshButton);
-            guna2Panel4.Controls.Add(dollarSymbol);
             guna2Panel4.Controls.Add(guna2Panel5);
             guna2Panel4.Controls.Add(deposit);
             guna2Panel4.Controls.Add(withdraw);
@@ -226,19 +225,6 @@
             refreshButton.Size = new Size(35, 35);
             refreshButton.TabIndex = 40;
             refreshButton.Click += refreshButton_Click;
-            // 
-            // dollarSymbol
-            // 
-            dollarSymbol.AutoSize = true;
-            dollarSymbol.BackColor = Color.Transparent;
-            dollarSymbol.FlatStyle = FlatStyle.Popup;
-            dollarSymbol.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold);
-            dollarSymbol.ForeColor = Color.White;
-            dollarSymbol.Location = new Point(26, 71);
-            dollarSymbol.Name = "dollarSymbol";
-            dollarSymbol.Size = new Size(26, 25);
-            dollarSymbol.TabIndex = 39;
-            dollarSymbol.Text = "₱";
             // 
             // guna2Panel5
             // 
@@ -310,7 +296,7 @@
             balancelabel.BackColor = Color.Transparent;
             balancelabel.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             balancelabel.ForeColor = Color.White;
-            balancelabel.Location = new Point(50, 71);
+            balancelabel.Location = new Point(28, 71);
             balancelabel.Name = "balancelabel";
             balancelabel.Size = new Size(15, 27);
             balancelabel.TabIndex = 1;
@@ -672,6 +658,7 @@
             // 
             // guna2GradientPanel1
             // 
+            guna2GradientPanel1.Controls.Add(Namelabel);
             guna2GradientPanel1.Controls.Add(guna2ControlBox2);
             guna2GradientPanel1.Controls.Add(guna2ControlBox3);
             guna2GradientPanel1.Controls.Add(guna2CirclePictureBox1);
@@ -682,6 +669,17 @@
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges51;
             guna2GradientPanel1.Size = new Size(1197, 75);
             guna2GradientPanel1.TabIndex = 3;
+            // 
+            // Namelabel
+            // 
+            Namelabel.BackColor = Color.Transparent;
+            Namelabel.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Namelabel.ForeColor = Color.White;
+            Namelabel.Location = new Point(906, 24);
+            Namelabel.Name = "Namelabel";
+            Namelabel.Size = new Size(71, 25);
+            Namelabel.TabIndex = 42;
+            Namelabel.Text = "Stephen";
             // 
             // guna2ControlBox2
             // 
@@ -742,6 +740,7 @@
             guna2HtmlLabel2.TabIndex = 41;
             guna2HtmlLabel2.Text = "CryptoEx";
             guna2HtmlLabel2.TextAlignment = ContentAlignment.MiddleCenter;
+            guna2HtmlLabel2.Click += guna2HtmlLabel2_Click;
             // 
             // guna2CirclePictureBox2
             // 
@@ -756,7 +755,7 @@
             guna2CirclePictureBox2.TabIndex = 40;
             guna2CirclePictureBox2.TabStop = false;
             // 
-            // Form1
+            // UserDashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -773,10 +772,9 @@
             ForeColor = SystemColors.ActiveCaptionText;
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "Form1";
+            Name = "UserDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CryptoEx";
-            Load += Form1_Load;
             navigationPanel.ResumeLayout(false);
             guna2Panel4.ResumeLayout(false);
             guna2Panel4.PerformLayout();
@@ -787,6 +785,7 @@
             historyPanel.ResumeLayout(false);
             historyPanel.PerformLayout();
             guna2GradientPanel1.ResumeLayout(false);
+            guna2GradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox2).EndInit();
             ResumeLayout(false);
@@ -837,7 +836,7 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
-        public Label dollarSymbol;
         private Guna.UI2.WinForms.Guna2CircleButton refreshButton;
+        private Guna.UI2.WinForms.Guna2HtmlLabel Namelabel;
     }
 }

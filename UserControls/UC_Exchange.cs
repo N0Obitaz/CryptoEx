@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using Org.BouncyCastle.Utilities;
 using WebSocketStreamingWithUI.TestWebSocket;
-using WebSocketStreamingWithUI.Data;
+using WebSocketStreamingWithUI.Class;
 
 namespace WebSocketStreamingWithUI.UserControls
 {
@@ -181,7 +181,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private void exchangeButton_Click(object sender, EventArgs e)
         {
-            User newUser = new User();
+            Userconnection newUser = new Userconnection();
 
             int selectedIndex = dropDownFrom.SelectedIndex;
             int indexTo = dropDownTo.SelectedIndex;

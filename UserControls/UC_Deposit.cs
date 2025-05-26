@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WebSocketStreamingWithUI.Data;
+using WebSocketStreamingWithUI.Class;
 
 namespace WebSocketStreamingWithUI.UserControls
 {
     public partial class UC_Deposit : UserControl
     {
-        User newUser = new User();
+        Userconnection newUser = new Userconnection();
         public UC_Deposit()
         {
             InitializeComponent();

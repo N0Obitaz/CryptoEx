@@ -11,9 +11,21 @@ namespace WebSocketStreamingWithUI.Class
     {
         private Connection conn = new Connection();
 
-        public bool Login(User user)
+        public (bool Success, string Email, string Role) Login(Users user)
         {
-            return conn.ValidateLogin(user.Email, user.Password);
+            string identifier = !string.IsNullOrEmpty(user.Email) ? user.Email : user.Username;
+            bool isValid = conn.ValidateLogin(identifier, user.Password);
+
+            if (!isValid)
+                return (false, null, null);
+
+            string email = !string.IsNullOrEmpty(user.Email)
+                ? user.Email
+                : conn.GetEmailByUsername(user.Username);
+
+            string role = conn.GetRoleByIdentifier(identifier);
+
+            return (true, email, role);
         }
 
         public void SendOTP(string email)
@@ -21,9 +33,9 @@ namespace WebSocketStreamingWithUI.Class
             
            Verify.SendOtp(email);
         }
-        public bool Register(User user)
+        public bool Register(Users user)
         {
-            return conn.InsertData(user.Firstname, user.Lastname, user.Email, user.Password);
+            return conn.InsertData(user.Firstname, user.Lastname,user.Username, user.Email, user.Password, user.Role);
         }
     }
 }

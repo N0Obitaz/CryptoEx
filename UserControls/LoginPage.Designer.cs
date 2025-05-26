@@ -88,7 +88,7 @@
             emailtbox.Margin = new Padding(3, 4, 3, 4);
             emailtbox.Name = "emailtbox";
             emailtbox.PlaceholderForeColor = Color.White;
-            emailtbox.PlaceholderText = "Email";
+            emailtbox.PlaceholderText = "Email or Username";
             emailtbox.SelectedText = "";
             emailtbox.ShadowDecoration.CustomizableEdges = customizableEdges2;
             emailtbox.Size = new Size(422, 51);
@@ -160,7 +160,6 @@
             guna2Button2.FillColor = Color.DarkSlateGray;
             guna2Button2.Font = new Font("Sitka Banner", 7.79999971F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button2.ForeColor = Color.White;
-            //guna2Button2.Image = Properties.Resources.download_removebg_preview;
             guna2Button2.Location = new Point(89, 468);
             guna2Button2.Name = "guna2Button2";
             guna2Button2.PressedColor = Color.Transparent;

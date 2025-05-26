@@ -2,9 +2,9 @@
 using System.Text;
 using Guna.UI2.WinForms;
 using Newtonsoft.Json.Linq;
-using WebSocketStreamingWithUI.Data;
 using System.Net.Http;
 using WebSocketStreamingWithUI.TestWebSocket;
+using WebSocketStreamingWithUI.Class;
 
 
 namespace WebSocketStreamingWithUI.UserControls
@@ -15,7 +15,7 @@ namespace WebSocketStreamingWithUI.UserControls
         private CancellationTokenSource _cancellationTokenSource;
         private ClientWebSocket _webSocket;
         private Task _webSocketTask;
-        Form1 GetFormMethod = new Form1();
+        UserDashboard GetFormMethod = new UserDashboard();
         HttpClientPHP phpClient = new HttpClientPHP();
         public Dictionary<int, Guna2Panel> panels;
         public readonly Dictionary<string, string> priceTable = [];
@@ -25,7 +25,7 @@ namespace WebSocketStreamingWithUI.UserControls
         public Dictionary<string, Label> priceLabels;
         private Dictionary<string, Label> tickerLabels;
 
-        User user = new User();
+        Userconnection user = new Userconnection();
         UC_Favorites uc_Favorite = new UC_Favorites();
         public UC_Market()
         {
@@ -274,7 +274,7 @@ namespace WebSocketStreamingWithUI.UserControls
         private void favoriteSwitch_CheckedChanged(object sender, EventArgs e)
         {
             var uC_Favorites = new UC_Favorites();
-            Form1 form1 = new Form1();
+            UserDashboard form1 = new UserDashboard();
             form1.AddUserControl(uC_Favorites, marketPanel);
 
         }

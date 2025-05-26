@@ -8,16 +8,21 @@ using System;
 using WebSocketStreamingWithUI.UserControls;
 using WebSocketStreamingWithUI.TestWebSocket;
 using MySqlX.XDevAPI;
-using WebSocketStreamingWithUI.Data;
+using WebSocketStreamingWithUI.Class;
+using System.Xml;
 namespace WebSocketStreamingWithUI
 
 
 {
-    public partial class Form1 : Form
+    public partial class UserDashboard : Form
     {
         HttpClientPHP _client = new HttpClientPHP();
-        User user = new User();
-        public Form1()
+        Userconnection user = new Userconnection();
+
+
+        private string fullname;
+        private decimal amount;
+        public UserDashboard()
         {
             InitializeComponent();
             this.Load += Form1_Load_1;
@@ -38,19 +43,44 @@ namespace WebSocketStreamingWithUI
 
         public async void Form1_Load_1(object sender, EventArgs e)
         {
-           
+
 
             GetUser();
             UC_Market uc = new UC_Market();
             AddUserControl(uc, Mainpanel1);
 
 
+
+
         }
+
         public void GetUser()
         {
-            user.GetUserDetails();
+            string currentUser = Session.LoggedInUserEmailOrUsername;
 
-            balancelabel.Text = user.GetBalance().ToString("N2");
+            if (string.IsNullOrEmpty(currentUser))
+            {
+                MessageBox.Show("No user logged in.");
+                return;
+            }
+
+            Users currentUserDetails = user.GetUserDetailsByEmailOrUsername(currentUser);
+
+            if (currentUserDetails != null)
+            {
+                SetUserData(currentUserDetails);
+            }
+            else
+            {
+                MessageBox.Show("Failed to load user data.");
+            }
+        }
+        public void SetUserData(Users user)
+        {
+            if (user == null) return;
+
+            Namelabel.Text = user.Username;
+            balancelabel.Text = user.Balance.ToString("C"); 
         }
         private void dashboardButton_Click(object sender, EventArgs e)
         {
@@ -118,7 +148,7 @@ namespace WebSocketStreamingWithUI
             GetUser();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void guna2HtmlLabel2_Click(object sender, EventArgs e)
         {
 
         }

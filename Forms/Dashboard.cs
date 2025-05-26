@@ -21,10 +21,10 @@ namespace WebSocketStreamingWithUI
             this.fullname = Fullname;
             this.amount = Balance;
         }
-        
+
         public void Showform(UserControl uc)
         {
-           
+
             string panel = Mainpanel.Name;
             Mainpanel.Controls.Clear();
             uc.Dock = DockStyle.Fill;
@@ -72,6 +72,11 @@ namespace WebSocketStreamingWithUI
         {
             balancelabel.Text = amount;
             Fullnamelb.Text = fullname;
+        }
+
+        private void Mainpanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -11,16 +11,17 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.IsisMtt.X509;
-using WebSocketStreamingWithUI.Data;
+using WebSocketStreamingWithUI.Class;
+using WebSocketStreamingWithUI.Class;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-using newUser = WebSocketStreamingWithUI.Data.User;
+using newUser = WebSocketStreamingWithUI.Class;
 
 namespace WebSocketStreamingWithUI.UserControls
 {
     public partial class UC_History2 : UserControl
     {
         Connection connection = new Connection();
-        newUser user = new newUser();
+        Userconnection user = new Userconnection();
         public UC_History2()
         {
             InitializeComponent();
@@ -249,7 +250,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
                             messageLabel.Text = "Deleted Successfully!";
                             messageLabel.Visible = true;
-                            Form1 form = new Form1();
+                            UserDashboard form = new UserDashboard();
                             UC_History2 his = new UC_History2();
                             form.AddUserControl(his, historyBigPanel);
 

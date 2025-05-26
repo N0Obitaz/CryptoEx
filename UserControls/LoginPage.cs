@@ -44,11 +44,11 @@ namespace WebSocketStreamingWithUI
 
         private void guna2Button1_Click_1(object sender, EventArgs e)
         {
-            string email = emailtbox.Text;
-            string pass = passtbox.Text;
+            string input = emailtbox.Text.Trim();
+            string pass = passtbox.Text.Trim();
             string hashedPassword = Passwordhash.HashPassword(pass);
 
-            User user = new User(email, hashedPassword);
+            Users user = new Users(input, hashedPassword);
 
             if (!user.Isvalidforlogin())
             {
@@ -56,13 +56,17 @@ namespace WebSocketStreamingWithUI
                 return;
             }
 
+            Userconnection conn = new Userconnection();
+            
+
             AuthService auth = new AuthService();
-            if (auth.Login(user))
+            var loginresult = auth.Login(user);
+            if (loginresult.Success)
             {
 
                 if (remcheckbox.Checked)
                 {
-                    Properties.Settings.Default.email = email;
+                    Properties.Settings.Default.email = input;
                     Properties.Settings.Default.password = pass; 
                     Properties.Settings.Default.remember = true;
                     
@@ -77,8 +81,10 @@ namespace WebSocketStreamingWithUI
                 Properties.Settings.Default.Save();
 
                 MessageBox.Show("Login Successful");
-                Verify.SendOtp(user.Email);
-                otp otpform = new otp(user.Email);
+                Session.LoggedInUserEmailOrUsername = input;
+
+                Verify.SendOtp(loginresult.Email);
+                otp otpform = new otp(loginresult.Email);
                 otpform.Show();
                 _home.Hide();
 

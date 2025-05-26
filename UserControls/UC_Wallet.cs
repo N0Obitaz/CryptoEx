@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using MySql.Data.MySqlClient;
 using WebSocketStreamingWithUI.UserControls;
-using WebSocketStreamingWithUI.Data;
+using WebSocketStreamingWithUI.Class;
 using WebSocketStreamingWithUI.TestWebSocket;
 
 namespace WebSocketStreamingWithUI
@@ -18,7 +18,7 @@ namespace WebSocketStreamingWithUI
     public partial class UC_Wallet : UserControl
     {
         Connection connection = new Connection();
-        User user = new User();
+        Userconnection user = new Userconnection();
         UC_Market uC_Market = new UC_Market();
 
         public List<HoldingsItem> items = new List<HoldingsItem>();
