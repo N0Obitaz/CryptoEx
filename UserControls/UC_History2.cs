@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.IsisMtt.X509;
 using WebSocketStreamingWithUI.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using newUser = WebSocketStreamingWithUI.Data.User;
 
 namespace WebSocketStreamingWithUI.UserControls
@@ -61,10 +63,12 @@ namespace WebSocketStreamingWithUI.UserControls
 
                                 items.Add(new HistoryItem
                                 {
+                                    Id = int.Parse(reader["id"].ToString()),
                                     Action = reader["action"].ToString(),
                                     Amount = float.Parse(reader["amount"].ToString()),
                                     DateTime = DateTime.Parse(reader["date"].ToString()),
-                                    Currency = reader["currency"].ToString()
+                                    Currency = reader["currency"].ToString(),
+                                    Checkbox = new Guna2CheckBox()
                                 });
 
 
@@ -110,9 +114,22 @@ namespace WebSocketStreamingWithUI.UserControls
                                         BorderRadius = 20
                                     };
 
-                                    string amount = (item.Action == "BUY" || item.Action == "DEPOSIT"||item.Action == "SWAP")
+                                    string amount = (item.Action == "BUY" || item.Action == "DEPOSIT" || item.Action == "SWAP")
                                         ? "+ " + item.Amount.ToString("N2")
                                         : "- " + item.Amount.ToString("N2");
+
+                                    historyBox.Controls.Add(new Label
+                                    {
+                                        Text = item.Id.ToString(),
+                                        Font = new Font("Century Gothic", 8F, FontStyle.Bold),
+                                        Location = new Point(10, 11),
+                                        AutoSize = true,
+                                        Visible = false
+                                    });
+
+
+
+
 
                                     historyBox.Controls.Add(new Label
                                     {
@@ -122,11 +139,12 @@ namespace WebSocketStreamingWithUI.UserControls
                                         AutoSize = true
                                     });
 
+
                                     historyBox.Controls.Add(new Label
                                     {
                                         Text = amount,
                                         Font = new Font("Century Gothic", 12F, FontStyle.Bold),
-                                        Location = new Point(600, 10),
+                                        Location = new Point(580, 10),
                                         ForeColor = (item.Action == "BUY" || item.Action == "DEPOSIT" || item.Action == "SWAP")
                                             ? Color.Green : Color.Red,
                                         TextAlign = ContentAlignment.MiddleRight,
@@ -145,9 +163,20 @@ namespace WebSocketStreamingWithUI.UserControls
                                     {
                                         Text = item.DateTime.ToString("HH:mm:ss"),
                                         Font = new Font("Century Gothic", 9F),
-                                        Location = new Point(700, 40),
+                                        Location = new Point(690, 40),
                                         AutoSize = true
                                     });
+
+                                    var checkBox = new Guna2CheckBox
+                                    {
+                                        Size = new Size(40, 40),
+                                        Tag = item.Id.ToString(),
+                                        Font = new Font("Century Gothic", 8F, FontStyle.Bold),
+                                        Location = new Point(765, 13),
+                                    };
+                                    checkBox.CheckedChanged += CheckBox_Changed;
+                                    historyBox.Controls.Add(checkBox);
+
 
                                     groupingPanel.Controls.Add(historyBox);
                                     innerYOffset += historyBox.Height + 10;
@@ -172,6 +201,21 @@ namespace WebSocketStreamingWithUI.UserControls
         {
 
         }
+        public List<string> ids = new List<string>();
+        private void CheckBox_Changed(object sender, EventArgs e)
+        {
+            var checkBox = sender as Guna2CheckBox;
+            if (checkBox != null)
+            {
+                var tagValue = checkBox.Tag?.ToString();
+
+                if (checkBox.Checked) ids.Add(tagValue);
+                else ids.Remove(tagValue);
+                message.Visible = false;
+            }
+
+
+        }
 
         private void historyLabel_Click(object sender, EventArgs e)
         {
@@ -180,17 +224,57 @@ namespace WebSocketStreamingWithUI.UserControls
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            DeleteHistory(ids);
+        }
 
+        public void DeleteHistory(List<string> ids)
+        {
+            try
+            {
+                string joined = string.Join(", ", ids);
+                if (joined != string.Empty)
+                {
+                    using (var conn = new MySqlConnection(connection.GetConnectionString()))
+                    {
+                        conn.Open();
+                        string deleteQuery = $"DELETE FROM history WHERE id IN({joined})";
+
+                        using (MySqlCommand cmd = new MySqlCommand(deleteQuery, conn))
+                        {
+                            //cmd.Parameters.AddWithValue("@joined", joined);
+
+                            cmd.ExecuteNonQuery();
+
+                            messageLabel.Text = "Deleted Successfully!";
+                            messageLabel.Visible = true;
+                            Form1 form = new Form1();
+                            UC_History2 his = new UC_History2();
+                            form.AddUserControl(his, historyBigPanel);
+
+                            
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 
 
+
+
     public class HistoryItem
     {
+        public int Id { get; set; }
         public string Action { get; set; }
         public float Amount { get; set; }
         public DateTime DateTime { get; set; }
         public string Currency { get; set; }
+        public Guna2CheckBox Checkbox {get; set; }
     }
 
 }

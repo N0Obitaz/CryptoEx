@@ -30,99 +30,24 @@
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_History2));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            historyBigPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
-            deleteButton = new Guna.UI2.WinForms.Guna2Button();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_History2));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            message = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            historyBigPanel = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             historyInsidePanel = new Guna.UI2.WinForms.Guna2Panel();
-            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            historyPanel = new Guna.UI2.WinForms.Guna2Panel();
-            guna2vScrollBar1 = new Guna.UI2.WinForms.Guna2VScrollBar();
-            historyBox = new Guna.UI2.WinForms.Guna2GradientPanel();
-            subAction = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            timeLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            amountLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            actionLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            dateLabelHistory = new Label();
-            historyLabel = new Label();
-            guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
+            deleteButton = new Guna.UI2.WinForms.Guna2Button();
+            HistoryLabel = new Label();
+            messageLabel = new Label();
             historyBigPanel.SuspendLayout();
             guna2Panel1.SuspendLayout();
-            historyPanel.SuspendLayout();
-            historyBox.SuspendLayout();
             SuspendLayout();
-            // 
-            // historyBigPanel
-            // 
-            historyBigPanel.BackColor = Color.Transparent;
-            historyBigPanel.BorderColor = Color.White;
-            historyBigPanel.BorderRadius = 20;
-            historyBigPanel.Controls.Add(deleteButton);
-            historyBigPanel.Controls.Add(guna2Panel1);
-            historyBigPanel.Controls.Add(guna2HtmlLabel1);
-            historyBigPanel.CustomizableEdges = customizableEdges7;
-            historyBigPanel.FillColor = Color.FromArgb(60, 63, 64);
-            historyBigPanel.FillColor2 = Color.FromArgb(60, 63, 64);
-            historyBigPanel.Location = new Point(0, 0);
-            historyBigPanel.Name = "historyBigPanel";
-            historyBigPanel.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            historyBigPanel.Size = new Size(1136, 733);
-            historyBigPanel.TabIndex = 4;
-            // 
-            // deleteButton
-            // 
-            deleteButton.Cursor = Cursors.Hand;
-            deleteButton.CustomizableEdges = customizableEdges1;
-            deleteButton.DisabledState.BorderColor = Color.DarkGray;
-            deleteButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            deleteButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            deleteButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            deleteButton.FillColor = Color.Transparent;
-            deleteButton.Font = new Font("Segoe UI", 9F);
-            deleteButton.ForeColor = Color.White;
-            deleteButton.HoverState.Image = (Image)resources.GetObject("resource.Image");
-            deleteButton.Image = (Image)resources.GetObject("deleteButton.Image");
-            deleteButton.Location = new Point(971, 46);
-            deleteButton.Name = "deleteButton";
-            deleteButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            deleteButton.Size = new Size(50, 50);
-            deleteButton.TabIndex = 0;
-            deleteButton.Click += deleteButton_Click;
-            // 
-            // guna2Panel1
-            // 
-            guna2Panel1.BorderRadius = 30;
-            guna2Panel1.Controls.Add(historyInsidePanel);
-            guna2Panel1.CustomizableEdges = customizableEdges5;
-            guna2Panel1.FillColor = Color.FromArgb(34, 35, 37);
-            guna2Panel1.Location = new Point(101, 102);
-            guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2Panel1.Size = new Size(935, 605);
-            guna2Panel1.TabIndex = 4;
-            // 
-            // historyInsidePanel
-            // 
-            historyInsidePanel.AutoScroll = true;
-            historyInsidePanel.BackColor = Color.Transparent;
-            historyInsidePanel.BorderRadius = 20;
-            historyInsidePanel.CustomizableEdges = customizableEdges3;
-            historyInsidePanel.FillColor = Color.Transparent;
-            historyInsidePanel.Location = new Point(14, 16);
-            historyInsidePanel.Name = "historyInsidePanel";
-            historyInsidePanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            historyInsidePanel.Size = new Size(907, 573);
-            historyInsidePanel.TabIndex = 3;
             // 
             // guna2HtmlLabel1
             // 
@@ -136,159 +61,132 @@
             guna2HtmlLabel1.Text = "History";
             guna2HtmlLabel1.Click += guna2HtmlLabel1_Click;
             // 
-            // historyPanel
+            // message
             // 
-            historyPanel.BackColor = Color.Transparent;
-            historyPanel.BorderColor = Color.Wheat;
-            historyPanel.BorderRadius = 15;
-            historyPanel.Controls.Add(guna2vScrollBar1);
-            historyPanel.Controls.Add(historyBox);
-            historyPanel.Controls.Add(dateLabelHistory);
-            historyPanel.Controls.Add(historyLabel);
-            historyPanel.Controls.Add(guna2Separator1);
-            historyPanel.CustomizableEdges = customizableEdges11;
-            historyPanel.FillColor = Color.White;
-            historyPanel.Location = new Point(1, 1);
-            historyPanel.Name = "historyPanel";
-            historyPanel.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            historyPanel.Size = new Size(617, 579);
-            historyPanel.TabIndex = 39;
-            historyPanel.UseTransparentBackground = true;
+            message.AutoSize = false;
+            message.BackColor = Color.Transparent;
+            message.Font = new Font("Showcard Gothic", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            message.ForeColor = Color.White;
+            message.Location = new Point(318, 46);
+            message.Name = "message";
+            message.Size = new Size(500, 39);
+            message.TabIndex = 5;
+            message.Text = "Action";
+            message.TextAlignment = ContentAlignment.MiddleCenter;
+            message.Visible = false;
             // 
-            // guna2vScrollBar1
+            // historyBigPanel
             // 
-            guna2vScrollBar1.InUpdate = false;
-            guna2vScrollBar1.LargeChange = 10;
-            guna2vScrollBar1.Location = new Point(587, 67);
-            guna2vScrollBar1.Name = "guna2vScrollBar1";
-            guna2vScrollBar1.ScrollbarSize = 22;
-            guna2vScrollBar1.Size = new Size(22, 491);
-            guna2vScrollBar1.TabIndex = 40;
+            historyBigPanel.BackColor = Color.Transparent;
+            historyBigPanel.BorderRadius = 30;
+            historyBigPanel.Controls.Add(messageLabel);
+            historyBigPanel.Controls.Add(HistoryLabel);
+            historyBigPanel.Controls.Add(guna2Panel1);
+            historyBigPanel.Controls.Add(deleteButton);
+            historyBigPanel.CustomizableEdges = customizableEdges7;
+            historyBigPanel.FillColor = Color.FromArgb(60, 63, 64);
+            historyBigPanel.Location = new Point(-1, 0);
+            historyBigPanel.Name = "historyBigPanel";
+            historyBigPanel.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            historyBigPanel.Size = new Size(1137, 733);
+            historyBigPanel.TabIndex = 5;
             // 
-            // historyBox
+            // guna2Panel1
             // 
-            historyBox.BorderRadius = 20;
-            historyBox.Controls.Add(subAction);
-            historyBox.Controls.Add(timeLabel);
-            historyBox.Controls.Add(amountLabel);
-            historyBox.Controls.Add(actionLabel);
-            historyBox.CustomizableEdges = customizableEdges9;
-            historyBox.FillColor = Color.FromArgb(192, 255, 255);
-            historyBox.FillColor2 = Color.FromArgb(0, 192, 192);
-            historyBox.Location = new Point(37, 101);
-            historyBox.Name = "historyBox";
-            historyBox.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            historyBox.Size = new Size(523, 63);
-            historyBox.TabIndex = 46;
+            guna2Panel1.BorderRadius = 30;
+            guna2Panel1.Controls.Add(historyInsidePanel);
+            guna2Panel1.CustomizableEdges = customizableEdges3;
+            guna2Panel1.FillColor = Color.FromArgb(34, 35, 37);
+            guna2Panel1.Location = new Point(98, 92);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2Panel1.Size = new Size(935, 605);
+            guna2Panel1.TabIndex = 4;
             // 
-            // subAction
+            // historyInsidePanel
             // 
-            subAction.BackColor = Color.Transparent;
-            subAction.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            subAction.Location = new Point(41, 37);
-            subAction.Name = "subAction";
-            subAction.Size = new Size(93, 23);
-            subAction.TabIndex = 50;
-            subAction.Text = "Sub Action";
+            historyInsidePanel.AutoScroll = true;
+            historyInsidePanel.BackColor = Color.Transparent;
+            historyInsidePanel.BorderRadius = 20;
+            historyInsidePanel.CustomizableEdges = customizableEdges1;
+            historyInsidePanel.FillColor = Color.Transparent;
+            historyInsidePanel.Location = new Point(14, 16);
+            historyInsidePanel.Name = "historyInsidePanel";
+            historyInsidePanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            historyInsidePanel.Size = new Size(907, 573);
+            historyInsidePanel.TabIndex = 3;
             // 
-            // timeLabel
+            // deleteButton
             // 
-            timeLabel.BackColor = Color.Transparent;
-            timeLabel.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            timeLabel.Location = new Point(439, 35);
-            timeLabel.Name = "timeLabel";
-            timeLabel.Size = new Size(34, 22);
-            timeLabel.TabIndex = 49;
-            timeLabel.Text = "Time";
+            deleteButton.Cursor = Cursors.Hand;
+            deleteButton.CustomizableEdges = customizableEdges5;
+            deleteButton.DisabledState.BorderColor = Color.DarkGray;
+            deleteButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            deleteButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            deleteButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            deleteButton.FillColor = Color.Transparent;
+            deleteButton.Font = new Font("Segoe UI", 9F);
+            deleteButton.ForeColor = Color.White;
+            deleteButton.HoverState.Image = (Image)resources.GetObject("resource.Image");
+            deleteButton.Image = (Image)resources.GetObject("deleteButton.Image");
+            deleteButton.Location = new Point(953, 46);
+            deleteButton.Name = "deleteButton";
+            deleteButton.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            deleteButton.Size = new Size(50, 50);
+            deleteButton.TabIndex = 0;
+            deleteButton.Click += deleteButton_Click;
             // 
-            // amountLabel
+            // HistoryLabel
             // 
-            amountLabel.BackColor = Color.Transparent;
-            amountLabel.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            amountLabel.Location = new Point(403, 8);
-            amountLabel.Name = "amountLabel";
-            amountLabel.Size = new Size(80, 25);
-            amountLabel.TabIndex = 48;
-            amountLabel.Text = "Amount";
+            HistoryLabel.AutoSize = true;
+            HistoryLabel.BackColor = Color.Transparent;
+            HistoryLabel.FlatStyle = FlatStyle.Popup;
+            HistoryLabel.Font = new Font("Tahoma", 19.8000011F, FontStyle.Bold);
+            HistoryLabel.ForeColor = SystemColors.GradientActiveCaption;
+            HistoryLabel.Location = new Point(77, 33);
+            HistoryLabel.Margin = new Padding(0);
+            HistoryLabel.Name = "HistoryLabel";
+            HistoryLabel.Size = new Size(142, 41);
+            HistoryLabel.TabIndex = 70;
+            HistoryLabel.Text = "History";
+            HistoryLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // actionLabel
+            // messageLabel
             // 
-            actionLabel.BackColor = Color.Transparent;
-            actionLabel.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            actionLabel.Location = new Point(23, 11);
-            actionLabel.Name = "actionLabel";
-            actionLabel.Size = new Size(67, 25);
-            actionLabel.TabIndex = 47;
-            actionLabel.Text = "Action";
-            // 
-            // dateLabelHistory
-            // 
-            dateLabelHistory.AutoSize = true;
-            dateLabelHistory.BackColor = Color.White;
-            dateLabelHistory.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dateLabelHistory.Location = new Point(38, 67);
-            dateLabelHistory.Name = "dateLabelHistory";
-            dateLabelHistory.Size = new Size(56, 23);
-            dateLabelHistory.TabIndex = 45;
-            dateLabelHistory.Text = "Date";
-            // 
-            // historyLabel
-            // 
-            historyLabel.AutoSize = true;
-            historyLabel.BackColor = Color.White;
-            historyLabel.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            historyLabel.Location = new Point(16, 10);
-            historyLabel.Name = "historyLabel";
-            historyLabel.Size = new Size(86, 27);
-            historyLabel.TabIndex = 44;
-            historyLabel.Text = "History";
-            historyLabel.Click += historyLabel_Click;
-            // 
-            // guna2Separator1
-            // 
-            guna2Separator1.BackColor = Color.White;
-            guna2Separator1.FillColor = Color.Black;
-            guna2Separator1.FillThickness = 2;
-            guna2Separator1.Location = new Point(3, 45);
-            guna2Separator1.Name = "guna2Separator1";
-            guna2Separator1.Size = new Size(613, 10);
-            guna2Separator1.TabIndex = 44;
+            messageLabel.BackColor = Color.Transparent;
+            messageLabel.FlatStyle = FlatStyle.Popup;
+            messageLabel.Font = new Font("Tahoma", 19.8000011F, FontStyle.Bold);
+            messageLabel.ForeColor = SystemColors.GradientActiveCaption;
+            messageLabel.Location = new Point(318, 33);
+            messageLabel.Margin = new Padding(0);
+            messageLabel.Name = "messageLabel";
+            messageLabel.Size = new Size(500, 41);
+            messageLabel.TabIndex = 71;
+            messageLabel.Text = "History";
+            messageLabel.TextAlign = ContentAlignment.MiddleCenter;
+            messageLabel.Visible = false;
             // 
             // UC_History2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(historyBigPanel);
-            Controls.Add(historyPanel);
             Name = "UC_History2";
             Size = new Size(1136, 733);
             historyBigPanel.ResumeLayout(false);
             historyBigPanel.PerformLayout();
             guna2Panel1.ResumeLayout(false);
-            historyPanel.ResumeLayout(false);
-            historyPanel.PerformLayout();
-            historyBox.ResumeLayout(false);
-            historyBox.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-
-        private Guna.UI2.WinForms.Guna2Panel historyPanel;
-        public Label historyLabel;
-        private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
-        public Label dateLabelHistory;
-        private Guna.UI2.WinForms.Guna2VScrollBar guna2vScrollBar1;
-        public Guna.UI2.WinForms.Guna2GradientPanel historyBox;
-        public Guna.UI2.WinForms.Guna2HtmlLabel timeLabel;
-        public Guna.UI2.WinForms.Guna2HtmlLabel amountLabel;
-        public Guna.UI2.WinForms.Guna2HtmlLabel actionLabel;
-        public Guna.UI2.WinForms.Guna2HtmlLabel subAction;
-        private Guna.UI2.WinForms.Guna2GradientPanel historyBigPanel;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2Panel historyInsidePanel;
+        private Guna.UI2.WinForms.Guna2HtmlLabel message;
+        private Guna.UI2.WinForms.Guna2Panel historyBigPanel;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Panel historyInsidePanel;
         private Guna.UI2.WinForms.Guna2Button deleteButton;
+        public Label messageLabel;
+        public Label HistoryLabel;
     }
 }
