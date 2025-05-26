@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Guna.UI2.WinForms;
 
 namespace WebSocketStreamingWithUI
 {
@@ -15,6 +16,36 @@ namespace WebSocketStreamingWithUI
         public About()
         {
             InitializeComponent();
+        }
+
+        private void guna2PictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Mouse_Hover(object sender, EventArgs e)
+        {
+
+            if (sender is Guna2PictureBox picture && picture.Parent is Guna2Panel panel)
+            {
+
+                panel.FillColor = Color.FromArgb(34, 35, 37);
+            }
+
+        }
+
+        private void About_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Mouse_Leave(object sender, EventArgs e)
+        {
+            if (sender is Guna2PictureBox picture && picture.Parent is Guna2Panel panel)
+            {
+                panel.FillColor = Color.Transparent;
+            }
+
         }
     }
 }

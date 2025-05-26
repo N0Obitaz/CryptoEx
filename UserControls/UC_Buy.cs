@@ -199,7 +199,11 @@ namespace WebSocketStreamingWithUI.UserControls
         }
         
         private void actionButton_Click(object sender, EventArgs e)
-        {
+        {   
+            if (amountLabel.Text == "") return;
+
+
+
             float amount = float.Parse(amountLabel.Text);
 
             if (amount <= newUser.CheckHoldings(currentSelectedPair))

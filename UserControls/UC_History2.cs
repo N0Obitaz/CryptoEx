@@ -114,9 +114,11 @@ namespace WebSocketStreamingWithUI.UserControls
                                         BorderRadius = 20
                                     };
 
+                                    string numberOfDecimals = float.Parse(item.Amount.ToString()) < 0 ? "N5" : "N2";
+
                                     string amount = (item.Action == "BUY" || item.Action == "DEPOSIT" || item.Action == "SWAP")
-                                        ? "+ " + item.Amount.ToString("N2")
-                                        : "- " + item.Amount.ToString("N2");
+                                        ? "+ " + item.Amount.ToString(numberOfDecimals)
+                                        : "- " + item.Amount.ToString(numberOfDecimals);
 
                                     historyBox.Controls.Add(new Label
                                     {
