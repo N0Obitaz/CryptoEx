@@ -89,6 +89,7 @@
             // guna2Button2
             // 
             guna2Button2.BackColor = Color.Transparent;
+            guna2Button2.Cursor = Cursors.Hand;
             guna2Button2.CustomizableEdges = customizableEdges8;
             guna2Button2.DisabledState.BorderColor = Color.DarkGray;
             guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -113,6 +114,7 @@
             // guna2Button1
             // 
             guna2Button1.BackColor = Color.Transparent;
+            guna2Button1.Cursor = Cursors.Hand;
             guna2Button1.CustomizableEdges = customizableEdges10;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;

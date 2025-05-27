@@ -130,6 +130,7 @@
             usersPanel.ShadowDecoration.CustomizableEdges = customizableEdges4;
             usersPanel.Size = new Size(1195, 494);
             usersPanel.TabIndex = 8;
+            usersPanel.Paint += usersPanel_Paint;
             // 
             // UC_Users
             // 

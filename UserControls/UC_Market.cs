@@ -116,7 +116,7 @@ namespace WebSocketStreamingWithUI.UserControls
                 byte[] buffer = new byte[4096];
 
                 // Start ping loop
-                while (_webSocket.State == WebSocketState.Open)
+                while (_webSocket.State == WebSocketState.Open && _webSocket != null)
                 {
                     //Used _cancellationTokenSource.Token variable
                     var result = await _webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), _cancellationTokenSource.Token);
@@ -131,11 +131,11 @@ namespace WebSocketStreamingWithUI.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:2" + ex.Message);
+                //MessageBox.Show("Error:2" + ex.Message);
             }
             finally
             {
-                Dispose();
+                base.Dispose();
             }
         }
         public void UpdatePriceTable(string jsonMessage)
@@ -176,12 +176,12 @@ namespace WebSocketStreamingWithUI.UserControls
                 }
 
             }
-            catch 
+            catch
             {
                 //MessageBox.Show("d2 ka: " + ex.Message);
                 this.Hide();
                 Dispose();
-                
+
             }
         }
 

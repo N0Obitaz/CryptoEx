@@ -254,9 +254,10 @@ namespace WebSocketStreamingWithUI.Class
         public void InsertToHoldings(string currency, float amount, string operation)
         {
 
-            string word = operation.Substring(1);
+           
             try
             {
+                string word = operation.Substring(1);
                 using (var conn = new MySqlConnection(connection.GetConnectionString()))
                 {
                     conn.Open();
@@ -282,7 +283,7 @@ namespace WebSocketStreamingWithUI.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show("error ngani " + ex.Message);
+                //MessageBox.Show("error ngani " + ex.Message);
             }
         }
 

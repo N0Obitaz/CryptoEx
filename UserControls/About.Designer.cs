@@ -491,10 +491,11 @@
             guna2Panel9.Controls.Add(guna2Panel3);
             guna2Panel9.Controls.Add(guna2Panel1);
             guna2Panel9.CustomizableEdges = customizableEdges33;
-            guna2Panel9.Location = new Point(45, 21);
+            guna2Panel9.Dock = DockStyle.Fill;
+            guna2Panel9.Location = new Point(0, 0);
             guna2Panel9.Name = "guna2Panel9";
             guna2Panel9.ShadowDecoration.CustomizableEdges = customizableEdges34;
-            guna2Panel9.Size = new Size(795, 739);
+            guna2Panel9.Size = new Size(860, 779);
             guna2Panel9.TabIndex = 10;
             // 
             // guna2Panel8
@@ -614,7 +615,7 @@
             BackColor = Color.Transparent;
             Controls.Add(guna2Panel6);
             Name = "About";
-            Size = new Size(948, 800);
+            Size = new Size(867, 800);
             Load += About_Load;
             card1.ResumeLayout(false);
             card1.PerformLayout();

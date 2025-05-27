@@ -38,26 +38,26 @@ namespace WebSocketStreamingWithUI
         private void suspendButton_CheckedChanged(object sender, EventArgs e)
         {
 
-           if (sender is Guna2ToggleSwitch toggle)
+            if (sender is Guna2ToggleSwitch toggle)
             {
                 if (toggle != null)
                 {
                     string id = toggle.Tag.ToString();
                     var name = toggle.Name;
-                    
-                    
+
+
                     userConn.ChangeStatus(id, name, toggle);
                 }
                 this.Hide();
                 this.Show();
             }
         }
-        
+
 
 
         public void GetUsersList()
         {
-           
+
             try
             {
                 using (var conn = new MySqlConnection(connect.GetConnectionString()))
@@ -73,7 +73,7 @@ namespace WebSocketStreamingWithUI
                         {
                             if (!reader.HasRows) return;
 
-                           
+
                             while (reader.Read())
                             {
                                 userList.Add(new UsersList
@@ -86,20 +86,20 @@ namespace WebSocketStreamingWithUI
 
                                     Status = reader["status"].ToString(),
                                     Toggle = new Guna2ToggleSwitch(),
-                                    
+
                                 });
-                                
+
                             }
                             int innerYOffset = 0;
                             foreach (var item in userList)
                             {
-                              
+
                                 Guna2Panel holdingsBox = new Guna2Panel
                                 {
                                     Size = new Size(1195, 78),
                                     Location = new Point(0, innerYOffset),
                                     FillColor = Color.FromArgb(60, 63, 64),
-                                    
+
                                     BorderRadius = 20
                                 };
 
@@ -118,7 +118,7 @@ namespace WebSocketStreamingWithUI
                                 {
                                     Text = item.FullName,
                                     Font = new Font("Times New Roman", 16F, FontStyle.Bold),
-                                    Location = new Point(157, 21),
+                                    Location = new Point(100, 21),
                                     ForeColor = Color.White,
                                     TextAlign = ContentAlignment.MiddleLeft,
                                     AutoSize = true,
@@ -152,7 +152,7 @@ namespace WebSocketStreamingWithUI
                                     Font = new Font("Times New Roman", 16F, FontStyle.Bold),
                                     Location = new Point(858, 21),
 
-                                    ForeColor = item.Status == "SUSPENDED"? Color.Red : Color.Green,
+                                    ForeColor = item.Status == "SUSPENDED" ? Color.Red : Color.Green,
                                     AutoSize = true,
                                     TextAlign = ContentAlignment.MiddleRight
 
@@ -162,31 +162,32 @@ namespace WebSocketStreamingWithUI
                                     Name = item.Status,
                                     Size = new Size(80, 33),
                                     Tag = item.ID.ToString(),
-                                    
+
                                     Font = new Font("Times New Roman", 16F, FontStyle.Bold),
                                     Location = new Point(1080, 21),
+                                    
                                     Checked = CheckStatus(item.ID, item.Status)
                                 };
-                                
+                                toggleBox.Cursor = Cursors.Hand;
                                 toggleBox.CheckedChanged += suspendButton_CheckedChanged;
 
                                 holdingsBox.Controls.Add(toggleBox);
                                 usersPanel.Controls.Add(holdingsBox);
                                 innerYOffset += holdingsBox.Height + 10;
 
-                                
-                                
+
+
                             }
                         }
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
-            
+
         }
         public bool CheckStatus(string id, string status)
         {
@@ -220,7 +221,10 @@ namespace WebSocketStreamingWithUI
             return false;
         }
 
+        private void usersPanel_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
     public class UsersList
     {
