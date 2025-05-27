@@ -25,7 +25,7 @@ namespace WebSocketStreamingWithUI.Class
         //Public method to insert full user registration
         public bool InsertData(string fname, string lname, string username, string email, string password, string role)
         {
-            string query = "INSERT INTO users (Firstname, Lastname,UserName ,Email, Password, balance,Status, Role) VALUES (@fname, @lname,@username, @email, @password, @balance,@status, @role)";
+            string query = "INSERT INTO users (Firstname, Lastname,Username ,Email, Password, balance,Status, Role) VALUES (@fname, @lname,@username, @email, @password, @balance,@status, @role)";
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@fname", fname),
