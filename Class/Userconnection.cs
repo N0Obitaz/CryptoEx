@@ -32,8 +32,8 @@ namespace WebSocketStreamingWithUI.Class
        
         public void SetUser(string username)
         {
-            //currentUser = username;
-            currentUser = "Stephen";
+            currentUser = username;
+            //currentUser = "Stephen";
         }
 
         public void SetBalance(float balance)
@@ -82,8 +82,7 @@ namespace WebSocketStreamingWithUI.Class
                                 reader["username"].ToString(),
                                 reader["email"].ToString(),
                                 reader["password"].ToString(),
-                                "", // cpass - confirm password (optional here)
-                                reader["role"].ToString(),
+                                "",
                                 Convert.ToDecimal(reader["balance"])
                             );
                         }

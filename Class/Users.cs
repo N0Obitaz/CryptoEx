@@ -49,14 +49,14 @@ namespace WebSocketStreamingWithUI.Class
         }
 
         // Full constructor including balance
-        public Users(string firstname, string lastname, string username, string email, string password, string cpass, string role, decimal balance = 0)
+        public Users(string firstname, string lastname, string username, string email, string password, string cpass, decimal balance = 0)
         {
             Firstname = firstname;
             Lastname = lastname;
             Username = username;
             Email = email;
             Password = password;
-            Role = role;
+ 
             Balance = balance;  // set through property
         }
 
