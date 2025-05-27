@@ -20,10 +20,10 @@ namespace WebSocketStreamingWithUI
         public void Showthisform(UserControl uc)
         {
 
-            string panel = Mainpanel2.Name;
-            Mainpanel2.Controls.Clear();
+            string panel = settingsPanel.Name;
+            settingsPanel.Controls.Clear();
             uc.Dock = DockStyle.Fill;
-            Mainpanel2.Controls.Add(uc);
+            settingsPanel.Controls.Add(uc);
         }
         private void Setting_Load(object sender, EventArgs e)
         {
