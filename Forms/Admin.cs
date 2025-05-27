@@ -45,5 +45,10 @@ namespace WebSocketStreamingWithUI
         {
             Showform(new UC_Users());
         }
+
+        private void Adminpanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

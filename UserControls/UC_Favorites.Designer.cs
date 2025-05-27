@@ -64,6 +64,7 @@
             outerPanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
             outerPanel.Size = new Size(303, 401);
             outerPanel.TabIndex = 77;
+            outerPanel.Paint += outerPanel_Paint;
             // 
             // guna2Separator1
             // 
@@ -90,6 +91,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Transparent;
             Controls.Add(favoritesPanel);
             Name = "UC_Favorites";
             Size = new Size(506, 671);

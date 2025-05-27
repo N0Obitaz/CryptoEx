@@ -225,6 +225,7 @@
             Adminpanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
             Adminpanel.Size = new Size(1269, 689);
             Adminpanel.TabIndex = 2;
+            Adminpanel.Paint += Adminpanel_Paint;
             // 
             // Admin
             // 

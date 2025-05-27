@@ -115,11 +115,12 @@
             guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             dashBoardElipse = new Guna.UI2.WinForms.Guna2Elipse(components);
             guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            panelpic = new Guna.UI2.WinForms.Guna2PictureBox();
+            Panelabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             Namelabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             guna2ControlBox3 = new Guna.UI2.WinForms.Guna2ControlBox();
-            guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
+            profilepic = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CirclePictureBox2 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             navigationPanel.SuspendLayout();
@@ -129,7 +130,8 @@
             walletPanel.SuspendLayout();
             historyPanel.SuspendLayout();
             guna2GradientPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)panelpic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)profilepic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox2).BeginInit();
             SuspendLayout();
             // 
@@ -180,6 +182,7 @@
             guna2Button4.TabIndex = 8;
             guna2Button4.Text = "Log Out";
             guna2Button4.TextOffset = new Point(-9, 0);
+            guna2Button4.Click += guna2Button4_Click;
             // 
             // guna2Panel4
             // 
@@ -658,38 +661,63 @@
             // 
             // guna2GradientPanel1
             // 
+            guna2GradientPanel1.Controls.Add(panelpic);
+            guna2GradientPanel1.Controls.Add(Panelabel);
             guna2GradientPanel1.Controls.Add(Namelabel);
             guna2GradientPanel1.Controls.Add(guna2ControlBox2);
             guna2GradientPanel1.Controls.Add(guna2ControlBox3);
-            guna2GradientPanel1.Controls.Add(guna2CirclePictureBox1);
-            guna2GradientPanel1.Controls.Add(guna2ControlBox1);
+            guna2GradientPanel1.Controls.Add(profilepic);
             guna2GradientPanel1.CustomizableEdges = customizableEdges50;
             guna2GradientPanel1.Location = new Point(287, 2);
             guna2GradientPanel1.Name = "guna2GradientPanel1";
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges51;
-            guna2GradientPanel1.Size = new Size(1197, 75);
+            guna2GradientPanel1.Size = new Size(1197, 95);
             guna2GradientPanel1.TabIndex = 3;
+            // 
+            // panelpic
+            // 
+            panelpic.CustomizableEdges = customizableEdges43;
+            panelpic.Image = Properties.Resources.dashboard__2_;
+            panelpic.ImageRotate = 0F;
+            panelpic.Location = new Point(78, 10);
+            panelpic.Name = "panelpic";
+            panelpic.ShadowDecoration.CustomizableEdges = customizableEdges44;
+            panelpic.Size = new Size(78, 72);
+            panelpic.SizeMode = PictureBoxSizeMode.StretchImage;
+            panelpic.TabIndex = 44;
+            panelpic.TabStop = false;
+            // 
+            // Panelabel
+            // 
+            Panelabel.BackColor = Color.Transparent;
+            Panelabel.Font = new Font("Times New Roman", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Panelabel.ForeColor = SystemColors.GradientActiveCaption;
+            Panelabel.Location = new Point(206, 21);
+            Panelabel.Name = "Panelabel";
+            Panelabel.Size = new Size(337, 55);
+            Panelabel.TabIndex = 43;
+            Panelabel.Text = "User DashBoard";
             // 
             // Namelabel
             // 
             Namelabel.BackColor = Color.Transparent;
-            Namelabel.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Namelabel.Font = new Font("Times New Roman", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Namelabel.ForeColor = Color.White;
-            Namelabel.Location = new Point(906, 24);
+            Namelabel.Location = new Point(923, 21);
             Namelabel.Name = "Namelabel";
-            Namelabel.Size = new Size(71, 25);
+            Namelabel.Size = new Size(138, 47);
             Namelabel.TabIndex = 42;
             Namelabel.Text = "Stephen";
             // 
             // guna2ControlBox2
             // 
             guna2ControlBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            guna2ControlBox2.CustomizableEdges = customizableEdges43;
+            guna2ControlBox2.CustomizableEdges = customizableEdges45;
             guna2ControlBox2.FillColor = Color.Transparent;
             guna2ControlBox2.IconColor = Color.White;
             guna2ControlBox2.Location = new Point(1148, 8);
             guna2ControlBox2.Name = "guna2ControlBox2";
-            guna2ControlBox2.ShadowDecoration.CustomizableEdges = customizableEdges44;
+            guna2ControlBox2.ShadowDecoration.CustomizableEdges = customizableEdges46;
             guna2ControlBox2.Size = new Size(39, 36);
             guna2ControlBox2.TabIndex = 40;
             // 
@@ -697,37 +725,27 @@
             // 
             guna2ControlBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             guna2ControlBox3.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox;
-            guna2ControlBox3.CustomizableEdges = customizableEdges45;
+            guna2ControlBox3.CustomizableEdges = customizableEdges47;
             guna2ControlBox3.FillColor = Color.Transparent;
             guna2ControlBox3.IconColor = Color.White;
             guna2ControlBox3.Location = new Point(1110, 7);
             guna2ControlBox3.Name = "guna2ControlBox3";
-            guna2ControlBox3.ShadowDecoration.CustomizableEdges = customizableEdges46;
+            guna2ControlBox3.ShadowDecoration.CustomizableEdges = customizableEdges48;
             guna2ControlBox3.Size = new Size(42, 36);
             guna2ControlBox3.TabIndex = 41;
             // 
-            // guna2CirclePictureBox1
+            // profilepic
             // 
-            guna2CirclePictureBox1.ImageRotate = 0F;
-            guna2CirclePictureBox1.Location = new Point(1018, 8);
-            guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
-            guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges47;
-            guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            guna2CirclePictureBox1.Size = new Size(52, 53);
-            guna2CirclePictureBox1.TabIndex = 1;
-            guna2CirclePictureBox1.TabStop = false;
-            // 
-            // guna2ControlBox1
-            // 
-            guna2ControlBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            guna2ControlBox1.CustomizableEdges = customizableEdges48;
-            guna2ControlBox1.FillColor = Color.Transparent;
-            guna2ControlBox1.IconColor = Color.White;
-            guna2ControlBox1.Location = new Point(2145, 8);
-            guna2ControlBox1.Name = "guna2ControlBox1";
-            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges49;
-            guna2ControlBox1.Size = new Size(39, 36);
-            guna2ControlBox1.TabIndex = 0;
+            profilepic.ImageRotate = 0F;
+            profilepic.Location = new Point(835, 10);
+            profilepic.Name = "profilepic";
+            profilepic.ShadowDecoration.CustomizableEdges = customizableEdges49;
+            profilepic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            profilepic.Size = new Size(78, 77);
+            profilepic.SizeMode = PictureBoxSizeMode.StretchImage;
+            profilepic.TabIndex = 1;
+            profilepic.TabStop = false;
+            profilepic.Click += guna2CirclePictureBox1_Click;
             // 
             // guna2HtmlLabel2
             // 
@@ -775,6 +793,7 @@
             Name = "UserDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CryptoEx";
+            Load += UserDashboard_Load;
             navigationPanel.ResumeLayout(false);
             guna2Panel4.ResumeLayout(false);
             guna2Panel4.PerformLayout();
@@ -786,7 +805,8 @@
             historyPanel.PerformLayout();
             guna2GradientPanel1.ResumeLayout(false);
             guna2GradientPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)panelpic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)profilepic).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -822,8 +842,7 @@
         public Guna.UI2.WinForms.Guna2Panel Mainpanel1;
         private Guna.UI2.WinForms.Guna2Elipse dashBoardElipse;
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
-        private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox profilepic;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox2;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox3;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
@@ -838,5 +857,7 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
         private Guna.UI2.WinForms.Guna2CircleButton refreshButton;
         private Guna.UI2.WinForms.Guna2HtmlLabel Namelabel;
+        private Guna.UI2.WinForms.Guna2HtmlLabel Panelabel;
+        private Guna.UI2.WinForms.Guna2PictureBox panelpic;
     }
 }

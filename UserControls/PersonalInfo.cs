@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WebSocketStreamingWithUI.Class;
 
 namespace WebSocketStreamingWithUI
 {
@@ -47,6 +48,31 @@ namespace WebSocketStreamingWithUI
         private void Infopanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            string Fname = newfn.Text;
+            string Lname = newln.Text;
+            string Email = newemail.Text;
+            int Age = tage.Text.Length;
+            int cp = newcp.Text.Length;
+            string add = newadd.Text;
+            Image img = Propic.Image;
+
+
+            if (Fname == "" || Lname == "" || Email == "" || Age < 1 || cp < 1 || add == "")
+            {
+                MessageBox.Show("Please fill in all fields.");
+            }
+            else
+            {
+                Connection conn = new Connection();
+                conn.UpdateNameByUsername(Session.LoggedInUserEmailOrUsername, Fname, Lname, Email, add, Age, cp, img);
+                // Here you can add code to save the updated information to the database or perform any other action.
+                MessageBox.Show("Information updated successfully!");
+
+            }
         }
     }
 }

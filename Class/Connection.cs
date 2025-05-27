@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Guna.UI2.WinForms;
 using MySql.Data.MySqlClient;
 
 namespace WebSocketStreamingWithUI.Class
@@ -24,7 +25,7 @@ namespace WebSocketStreamingWithUI.Class
         //Public method to insert full user registration
         public bool InsertData(string fname, string lname, string username, string email, string password, string role)
         {
-            string query = "INSERT INTO users (Firstname, Lastname,UserName ,Email, Password, balance, Role) VALUES (@fname, @lname,@username, @email, @password, @balance, @role)";
+            string query = "INSERT INTO users (Firstname, Lastname,UserName ,Email, Password, balance,Status, Role) VALUES (@fname, @lname,@username, @email, @password, @balance,@status, @role)";
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@fname", fname),
@@ -33,23 +34,57 @@ namespace WebSocketStreamingWithUI.Class
                 new MySqlParameter("@username", username),
                 new MySqlParameter("@password", password),
                 new MySqlParameter("@balance", 1000),
+                new MySqlParameter("@status", "Active"),
                 new MySqlParameter("@role", role)
             };
 
             return ExecuteNonQuery(query, parameters);
         }
 
-        //Optional: simple insert for email + pass only
-        public bool Insert(string email, string password)
-        {
-            string query = "INSERT INTO users (Email, Password) VALUES (@email, @password)";
-            var parameters = new MySqlParameter[]
-            {
-                new MySqlParameter("@email", email),
-                new MySqlParameter("@password", password)
-            };
 
-            return ExecuteNonQuery(query, parameters);
+        public void UpdateNameByUsername(string username, string newFirstname, string newLastname, string email, string Address, int Age, int Cp, Image profile)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    string query = "UPDATE users SET Firstname = @newFirstname, Lastname = @newLastname, Email = @newemail,Address = @add, Age = @age, CpNumber = @cp, Profile = @profilePic WHERE Username = @username";
+
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@newFirstname", newFirstname);
+                        cmd.Parameters.AddWithValue("@newLastname", newLastname);
+                        cmd.Parameters.AddWithValue("@newemail", email);
+                        cmd.Parameters.AddWithValue("@add", Address);
+                        cmd.Parameters.AddWithValue("@age", Age);
+                        cmd.Parameters.AddWithValue("@cp", Cp);
+                        cmd.Parameters.AddWithValue("@username", username);
+
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            profile.Save(ms, profile.RawFormat); // Save image to memory stream
+                            byte[] imageBytes = ms.ToArray();
+                            cmd.Parameters.AddWithValue("@profilePic", imageBytes);
+                        }
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("First name and last name successfully updated!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No user found with that first name.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error10: " + ex.Message);
+            }
         }
 
         //Login Credentials Validation
@@ -92,10 +127,12 @@ namespace WebSocketStreamingWithUI.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error fetching email: " + ex.Message);
+               
                 return null;
             }
         }
+
+        
 
 
         //User exists Check
@@ -203,7 +240,7 @@ namespace WebSocketStreamingWithUI.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error fetching role: " + ex.Message);
+                //MessageBox.Show("Error fetching role: " + ex.Message);
                 return null;
             }
         }

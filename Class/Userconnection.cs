@@ -21,37 +21,36 @@ namespace WebSocketStreamingWithUI.Class
     public class Userconnection
 
     {
-
+        
 
         public bool alreadyInsertedHistory = false;
 
-        private string currentUser;
+        private string currentUser = Session.LoggedInUserEmailOrUsername;
+        
 
+       
         public void SetUser(string username)
         {
             currentUser = username;
         }
 
-        public void SetBalance(decimal balance)
+        public void SetBalance(float balance)
         {
             this.balance = balance;
         }
-        private decimal balance;
+        private float balance;
 
         private float epsilon = 0.0000001f;
 
         Connection connection = new Connection();
-
-        //Dito mo kunin yung reference ng user, 
         public string GetUser()
         {
             return currentUser;
         }
 
-        //public float GetBalance()
-        //{
-        //    //return balance;
-        //}
+
+
+       
 
         public Users GetUserDetailsByEmailOrUsername(string emailOrUsername)
         {
@@ -92,7 +91,39 @@ namespace WebSocketStreamingWithUI.Class
 
             return user;
         }
-
+        
+        public  Image  GetProfile(string username)
+        {
+            try
+            {
+                using (var conn = new MySqlConnection(connection.GetConnectionString()))
+                {
+                    conn.Open();
+                    string query = "SELECT Profile FROM users WHERE Username = @username"; ;
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                byte[] imageBytes = (byte[])reader["Profile"];
+                                using (MemoryStream ms = new MemoryStream(imageBytes))
+                                {
+                                    return Image.FromStream(ms);
+                                }
+                            }
+                        }
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Error fetching profile image: " + ex.Message);
+                return null;
+            }
+        }
 
         public void UpdateUserBalance(string amount, string operation, string currency)
         {
@@ -131,7 +162,7 @@ namespace WebSocketStreamingWithUI.Class
             catch (Exception ex)
             {
 
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error7: " + ex.Message);
             }
             return 0.00000f;
         }
@@ -155,7 +186,7 @@ namespace WebSocketStreamingWithUI.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error " + ex.Message);
+                MessageBox.Show("Error1 " + ex.Message);
             }
         }
         public void UpdateHoldings(string currency, float amount, string operation)
@@ -213,7 +244,7 @@ namespace WebSocketStreamingWithUI.Class
             catch (Exception ex)
             {
 
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error2: " + ex.Message);
             }
 
         }
@@ -293,7 +324,7 @@ namespace WebSocketStreamingWithUI.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error3: " + ex.Message);
             }
         }
 
@@ -333,7 +364,7 @@ namespace WebSocketStreamingWithUI.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error4: " + ex.Message);
 
             }
             return false;
@@ -411,60 +442,74 @@ namespace WebSocketStreamingWithUI.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error5: " + ex.Message);
             }
             return [];
         }
+        
+
         public void AddToFavorite(string currency, UserControl userControl, Guna2Panel panel)
         {
-            List<string> currencyList = FetchFavorites();
-            bool notExist = true;
-            foreach (string curr in currencyList)
-            {
-                if (currency == curr)
-                {
-                    notExist = false;
-                    break;
-                }
+            string username = GetUser(); 
+            List<string> favorites = FetchFavorites();
 
-            }
-            if (notExist)
+            if (!favorites.Contains(currency))
             {
-                string result = string.Join(" - ", currencyList);
-                string interpolated = $"{result} - {currency}";
+                favorites.Add(currency);
+                string updatedFavorites = string.Join(" - ", favorites);
 
                 try
                 {
                     using (var conn = new MySqlConnection(connection.GetConnectionString()))
                     {
                         conn.Open();
-                        string updateQuery = "UPDATE favorites SET favorite_currency = @interpolated WHERE username = @username";
 
-                        using (var cmd = new MySqlCommand(updateQuery, conn))
+                        // Check if user already has a favorites row
+                        string checkQuery = "SELECT COUNT(*) FROM favorites WHERE username = @username";
+                        using (var checkCmd = new MySqlCommand(checkQuery, conn))
                         {
-                            cmd.Parameters.AddWithValue("@interpolated", interpolated);
-                            cmd.Parameters.AddWithValue("@username", GetUser());
+                            checkCmd.Parameters.AddWithValue("@username", username);
+                         
+                            int count = Convert.ToInt32(checkCmd.ExecuteScalar());
 
-
-                            object res = cmd.ExecuteNonQuery();
-                            if (float.Parse(res.ToString()) > 0)
+                            if (count == 0)
                             {
-                                RefreshForm(userControl, panel);
-
+                                // Insert new row
+                                string insertQuery = "INSERT INTO favorites (username, favorite_currency) VALUES (@username, @favorites)";
+                                using (var insertCmd = new MySqlCommand(insertQuery, conn))
+                                {
+                                    insertCmd.Parameters.AddWithValue("@username", username);
+                                    insertCmd.Parameters.AddWithValue("@favorites", updatedFavorites);
+                                    insertCmd.ExecuteNonQuery();
+                                    MessageBox.Show("Added to Favorites (new entry)!");
+                                }
                             }
+                            else
+                            {
+                                // Update existing row
+                                string updateQuery = "UPDATE favorites SET favorite_currency = @favorites WHERE username = @username";
+                                using (var updateCmd = new MySqlCommand(updateQuery, conn))
+                                {
+                                    updateCmd.Parameters.AddWithValue("@favorites", updatedFavorites);
+                                    updateCmd.Parameters.AddWithValue("@username", username);
+                                    updateCmd.ExecuteNonQuery();
+                                    MessageBox.Show("Added to Favorites!");
+                                }
+                            }
+
+                            // Refresh UI
+                            RefreshForm(userControl, panel);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
-
+                    MessageBox.Show("Database error: " + ex.Message);
                 }
-
             }
             else
             {
-                MessageBox.Show("Already Exist");
+                MessageBox.Show("Currency already in your favorites.");
             }
         }
         public void RemoveToFavorite(string currency, UserControl userControl, Guna2Panel panel)
@@ -498,7 +543,7 @@ namespace WebSocketStreamingWithUI.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error6: " + ex.Message);
 
             }
         }

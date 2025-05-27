@@ -16,6 +16,8 @@ namespace WebSocketStreamingWithUI
     {
         private homepage _home;
 
+        public bool usernameto = false;
+
 
         bool isPasswordVisible = false;
         public LoginPage(homepage home)
@@ -56,8 +58,7 @@ namespace WebSocketStreamingWithUI
                 return;
             }
 
-            Userconnection conn = new Userconnection();
-            
+    
 
             AuthService auth = new AuthService();
             var loginresult = auth.Login(user);
@@ -81,6 +82,7 @@ namespace WebSocketStreamingWithUI
                 Properties.Settings.Default.Save();
 
                 MessageBox.Show("Login Successful");
+                
                 Session.LoggedInUserEmailOrUsername = input;
 
                 Verify.SendOtp(loginresult.Email);

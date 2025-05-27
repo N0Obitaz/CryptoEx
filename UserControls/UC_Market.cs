@@ -31,7 +31,7 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             InitializeComponent();
             this.Load += UC_Market_Load;
-            
+
 
             priceLabels = new Dictionary<string, Label>
             {
@@ -79,7 +79,7 @@ namespace WebSocketStreamingWithUI.UserControls
 
             CreateActionButtons();
             _webSocketTask = ConnectAndReceiveAsync(GetWsUrl());
-            
+
             GetFormMethod.AddUserControl(uc_Favorite, favoritesPanel);
         }
 
@@ -127,11 +127,11 @@ namespace WebSocketStreamingWithUI.UserControls
             }
             catch (OperationCanceledException ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error:1" + ex.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error:2" + ex.Message);
             }
             finally
             {
@@ -154,28 +154,34 @@ namespace WebSocketStreamingWithUI.UserControls
                 //binance price format
                 string price = json["data"]["p"].ToString();
                 float phpRate = phpClient.GetPrice();
-
-                float convertedPrice = (float)Math.Round(float.Parse(price), 2) * phpRate;
-
-                priceTable[pair] = price; // Store latest price
-
-                //Update the ticker symbol and price label
-
-                if (labelBTC.Text == "0")
+                if (float.TryParse(price, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float parsedPrice))
                 {
 
-                    labelBTCTicker.Text = json["data"]["s"].ToString();
+                    float convertedPrice = (float)Math.Round(parsedPrice, 2) * phpRate;
 
-                    labelBTC.Text = convertedPrice.ToString("0.##");
+                    priceTable[pair] = price; // Store latest price
+
+                    //Update the ticker symbol and price label
+
+                    if (labelBTC.Text == "0")
+                    {
+
+                        labelBTCTicker.Text = json["data"]["s"].ToString();
+
+                        labelBTC.Text = convertedPrice.ToString("0.##");
+                    }
+
+                    string ticker = json["data"]["s"].ToString();
+                    DisplayPriceTable(pair, convertedPrice);
                 }
 
-                string ticker = json["data"]["s"].ToString();
-                DisplayPriceTable(pair, convertedPrice);
-
             }
-            catch (Exception ex)
+            catch 
             {
-                MessageBox.Show("Error: " + ex.Message);
+                //MessageBox.Show("d2 ka: " + ex.Message);
+                this.Hide();
+                Dispose();
+                
             }
         }
 
@@ -192,7 +198,6 @@ namespace WebSocketStreamingWithUI.UserControls
 
             foreach (var pair in priceLabels)
             {
-
                 Label label = pair.Value;
 
                 if (float.Parse(label.Text) != 0)
@@ -224,8 +229,8 @@ namespace WebSocketStreamingWithUI.UserControls
         }
 
 
-        
-       
+
+
         private void Button_Click(object sender, EventArgs e)
         {
             if (sender is Guna2Button btn && btn.Tag is string currency)
@@ -341,6 +346,11 @@ namespace WebSocketStreamingWithUI.UserControls
             {
                 MessageBox.Show("Can't Add To Favorites");
             }
+        }
+
+        private void marketPanel_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

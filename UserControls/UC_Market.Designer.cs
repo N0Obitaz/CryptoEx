@@ -682,6 +682,7 @@ namespace WebSocketStreamingWithUI.UserControls
             marketPanel.ShadowDecoration.CustomizableEdges = customizableEdges44;
             marketPanel.Size = new Size(801, 733);
             marketPanel.TabIndex = 71;
+            marketPanel.Paint += marketPanel_Paint_1;
             // 
             // Panel10
             // 

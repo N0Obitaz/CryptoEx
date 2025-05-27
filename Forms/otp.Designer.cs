@@ -56,13 +56,14 @@
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            linkLabel1 = new LinkLabel();
+            Timerlabel = new LinkLabel();
             linkLabel2 = new LinkLabel();
             guna2Elipse2 = new Guna.UI2.WinForms.Guna2Elipse(components);
             guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
+            Timer1 = new System.Windows.Forms.Timer(components);
             guna2GradientPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -241,6 +242,7 @@
             guna2Button1.TabIndex = 3;
             guna2Button1.Text = "Confirm ";
             guna2Button1.Click += guna2Button1_Click;
+            guna2Button1.KeyPress += guna2Button1_KeyPress;
             // 
             // guna2HtmlLabel2
             // 
@@ -266,15 +268,16 @@
             guna2HtmlLabel3.Text = "Didn't get the code: ";
             guna2HtmlLabel3.Click += guna2HtmlLabel3_Click;
             // 
-            // linkLabel1
+            // Timerlabel
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(115, 256);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(55, 20);
-            linkLabel1.TabIndex = 7;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "30secs.";
+            Timerlabel.AutoSize = true;
+            Timerlabel.LinkColor = Color.Cyan;
+            Timerlabel.Location = new Point(115, 256);
+            Timerlabel.Name = "Timerlabel";
+            Timerlabel.Size = new Size(55, 20);
+            Timerlabel.TabIndex = 7;
+            Timerlabel.TabStop = true;
+            Timerlabel.Text = "30secs.";
             // 
             // linkLabel2
             // 
@@ -333,6 +336,10 @@
             guna2ControlBox1.Size = new Size(56, 36);
             guna2ControlBox1.TabIndex = 12;
             // 
+            // Timer1
+            // 
+            Timer1.Tick += timer1_Tick;
+            // 
             // otp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -344,7 +351,7 @@
             Controls.Add(guna2HtmlLabel5);
             Controls.Add(guna2HtmlLabel4);
             Controls.Add(linkLabel2);
-            Controls.Add(linkLabel1);
+            Controls.Add(Timerlabel);
             Controls.Add(guna2HtmlLabel3);
             Controls.Add(guna2HtmlLabel2);
             Controls.Add(guna2Button1);
@@ -373,12 +380,13 @@
         private Guna.UI2.WinForms.Guna2TextBox otptbox3;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private LinkLabel linkLabel2;
-        private LinkLabel linkLabel1;
+        private LinkLabel Timerlabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
+        private System.Windows.Forms.Timer Timer1;
     }
 }

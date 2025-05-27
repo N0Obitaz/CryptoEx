@@ -19,12 +19,12 @@ namespace WebSocketStreamingWithUI.UserControls
     public partial class UC_Favorites : UserControl
     {
         Userconnection user = new Userconnection();
-       
+
         public UC_Favorites()
         {
             InitializeComponent();
 
-          
+
         }
 
         private void UC_Favorites_Load(object sender, EventArgs e)
@@ -32,20 +32,20 @@ namespace WebSocketStreamingWithUI.UserControls
             List<string> currencyList = user.FetchFavorites();
 
             List<FavoriteItems> items = new List<FavoriteItems>();
-           
+
 
             foreach (string currency in currencyList)
-           {
+            {
 
                 var btn = new Guna2Button()
                 {
-                    Size = new Size(50,50),
+                    Size = new Size(50, 50),
                     Font = new Font("Segoe UI", 10),
                     FillColor = Color.Transparent,
-                    
+
                     Margin = new Padding(5),
                     Location = new Point(180, 6),
-                    ImageSize = new Size(50,50),
+                    ImageSize = new Size(50, 50),
                     Cursor = Cursors.Hand,
                     Tag = currency
                 };
@@ -74,7 +74,7 @@ namespace WebSocketStreamingWithUI.UserControls
                     Location = new Point(7, 6),
                     FillColor = Color.Transparent,
                     Image = Image.FromFile($"Resources/CurrencyImages/{currency}.png"),
-                    
+
                     SizeMode = PictureBoxSizeMode.StretchImage
 
                 };
@@ -92,7 +92,7 @@ namespace WebSocketStreamingWithUI.UserControls
                     Logo = logo,
                     Currency = label,
                     Button = btn,
-                   
+
                 });
             }
 
@@ -106,7 +106,7 @@ namespace WebSocketStreamingWithUI.UserControls
                     Location = new Point(32, innerYOffset),
                     FillColor = Color.Transparent,
                     BackColor = Color.Transparent
-                    
+
                 };
                 holdingsBox.Controls.Add(item.Logo);
                 holdingsBox.Controls.Add(item.Currency);
@@ -130,8 +130,13 @@ namespace WebSocketStreamingWithUI.UserControls
             {
                 UC_Favorites uc = new UC_Favorites();
                 //Perform Removing Logic
-                user.RemoveToFavorite(currency, uc , favoritesPanel);
+                user.RemoveToFavorite(currency, uc, favoritesPanel);
             }
+        }
+
+        private void outerPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
     public class FavoriteItems

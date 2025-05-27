@@ -10,6 +10,7 @@ using WebSocketStreamingWithUI.TestWebSocket;
 using MySqlX.XDevAPI;
 using WebSocketStreamingWithUI.Class;
 using System.Xml;
+using System.Windows.Forms;
 namespace WebSocketStreamingWithUI
 
 
@@ -77,16 +78,31 @@ namespace WebSocketStreamingWithUI
         }
         public void SetUserData(Users user)
         {
-            if (user == null) return;
 
+            if (user == null) return;
+            Connection con = new Connection();
+            Userconnection users = new Userconnection();
+            Image profileimage = users.GetProfile(user.Username);
             Namelabel.Text = user.Username;
-            balancelabel.Text = user.Balance.ToString("C"); 
+            balancelabel.Text = user.Balance.ToString("C");
+
+            if (profilepic != null)
+            {
+                profilepic.Image = profileimage;
+            }
+            else
+            {
+                MessageBox.Show("No profile image found.");
+            }
+
         }
         private void dashboardButton_Click(object sender, EventArgs e)
         {
             GetUser();
             UC_Market uc = new UC_Market();
             AddUserControl(uc, Mainpanel1);
+            Panelabel.Text = "User DashBoard";
+            panelpic.Image = Properties.Resources.dashboard__2_;
 
         }
         private void marketRatePanel_Paint(object sender, PaintEventArgs e)
@@ -99,30 +115,34 @@ namespace WebSocketStreamingWithUI
             //AddUserControl(uC_History, marketRatePanel);
             UC_History2 uC_History2 = new UC_History2();
             AddUserControl(uC_History2, Mainpanel1);
+            Panelabel.Text = "History";
+            panelpic.Image = Properties.Resources.report;
         }
 
         private void walletButton_Click(object sender, EventArgs e)
         {
             UC_Wallet wc = new UC_Wallet();
             AddUserControl(wc, Mainpanel1);
+            Panelabel.Text = "Wallet";
+            panelpic.Image = Properties.Resources.wallet;
 
         }
 
         private void exchangeButton_Click(object sender, EventArgs e)
         {
             UC_Exchange uC_Exchange = new UC_Exchange();
-
             AddUserControl(uC_Exchange, Mainpanel1);
+            Panelabel.Text = "Exchange";
+            panelpic.Image = Properties.Resources.money;
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
             Setting set = new Setting();
             AddUserControl(set, Mainpanel1);
-            //security sec = new security();
-            //AddUserControl(sec, Mainpanel1);
-            //PersonalInfo personalInfo = new PersonalInfo();
-            //AddUserControl(personalInfo, Mainpanel1);
+            Panelabel.Text = "Setting";
+            panelpic.Image = Properties.Resources.management;
+
         }
 
         private void Mainpanel1_Paint(object sender, PaintEventArgs e)
@@ -134,6 +154,7 @@ namespace WebSocketStreamingWithUI
         {
             var uC_Withdraw = new UC_Withdraw();
             AddUserControl(uC_Withdraw, Mainpanel1);
+
         }
 
         private void deposit_Click(object sender, EventArgs e)
@@ -151,6 +172,25 @@ namespace WebSocketStreamingWithUI
         private void guna2HtmlLabel2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void UserDashboard_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            Session.LoggedInUserEmailOrUsername = "";
+            this.Hide();
+            homepage home = new homepage();
+            home.Show();
+            Dispose();
         }
     }
 }

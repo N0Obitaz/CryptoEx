@@ -76,7 +76,7 @@ namespace WebSocketStreamingWithUI
 
         }
 
-       
+
 
         private void pictogglepass_Click(object sender, EventArgs e)
         {
@@ -86,6 +86,11 @@ namespace WebSocketStreamingWithUI
         private void pictogglecpass_Click(object sender, EventArgs e)
         {
             Passwordhash.TogglePasswordVisibility(cpasstbox, pictogglecpass, ref iscpassvisible);
+        }
+
+        private void Registerpage_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
