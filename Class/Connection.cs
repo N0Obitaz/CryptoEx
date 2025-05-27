@@ -12,7 +12,7 @@ namespace WebSocketStreamingWithUI.Class
         //Constructor: initializes the connection string
         public Connection()
         {
-            string server = "localhost";
+            string server = "192.168.101.85";
             string database = "trydb";
             string uid = "joed";
             string password = "12345678";

@@ -178,11 +178,7 @@ namespace WebSocketStreamingWithUI
 
                                     DateTime = DateTime.Now
                                 });
-
-
                             }
-
-
                             int yOffset = 5;
 
                             foreach (var item in items)
