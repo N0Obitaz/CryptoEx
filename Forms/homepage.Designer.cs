@@ -92,6 +92,7 @@
             guna2PictureBox1.BackColor = Color.Transparent;
             guna2PictureBox1.BorderRadius = 20;
             guna2PictureBox1.CustomizableEdges = customizableEdges3;
+            guna2PictureBox1.Image = (Image)resources.GetObject("guna2PictureBox1.Image");
             guna2PictureBox1.ImageRotate = 0F;
             guna2PictureBox1.Location = new Point(105, 42);
             guna2PictureBox1.Name = "guna2PictureBox1";
@@ -100,6 +101,7 @@
             guna2PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2PictureBox1.TabIndex = 2;
             guna2PictureBox1.TabStop = false;
+            guna2PictureBox1.Click += guna2PictureBox1_Click;
             // 
             // guna2ControlBox1
             // 

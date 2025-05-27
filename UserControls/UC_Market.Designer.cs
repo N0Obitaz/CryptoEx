@@ -1224,6 +1224,7 @@ namespace WebSocketStreamingWithUI.UserControls
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges56;
             guna2Panel1.Size = new Size(1243, 795);
             guna2Panel1.TabIndex = 74;
+            guna2Panel1.Paint += guna2Panel1_Paint;
             // 
             // UC_Market
             // 

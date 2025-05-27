@@ -36,7 +36,7 @@ namespace WebSocketStreamingWithUI
                 Connection db = new Connection();
                 var (fullname, balance, role) = db.GetUserInfo(userEmail);
 
-                if (role == "Admin")
+                if (role == "admin")
                 {
                     Admin admin = new Admin();
                     admin.Show();

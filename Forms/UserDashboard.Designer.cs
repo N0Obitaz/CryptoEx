@@ -159,7 +159,7 @@
             navigationPanel.Location = new Point(28, 103);
             navigationPanel.Name = "navigationPanel";
             navigationPanel.ShadowDecoration.CustomizableEdges = customizableEdges25;
-            navigationPanel.Size = new Size(250, 683);
+            navigationPanel.Size = new Size(250, 753);
             navigationPanel.TabIndex = 36;
             // 
             // guna2Button4
@@ -175,7 +175,7 @@
             guna2Button4.Image = (Image)resources.GetObject("guna2Button4.Image");
             guna2Button4.ImageOffset = new Point(-13, 0);
             guna2Button4.ImageSize = new Size(50, 50);
-            guna2Button4.Location = new Point(22, 609);
+            guna2Button4.Location = new Point(20, 666);
             guna2Button4.Name = "guna2Button4";
             guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2Button4.Size = new Size(207, 56);
@@ -444,12 +444,11 @@
             // Mainpanel1
             // 
             Mainpanel1.CustomizableEdges = customizableEdges26;
-            Mainpanel1.Location = new Point(321, 103);
+            Mainpanel1.Location = new Point(287, 103);
             Mainpanel1.Name = "Mainpanel1";
             Mainpanel1.ShadowDecoration.CustomizableEdges = customizableEdges27;
-            Mainpanel1.Size = new Size(1500, 736);
+            Mainpanel1.Size = new Size(1243, 795);
             Mainpanel1.TabIndex = 39;
-            Mainpanel1.Paint += Mainpanel1_Paint;
             // 
             // marketRatePanel
             // 
@@ -464,7 +463,6 @@
             marketRatePanel.ShadowDecoration.CustomizableEdges = customizableEdges29;
             marketRatePanel.Size = new Size(617, 579);
             marketRatePanel.TabIndex = 36;
-            marketRatePanel.Paint += marketRatePanel_Paint;
             // 
             // guna2Separator3
             // 
@@ -671,7 +669,7 @@
             guna2GradientPanel1.Location = new Point(287, 2);
             guna2GradientPanel1.Name = "guna2GradientPanel1";
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges51;
-            guna2GradientPanel1.Size = new Size(1197, 95);
+            guna2GradientPanel1.Size = new Size(1243, 95);
             guna2GradientPanel1.TabIndex = 3;
             // 
             // panelpic
@@ -715,7 +713,7 @@
             guna2ControlBox2.CustomizableEdges = customizableEdges45;
             guna2ControlBox2.FillColor = Color.Transparent;
             guna2ControlBox2.IconColor = Color.White;
-            guna2ControlBox2.Location = new Point(1148, 8);
+            guna2ControlBox2.Location = new Point(1194, 8);
             guna2ControlBox2.Name = "guna2ControlBox2";
             guna2ControlBox2.ShadowDecoration.CustomizableEdges = customizableEdges46;
             guna2ControlBox2.Size = new Size(39, 36);
@@ -728,7 +726,7 @@
             guna2ControlBox3.CustomizableEdges = customizableEdges47;
             guna2ControlBox3.FillColor = Color.Transparent;
             guna2ControlBox3.IconColor = Color.White;
-            guna2ControlBox3.Location = new Point(1110, 7);
+            guna2ControlBox3.Location = new Point(1156, 7);
             guna2ControlBox3.Name = "guna2ControlBox3";
             guna2ControlBox3.ShadowDecoration.CustomizableEdges = customizableEdges48;
             guna2ControlBox3.Size = new Size(42, 36);
@@ -745,7 +743,6 @@
             profilepic.SizeMode = PictureBoxSizeMode.StretchImage;
             profilepic.TabIndex = 1;
             profilepic.TabStop = false;
-            profilepic.Click += guna2CirclePictureBox1_Click;
             // 
             // guna2HtmlLabel2
             // 
@@ -758,7 +755,6 @@
             guna2HtmlLabel2.TabIndex = 41;
             guna2HtmlLabel2.Text = "CryptoEx";
             guna2HtmlLabel2.TextAlignment = ContentAlignment.MiddleCenter;
-            guna2HtmlLabel2.Click += guna2HtmlLabel2_Click;
             // 
             // guna2CirclePictureBox2
             // 
@@ -778,7 +774,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 35, 37);
-            ClientSize = new Size(1492, 872);
+            ClientSize = new Size(1573, 916);
             Controls.Add(guna2HtmlLabel2);
             Controls.Add(guna2CirclePictureBox2);
             Controls.Add(guna2GradientPanel1);

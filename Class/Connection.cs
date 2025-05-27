@@ -13,29 +13,29 @@ namespace WebSocketStreamingWithUI.Class
         //Constructor: initializes the connection string
         public Connection()
         {
-            string server = "loaclhost";
+            string server = "localhost";
             string database = "trydb";
-            string uid = "joed";
-            string password = "12345678";
+            string uid = "root";
+            string password = "";
             _connectionString = $"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};";
         }
 
         public string GetConnectionString() => _connectionString;
 
         //Public method to insert full user registration
-        public bool InsertData(string fname, string lname, string username, string email, string password, string role)
+        public bool InsertData(string username, string fname, string lname, string email, string password)
         {
-            string query = "INSERT INTO users (Firstname, Lastname,Username ,Email, Password, balance,Status, Role) VALUES (@fname, @lname,@username, @email, @password, @balance,@status, @role)";
+            string query = "INSERT INTO users (UserName, Firstname, Lastname ,Email, Password, balance, Status) VALUES (@Username, @Firstname, @Lastname, @Email, @Password, @Balance, @Status)";
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@fname", fname),
-                new MySqlParameter("@lname", lname),
-                new MySqlParameter("@email", email),
-                new MySqlParameter("@username", username),
-                new MySqlParameter("@password", password),
-                new MySqlParameter("@balance", 1000),
-                new MySqlParameter("@status", "Active"),
-                new MySqlParameter("@role", role)
+                new MySqlParameter("@Username", username),
+                new MySqlParameter("@Firstname", fname),
+                new MySqlParameter("@Lastname", lname),
+                new MySqlParameter("@Email", email),
+                new MySqlParameter("@Password", password),
+                new MySqlParameter("@Balance", 1000),
+                new MySqlParameter("@Status", "Active"),
+               
             };
 
             return ExecuteNonQuery(query, parameters);
@@ -94,8 +94,8 @@ namespace WebSocketStreamingWithUI.Class
             {
                 con.Open();
                 string query = emailOrUsername.Contains("@")
-                    ? "SELECT * FROM users WHERE email = @input AND password = @password"
-                    : "SELECT * FROM users WHERE username = @input AND password = @password";
+                    ? "SELECT * FROM users WHERE Email = @input AND Password = @password"
+                    : "SELECT * FROM users WHERE UserName = @input AND Password = @password";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {

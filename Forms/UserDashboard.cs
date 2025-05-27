@@ -105,10 +105,7 @@ namespace WebSocketStreamingWithUI
             panelpic.Image = Properties.Resources.dashboard__2_;
 
         }
-        private void marketRatePanel_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
         private void historyButton_Click(object sender, EventArgs e)
         {
             //UC_History uC_History = new UC_History();
@@ -145,10 +142,6 @@ namespace WebSocketStreamingWithUI
 
         }
 
-        private void Mainpanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void withdraw_Click(object sender, EventArgs e)
         {
@@ -169,20 +162,7 @@ namespace WebSocketStreamingWithUI
             GetUser();
         }
 
-        private void guna2HtmlLabel2_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void UserDashboard_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void guna2Button4_Click(object sender, EventArgs e)
         {
@@ -191,6 +171,11 @@ namespace WebSocketStreamingWithUI
             homepage home = new homepage();
             home.Show();
             Dispose();
+        }
+
+        private void UserDashboard_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
