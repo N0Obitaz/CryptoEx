@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Management;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Guna.UI2.WinForms;
@@ -31,7 +32,8 @@ namespace WebSocketStreamingWithUI.Class
        
         public void SetUser(string username)
         {
-            currentUser = username;
+            //currentUser = username;
+            currentUser = "Stephen";
         }
 
         public void SetBalance(float balance)
@@ -547,7 +549,7 @@ namespace WebSocketStreamingWithUI.Class
 
             }
         }
-
+       
         public void RefreshForm(UserControl userControl, Guna2Panel panel)
         {
             UserDashboard form = new UserDashboard();
@@ -591,6 +593,36 @@ namespace WebSocketStreamingWithUI.Class
         }
 
 
+        public void ChangeStatus(string ID, string status, Guna2ToggleSwitch toggle)
+        {
+           
+            try
+            {
+                string updatedStatus = status == "ACTIVE" ? "SUSPENDED" : "ACTIVE";
+
+
+                using (MySqlConnection conn = new MySqlConnection(connection.GetConnectionString()))
+                {
+                    conn.Open();
+                    
+
+                    using (MySqlCommand cmd = new MySqlCommand("UPDATE users SET status = @updatedStatus WHERE id = @ID", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@updatedStatus", updatedStatus);
+                        cmd.Parameters.AddWithValue("@ID", ID);
+                        object result = cmd.ExecuteNonQuery();
+                        int converted = int.Parse(result.ToString());
+                        
+                      
+                        //toggle.Checked = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
 
     }
 
