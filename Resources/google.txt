@@ -1,0 +1,167 @@
+public Users GetUserByEmail(string email)
+{
+    using (MySqlConnection conn = new MySqlConnection(connection.GetConnectionString()))
+    {
+        conn.Open();
+        string query = "SELECT * FROM users WHERE email = @Email";
+        MySqlCommand cmd = new MySqlCommand(query, conn);
+        cmd.Parameters.AddWithValue("@Email", email);
+        MySqlDataReader reader = cmd.ExecuteReader();
+
+        if (reader.Read())
+        {
+            // Construct a Users object with the data
+            return new Users(
+                reader["firstname"].ToString(),
+                reader["lastname"].ToString(),
+                reader["username"].ToString(),
+                reader["email"].ToString(),
+                reader["password"].ToString(),
+                reader["password"].ToString() // or blank
+            );
+        }
+    }
+
+    return null;
+}
+
+sa button ng login
+
+ GoogleLoginService googleLogin = new GoogleLoginService();
+
+ try
+ {
+     var userInfo = await googleLogin.SignInWithGoogleAsync();
+
+     // Check if the email is already registered
+     AuthService authService = new AuthService();
+     Userconnection user = new Userconnection();
+     Users existingUser = user.GetUserByEmail(userInfo.Email);
+
+     if (existingUser != null)
+     {
+         MessageBox.Show($"Welcome back, {userInfo.GivenName}!");
+
+         UserDashboard dash = new UserDashboard();
+         Verify.SendOtp(userInfo.Email);
+         otp otpform = new otp(userInfo.Email);
+         otpform.Show();
+         _home.Hide();
+         Session.LoggedInUserEmailOrUsername = userInfo.Email;
+
+     }
+     else
+     {
+         MessageBox.Show("This email is not registered. Please sign up first.");
+         _home.Showthisform(new Registerpage(_home));
+     }
+ }
+ catch (Exception ex)
+ {
+     MessageBox.Show("Google login failed: " + ex.Message);
+ }
+
+
+
+sa register button 
+
+
+  GoogleLoginService googleLogin = new GoogleLoginService();
+    try
+    {
+        var userInfo = await googleLogin.SignInWithGoogleAsync();
+        MessageBox.Show($"Welcome, {userInfo.Name}!\nEmail: {userInfo.Email}");
+
+        // You can autofill the fields or register the user automatically
+        fntbox.Text = userInfo.GivenName;
+        lntbox.Text = userInfo.FamilyName;
+        emailtbox.Text = userInfo.Email;
+        usernametbox.Text = userInfo.Email.Split('@')[0]; // Example default username
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Google Sign-in failed: " + ex.Message);
+    }
+
+
+
+
+
+connection sa google 
+
+public void InsertGoogleUser(string firstname, string lastname, string email, string username)
+{
+    try
+    {
+        using (MySqlConnection conn = new MySqlConnection(_connectionString))
+        {
+            conn.Open();
+
+            // 1. Check if user already exists
+            string checkQuery = "SELECT COUNT(*) FROM users WHERE email = @Email";
+            using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn))
+            {
+                checkCmd.Parameters.AddWithValue("@Email", email);
+                int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                if (exists > 0)
+                {
+                    MessageBox.Show("User already exists in the database.");
+                    return;
+                }
+            }
+
+            // 2. Insert new user
+            string insertQuery = "INSERT INTO users (Firstname, Lastname, Email, UserName, Password, Balance, Status, Role) " +
+                                 "VALUES (@FirstName, @LastName, @Email, @Username, @Password, @Balance, @Status, @Role)";
+
+            using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn))
+            {
+                insertCmd.Parameters.AddWithValue("@FirstName", firstname);
+                insertCmd.Parameters.AddWithValue("@LastName", lastname);
+                insertCmd.Parameters.AddWithValue("@Email", email);
+                insertCmd.Parameters.AddWithValue("@Username", username);
+                insertCmd.Parameters.AddWithValue("@Password", "GoogleAccount"); // Default or placeholder password
+                insertCmd.Parameters.AddWithValue("@Balance", 1000);
+                insertCmd.Parameters.AddWithValue("@Status", "Active");
+                insertCmd.Parameters.AddWithValue("@Role", "User");
+
+                insertCmd.ExecuteNonQuery();
+                MessageBox.Show("Google user inserted into database successfully.");
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Insert failed: " + ex.Message);
+    }
+}
+
+
+sa userconnection 
+ public Users GetUserByEmail(string email)
+ {
+     using (MySqlConnection conn = new MySqlConnection(connection.GetConnectionString()))
+     {
+         conn.Open();
+         string query = "SELECT * FROM users WHERE Email = @Email";
+         MySqlCommand cmd = new MySqlCommand(query, conn);
+         cmd.Parameters.AddWithValue("@Email", email);
+         MySqlDataReader reader = cmd.ExecuteReader();
+
+         if (reader.Read())
+         {
+             // Construct a Users object with the data
+             return new Users(
+                 reader["firstname"].ToString(),
+                 reader["lastname"].ToString(),
+                 reader["username"].ToString(),
+                 reader["email"].ToString(),
+                 reader["password"].ToString(),
+                 reader["password"].ToString() // or blank
+             );
+         }
+     }
+
+     return null;
+ }

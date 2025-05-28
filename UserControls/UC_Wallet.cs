@@ -21,6 +21,8 @@ namespace WebSocketStreamingWithUI
         Userconnection user = new Userconnection();
         UC_Market uC_Market = new UC_Market();
 
+
+        UserDashboard dash = new UserDashboard();
         public List<HoldingsItem> items = new List<HoldingsItem>();
 
         public UC_Wallet()
@@ -29,7 +31,7 @@ namespace WebSocketStreamingWithUI
             this.Load += UC_Wallet_Load;
             FetchHoldingData();
             GetAssetsValues();
-   
+
 
         }
         private async Task CallAsync()
@@ -98,9 +100,9 @@ namespace WebSocketStreamingWithUI
                             {
                                 calc[item.Currency] = calculate;
                             }
-                            
+
                         }
-; 
+;
                     }
                 }
                 float totalAssetValue = 0;
@@ -109,6 +111,7 @@ namespace WebSocketStreamingWithUI
                     totalAssetValue += priceHeld.Value;
                 }
                 assetHeldValue.Text = totalAssetValue.ToString("N2");
+               
 
 
             }
@@ -123,7 +126,7 @@ namespace WebSocketStreamingWithUI
                 GlobalServices.PriceClient.Dispose();
             }
 
-            
+
         }
         public void GetAssetsValues()
         {
@@ -131,12 +134,17 @@ namespace WebSocketStreamingWithUI
             amountDeposit.Text = deposits.ToString("N2");
             float withdrawn = user.GetTotalAssets("WITHDRAW");
             totalWithDrawn.Text = withdrawn.ToString("N2");
-
+            balanceAvailable.Text = dash.balancelabel.Text;
             //MessageBox.Show(priceClient.currentPrices["BTC"].ToString());
 
 
 
 
+        }
+
+        public void SetBalance(Guna2HtmlLabel label)
+        {
+            balanceAvailable.Text = label.Text.ToString();
         }
         public void FetchHoldingData()
         {
@@ -276,6 +284,11 @@ namespace WebSocketStreamingWithUI
         {
             GetHoldingValues();
             await CallAsync();
+        }
+
+        private void balanceAvailable_Click(object sender, EventArgs e)
+        {
+
         }
     }
     public class HoldingsItem

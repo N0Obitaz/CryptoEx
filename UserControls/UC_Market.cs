@@ -107,7 +107,7 @@ namespace WebSocketStreamingWithUI.UserControls
         {
             _cancellationTokenSource = new CancellationTokenSource();
             _webSocket = new ClientWebSocket();
-
+            
             try
             {
                 await _webSocket.ConnectAsync(new Uri(Uri), _cancellationTokenSource.Token);

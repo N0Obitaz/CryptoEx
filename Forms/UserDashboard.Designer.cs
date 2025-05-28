@@ -305,6 +305,7 @@
             balancelabel.TabIndex = 1;
             balancelabel.Text = "0";
             balancelabel.TextAlignment = ContentAlignment.MiddleCenter;
+            balancelabel.Click += balancelabel_Click;
             // 
             // guna2HtmlLabel1
             // 
@@ -847,7 +848,7 @@
         private Guna.UI2.WinForms.Guna2Button deposit;
         private Guna.UI2.WinForms.Guna2Button withdraw;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
-        private Guna.UI2.WinForms.Guna2HtmlLabel balancelabel;
+        public Guna.UI2.WinForms.Guna2HtmlLabel balancelabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;

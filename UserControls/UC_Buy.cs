@@ -240,7 +240,7 @@ namespace WebSocketStreamingWithUI.UserControls
             }
             else
             {
-                MessageBox.Show("THIS PERFORMED");
+               
                 newUser.InsertToHoldings(currentSelectedPair, amount, operation);
                 newUser.UpdateBalance(amountToPass, operation, currentSelectedPair);
 
