@@ -447,7 +447,7 @@
             Mainpanel1.Location = new Point(287, 103);
             Mainpanel1.Name = "Mainpanel1";
             Mainpanel1.ShadowDecoration.CustomizableEdges = customizableEdges27;
-            Mainpanel1.Size = new Size(1243, 795);
+            Mainpanel1.Size = new Size(1282, 795);
             Mainpanel1.TabIndex = 39;
             // 
             // marketRatePanel
@@ -669,7 +669,7 @@
             guna2GradientPanel1.Location = new Point(287, 2);
             guna2GradientPanel1.Name = "guna2GradientPanel1";
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges51;
-            guna2GradientPanel1.Size = new Size(1243, 95);
+            guna2GradientPanel1.Size = new Size(1282, 95);
             guna2GradientPanel1.TabIndex = 3;
             // 
             // panelpic
@@ -713,7 +713,7 @@
             guna2ControlBox2.CustomizableEdges = customizableEdges45;
             guna2ControlBox2.FillColor = Color.Transparent;
             guna2ControlBox2.IconColor = Color.White;
-            guna2ControlBox2.Location = new Point(1194, 8);
+            guna2ControlBox2.Location = new Point(1233, 8);
             guna2ControlBox2.Name = "guna2ControlBox2";
             guna2ControlBox2.ShadowDecoration.CustomizableEdges = customizableEdges46;
             guna2ControlBox2.Size = new Size(39, 36);
@@ -726,7 +726,7 @@
             guna2ControlBox3.CustomizableEdges = customizableEdges47;
             guna2ControlBox3.FillColor = Color.Transparent;
             guna2ControlBox3.IconColor = Color.White;
-            guna2ControlBox3.Location = new Point(1156, 7);
+            guna2ControlBox3.Location = new Point(1195, 7);
             guna2ControlBox3.Name = "guna2ControlBox3";
             guna2ControlBox3.ShadowDecoration.CustomizableEdges = customizableEdges48;
             guna2ControlBox3.Size = new Size(42, 36);
