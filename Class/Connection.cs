@@ -14,9 +14,9 @@ namespace WebSocketStreamingWithUI.Class
         public Connection()
         {
             string server = "localhost";
-            string database = "trydb";
-            string uid = "root";
-            string password = "";
+            string database = "cryptodb";
+            string uid = "joed";
+            string password = "admin1234";
             _connectionString = $"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};";
         }
 
