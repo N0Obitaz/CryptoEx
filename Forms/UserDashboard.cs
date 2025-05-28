@@ -10,6 +10,7 @@ using WebSocketStreamingWithUI.TestWebSocket;
 using MySqlX.XDevAPI;
 using WebSocketStreamingWithUI.Class;
 using System.Xml;
+using System.Globalization;
 using System.Windows.Forms;
 namespace WebSocketStreamingWithUI
 
@@ -19,8 +20,10 @@ namespace WebSocketStreamingWithUI
     {
         HttpClientPHP _client = new HttpClientPHP();
         Userconnection user = new Userconnection();
+        public string availableBalance = "";
+        CultureInfo philippineCulture = new CultureInfo("en-PH");
 
-
+        
         private string fullname;
         private decimal amount;
         public UserDashboard()
@@ -84,7 +87,10 @@ namespace WebSocketStreamingWithUI
             Userconnection users = new Userconnection();
             Image profileimage = users.GetProfile(user.Username);
             Namelabel.Text = user.Username;
-            balancelabel.Text = user.Balance.ToString("C");
+            balancelabel.Text = user.Balance.ToString("C", philippineCulture);
+
+            
+
 
             if (profilepic != null)
             {
@@ -119,6 +125,11 @@ namespace WebSocketStreamingWithUI
         private void walletButton_Click(object sender, EventArgs e)
         {
             UC_Wallet wc = new UC_Wallet();
+            if (availableBalance == "")
+            {
+                wc.SetBalance(balancelabel);
+            }
+
             AddUserControl(wc, Mainpanel1);
             Panelabel.Text = "Wallet";
             panelpic.Image = Properties.Resources.wallet;
@@ -174,6 +185,11 @@ namespace WebSocketStreamingWithUI
         }
 
         private void UserDashboard_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void balancelabel_Click(object sender, EventArgs e)
         {
 
         }
