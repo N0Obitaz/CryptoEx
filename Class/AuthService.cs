@@ -35,7 +35,7 @@ namespace WebSocketStreamingWithUI.Class
         }
         public bool Register(Users user)
         {
-            return conn.InsertData(user.Username, user.Firstname,user.Lastname, user.Email, user.Password);
+            return conn.InsertData(user.Username, user.Firstname,user.Lastname, user.Email, user.Password, user.Role);
         }
     }
 }

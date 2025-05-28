@@ -31,7 +31,7 @@ namespace WebSocketStreamingWithUI
 
             if (Verify.VerifyOtp(userEmail, otpcode))
             {
-                MessageBox.Show("OTP verified successfully!");
+                MessageBox.Show("Login Successful");
 
                 Connection db = new Connection();
                 var (fullname, balance, role) = db.GetUserInfo(userEmail);
@@ -46,6 +46,8 @@ namespace WebSocketStreamingWithUI
 
                     UserDashboard dashboard = new UserDashboard();
                     dashboard.Show();
+        
+                    
                 }
 
                 this.Hide();
@@ -72,52 +74,19 @@ namespace WebSocketStreamingWithUI
             timer1.Start();
         }
 
-        private void guna2Button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2GradientPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void guna2TextBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2TextBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2HtmlLabel2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2HtmlLabel3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void otp_Load(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private System.Windows.Forms.Timer timer1;
-        private int timeLeft = 60;  // 60 seconds countdown
+        private int timeLeft = 60;  
 
         public void SetupTimer()
         {
             timer1 = new System.Windows.Forms.Timer();
-            timer1.Interval = 1000; // 1 second
+            timer1.Interval = 1000; 
             timer1.Tick += timer1_Tick;
-            timeLeft = 60;  // reset to 60 seconds
+            timeLeft = 60;  
 
-            // Assuming you have a Label named labelTimer
+           
             Timerlabel.Text = "01:00";
 
             timer1.Start();
@@ -129,14 +98,14 @@ namespace WebSocketStreamingWithUI
             if (timeLeft > 0)
             {
                 timeLeft--;
-                // Format mm:ss and display in label
+               
                 Timerlabel.Text = TimeSpan.FromSeconds(timeLeft).ToString(@"mm\:ss");
             }
             else
             {
                 timer1.Stop();
                 Timerlabel.Text = "Time's up!";
-                // Other code when timer ends
+               
             }
         }
 

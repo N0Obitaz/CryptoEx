@@ -31,7 +31,6 @@ namespace WebSocketStreamingWithUI.Class
 
         public string Role { get; set; }
 
-        // Constructor for login usage (email or username)
 
         public Users(string emailorusername, string password)
         {
@@ -49,15 +48,15 @@ namespace WebSocketStreamingWithUI.Class
         }
 
         // Full constructor including balance
-        public Users(string firstname, string lastname, string username, string email, string password, string cpass, decimal balance = 0)
+        public Users(string firstname, string lastname, string username, string email, string password, string cpass, decimal balance = 0, string role = "User")
         {
             Firstname = firstname;
             Lastname = lastname;
             Username = username;
             Email = email;
             Password = password;
- 
-            Balance = balance;  // set through property
+            Balance = balance;
+            Role = role;
         }
 
         

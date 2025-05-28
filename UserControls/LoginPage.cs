@@ -81,8 +81,6 @@ namespace WebSocketStreamingWithUI
                 }
                 Properties.Settings.Default.Save();
 
-                MessageBox.Show("Login Successful");
-                
                 Session.LoggedInUserEmailOrUsername = input;
 
                 Verify.SendOtp(loginresult.Email);

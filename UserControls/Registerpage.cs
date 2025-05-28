@@ -45,12 +45,13 @@ namespace WebSocketStreamingWithUI
             string username = usernametbox.Text;
             string pass = passtbox.Text;
             string cpass = cpasstbox.Text;
+            string role = ck.SelectedItem?.ToString() ?? "User";
             string hashpass = Passwordhash.HashPassword(pass);
-            
 
 
 
-            Users NewUser = new Users(fname, lname, username, email, hashpass, cpass);
+
+            Users NewUser = new Users(fname, lname, username, email, hashpass, cpass, 0, role);
 
             if (!NewUser.Isvalidforregister(cpass, checkbox))
             {
@@ -71,11 +72,6 @@ namespace WebSocketStreamingWithUI
             }
         }
 
-        private void guna2PictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
 
         private void pictogglepass_Click(object sender, EventArgs e)
@@ -86,11 +82,6 @@ namespace WebSocketStreamingWithUI
         private void pictogglecpass_Click(object sender, EventArgs e)
         {
             Passwordhash.TogglePasswordVisibility(cpasstbox, pictogglecpass, ref iscpassvisible);
-        }
-
-        private void Registerpage_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

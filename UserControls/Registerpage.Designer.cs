@@ -53,6 +53,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             linkLabel2 = new LinkLabel();
             guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             linkLabel1 = new LinkLabel();
@@ -72,6 +74,7 @@
             cpasstbox = new Guna.UI2.WinForms.Guna2TextBox();
             usernametbox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            ck = new Guna.UI2.WinForms.Guna2ComboBox();
             guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictogglepass).BeginInit();
             guna2Panel1.SuspendLayout();
@@ -83,7 +86,7 @@
             linkLabel2.AutoSize = true;
             linkLabel2.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             linkLabel2.LinkColor = Color.White;
-            linkLabel2.Location = new Point(288, 609);
+            linkLabel2.Location = new Point(284, 627);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(69, 25);
             linkLabel2.TabIndex = 25;
@@ -96,7 +99,7 @@
             guna2HtmlLabel5.BackColor = Color.Transparent;
             guna2HtmlLabel5.Font = new Font("Segoe UI Emoji", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2HtmlLabel5.ForeColor = Color.White;
-            guna2HtmlLabel5.Location = new Point(234, 584);
+            guna2HtmlLabel5.Location = new Point(234, 599);
             guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             guna2HtmlLabel5.Size = new Size(172, 22);
             guna2HtmlLabel5.TabIndex = 24;
@@ -106,7 +109,7 @@
             // 
             linkLabel1.AutoSize = true;
             linkLabel1.LinkColor = Color.MediumAquamarine;
-            linkLabel1.Location = new Point(185, 471);
+            linkLabel1.Location = new Point(185, 491);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(146, 20);
             linkLabel1.TabIndex = 23;
@@ -121,7 +124,7 @@
             checkbox.CheckedState.BorderThickness = 0;
             checkbox.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             checkbox.ForeColor = Color.White;
-            checkbox.Location = new Point(64, 471);
+            checkbox.Location = new Point(64, 488);
             checkbox.Name = "checkbox";
             checkbox.Size = new Size(120, 24);
             checkbox.TabIndex = 22;
@@ -144,7 +147,7 @@
             guna2Button2.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button2.ForeColor = Color.White;
             guna2Button2.Image = Properties.Resources.download_removebg_preview;
-            guna2Button2.Location = new Point(78, 584);
+            guna2Button2.Location = new Point(78, 592);
             guna2Button2.Name = "guna2Button2";
             guna2Button2.PressedColor = Color.Transparent;
             guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -174,7 +177,7 @@
             guna2Button1.FillColor = Color.Teal;
             guna2Button1.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(48, 501);
+            guna2Button1.Location = new Point(48, 518);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2Button1.Size = new Size(418, 72);
@@ -424,11 +427,31 @@
             guna2HtmlLabel2.Text = "Register to manage your assets and stay updated.\n\n";
             guna2HtmlLabel2.TextAlignment = ContentAlignment.TopCenter;
             // 
+            // ck
+            // 
+            ck.BackColor = Color.Transparent;
+            ck.BorderRadius = 10;
+            ck.CustomizableEdges = customizableEdges25;
+            ck.DrawMode = DrawMode.OwnerDrawFixed;
+            ck.DropDownStyle = ComboBoxStyle.DropDownList;
+            ck.FocusedColor = Color.FromArgb(94, 148, 255);
+            ck.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            ck.Font = new Font("Segoe UI", 10F);
+            ck.ForeColor = Color.FromArgb(68, 88, 112);
+            ck.ItemHeight = 30;
+            ck.Items.AddRange(new object[] { "user", "admin" });
+            ck.Location = new Point(345, 476);
+            ck.Name = "ck";
+            ck.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            ck.Size = new Size(118, 36);
+            ck.TabIndex = 34;
+            // 
             // Registerpage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(ck);
             Controls.Add(guna2HtmlLabel2);
             Controls.Add(usernametbox);
             Controls.Add(guna2Panel1);
@@ -446,7 +469,6 @@
             Controls.Add(guna2HtmlLabel1);
             Name = "Registerpage";
             Size = new Size(503, 669);
-            Load += Registerpage_Load;
             guna2Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictogglepass).EndInit();
             guna2Panel1.ResumeLayout(false);
@@ -476,5 +498,6 @@
         private Guna.UI2.WinForms.Guna2PictureBox pictogglecpass;
         private Guna.UI2.WinForms.Guna2TextBox usernametbox;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private Guna.UI2.WinForms.Guna2ComboBox ck;
     }
 }

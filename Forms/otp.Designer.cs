@@ -121,7 +121,7 @@
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges16;
             guna2GradientPanel1.Size = new Size(402, 80);
             guna2GradientPanel1.TabIndex = 2;
-            guna2GradientPanel1.Paint += guna2GradientPanel1_Paint;
+
             // 
             // otptbox5
             // 
@@ -172,7 +172,7 @@
             otptbox4.Size = new Size(51, 53);
             otptbox4.TabIndex = 3;
             otptbox4.TextAlign = HorizontalAlignment.Center;
-            otptbox4.TextChanged += guna2TextBox4_TextChanged;
+  
             // 
             // otptbox2
             // 
@@ -198,7 +198,7 @@
             otptbox2.Size = new Size(51, 53);
             otptbox2.TabIndex = 1;
             otptbox2.TextAlign = HorizontalAlignment.Center;
-            otptbox2.TextChanged += guna2TextBox3_TextChanged;
+    
             // 
             // otptbox3
             // 
@@ -254,7 +254,7 @@
             guna2HtmlLabel2.Size = new Size(97, 19);
             guna2HtmlLabel2.TabIndex = 5;
             guna2HtmlLabel2.Text = "Remaining time:";
-            guna2HtmlLabel2.Click += guna2HtmlLabel2_Click;
+
             // 
             // guna2HtmlLabel3
             // 
@@ -266,7 +266,7 @@
             guna2HtmlLabel3.Size = new Size(117, 19);
             guna2HtmlLabel3.TabIndex = 6;
             guna2HtmlLabel3.Text = "Didn't get the code: ";
-            guna2HtmlLabel3.Click += guna2HtmlLabel3_Click;
+   
             // 
             // Timerlabel
             // 
@@ -361,7 +361,7 @@
             Name = "otp";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "otp";
-            Load += otp_Load;
+   
             guna2GradientPanel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

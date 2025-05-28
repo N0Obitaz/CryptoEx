@@ -41,7 +41,7 @@
             guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             linkLabel1 = new LinkLabel();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            guna2TextBox3 = new Guna.UI2.WinForms.Guna2TextBox();
+            cnewpass = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2RadioButton5 = new Guna.UI2.WinForms.Guna2RadioButton();
             guna2RadioButton4 = new Guna.UI2.WinForms.Guna2RadioButton();
@@ -49,9 +49,9 @@
             guna2RadioButton2 = new Guna.UI2.WinForms.Guna2RadioButton();
             guna2RadioButton1 = new Guna.UI2.WinForms.Guna2RadioButton();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
+            newpass = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            old = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2GradientPanel1.SuspendLayout();
             SuspendLayout();
@@ -60,7 +60,7 @@
             // 
             guna2GradientPanel1.Controls.Add(linkLabel1);
             guna2GradientPanel1.Controls.Add(guna2Button1);
-            guna2GradientPanel1.Controls.Add(guna2TextBox3);
+            guna2GradientPanel1.Controls.Add(cnewpass);
             guna2GradientPanel1.Controls.Add(guna2HtmlLabel4);
             guna2GradientPanel1.Controls.Add(guna2RadioButton5);
             guna2GradientPanel1.Controls.Add(guna2RadioButton4);
@@ -68,9 +68,9 @@
             guna2GradientPanel1.Controls.Add(guna2RadioButton2);
             guna2GradientPanel1.Controls.Add(guna2RadioButton1);
             guna2GradientPanel1.Controls.Add(guna2HtmlLabel3);
-            guna2GradientPanel1.Controls.Add(guna2TextBox2);
+            guna2GradientPanel1.Controls.Add(newpass);
             guna2GradientPanel1.Controls.Add(guna2HtmlLabel2);
-            guna2GradientPanel1.Controls.Add(guna2TextBox1);
+            guna2GradientPanel1.Controls.Add(old);
             guna2GradientPanel1.Controls.Add(guna2HtmlLabel1);
             guna2GradientPanel1.CustomizableEdges = customizableEdges9;
             guna2GradientPanel1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -109,28 +109,29 @@
             guna2Button1.Size = new Size(386, 56);
             guna2Button1.TabIndex = 13;
             guna2Button1.Text = "Change Password";
+            guna2Button1.Click += guna2Button1_Click;
             // 
-            // guna2TextBox3
+            // cnewpass
             // 
-            guna2TextBox3.BorderRadius = 20;
-            guna2TextBox3.CustomizableEdges = customizableEdges3;
-            guna2TextBox3.DefaultText = "";
-            guna2TextBox3.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox3.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox3.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox3.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox3.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox3.Font = new Font("Segoe UI", 9F);
-            guna2TextBox3.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox3.Location = new Point(21, 488);
-            guna2TextBox3.Margin = new Padding(3, 4, 3, 4);
-            guna2TextBox3.Name = "guna2TextBox3";
-            guna2TextBox3.PlaceholderForeColor = Color.Black;
-            guna2TextBox3.PlaceholderText = "Confirm Password";
-            guna2TextBox3.SelectedText = "";
-            guna2TextBox3.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2TextBox3.Size = new Size(386, 60);
-            guna2TextBox3.TabIndex = 12;
+            cnewpass.BorderRadius = 20;
+            cnewpass.CustomizableEdges = customizableEdges3;
+            cnewpass.DefaultText = "";
+            cnewpass.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            cnewpass.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            cnewpass.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            cnewpass.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            cnewpass.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cnewpass.Font = new Font("Segoe UI", 9F);
+            cnewpass.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            cnewpass.Location = new Point(21, 488);
+            cnewpass.Margin = new Padding(3, 4, 3, 4);
+            cnewpass.Name = "cnewpass";
+            cnewpass.PlaceholderForeColor = Color.Black;
+            cnewpass.PlaceholderText = "Confirm Password";
+            cnewpass.SelectedText = "";
+            cnewpass.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            cnewpass.Size = new Size(386, 60);
+            cnewpass.TabIndex = 12;
             // 
             // guna2HtmlLabel4
             // 
@@ -254,28 +255,28 @@
             guna2HtmlLabel3.Text = "Please add all necessary character to create safe password";
             guna2HtmlLabel3.Click += guna2HtmlLabel3_Click_1;
             // 
-            // guna2TextBox2
+            // newpass
             // 
-            guna2TextBox2.BorderRadius = 20;
-            guna2TextBox2.CustomizableEdges = customizableEdges5;
-            guna2TextBox2.DefaultText = "";
-            guna2TextBox2.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox2.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox2.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox2.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox2.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox2.Font = new Font("Segoe UI", 9F);
-            guna2TextBox2.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox2.Location = new Point(21, 166);
-            guna2TextBox2.Margin = new Padding(3, 4, 3, 4);
-            guna2TextBox2.Name = "guna2TextBox2";
-            guna2TextBox2.PlaceholderForeColor = Color.Black;
-            guna2TextBox2.PlaceholderText = "Enter New Password";
-            guna2TextBox2.SelectedText = "";
-            guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2TextBox2.Size = new Size(386, 60);
-            guna2TextBox2.TabIndex = 3;
-            guna2TextBox2.TextChanged += guna2TextBox2_TextChanged;
+            newpass.BorderRadius = 20;
+            newpass.CustomizableEdges = customizableEdges5;
+            newpass.DefaultText = "";
+            newpass.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            newpass.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            newpass.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            newpass.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            newpass.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            newpass.Font = new Font("Segoe UI", 9F);
+            newpass.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            newpass.Location = new Point(21, 166);
+            newpass.Margin = new Padding(3, 4, 3, 4);
+            newpass.Name = "newpass";
+            newpass.PlaceholderForeColor = Color.Black;
+            newpass.PlaceholderText = "Enter New Password";
+            newpass.SelectedText = "";
+            newpass.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            newpass.Size = new Size(386, 60);
+            newpass.TabIndex = 3;
+            newpass.TextChanged += guna2TextBox2_TextChanged;
             // 
             // guna2HtmlLabel2
             // 
@@ -289,27 +290,27 @@
             guna2HtmlLabel2.Text = "New Password";
             guna2HtmlLabel2.Click += guna2HtmlLabel2_Click;
             // 
-            // guna2TextBox1
+            // old
             // 
-            guna2TextBox1.BorderRadius = 20;
-            guna2TextBox1.CustomizableEdges = customizableEdges7;
-            guna2TextBox1.DefaultText = "";
-            guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Font = new Font("Segoe UI", 9F);
-            guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Location = new Point(21, 58);
-            guna2TextBox1.Margin = new Padding(3, 4, 3, 4);
-            guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PlaceholderForeColor = Color.Black;
-            guna2TextBox1.PlaceholderText = "Enter Old Password";
-            guna2TextBox1.SelectedText = "";
-            guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2TextBox1.Size = new Size(386, 60);
-            guna2TextBox1.TabIndex = 1;
+            old.BorderRadius = 20;
+            old.CustomizableEdges = customizableEdges7;
+            old.DefaultText = "";
+            old.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            old.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            old.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            old.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            old.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            old.Font = new Font("Segoe UI", 9F);
+            old.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            old.Location = new Point(21, 58);
+            old.Margin = new Padding(3, 4, 3, 4);
+            old.Name = "old";
+            old.PlaceholderForeColor = Color.Black;
+            old.PlaceholderText = "Enter Old Password";
+            old.SelectedText = "";
+            old.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            old.Size = new Size(386, 60);
+            old.TabIndex = 1;
             // 
             // guna2HtmlLabel1
             // 
@@ -340,15 +341,15 @@
 
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private Guna.UI2.WinForms.Guna2TextBox old;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox2;
+        private Guna.UI2.WinForms.Guna2TextBox newpass;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2RadioButton guna2RadioButton4;
         private Guna.UI2.WinForms.Guna2RadioButton guna2RadioButton3;
         private Guna.UI2.WinForms.Guna2RadioButton guna2RadioButton2;
         private Guna.UI2.WinForms.Guna2RadioButton guna2RadioButton1;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox3;
+        private Guna.UI2.WinForms.Guna2TextBox cnewpass;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2RadioButton guna2RadioButton5;
         private LinkLabel linkLabel1;

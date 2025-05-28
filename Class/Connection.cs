@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using MySql.Data.MySqlClient;
@@ -23,9 +24,9 @@ namespace WebSocketStreamingWithUI.Class
         public string GetConnectionString() => _connectionString;
 
         //Public method to insert full user registration
-        public bool InsertData(string username, string fname, string lname, string email, string password)
+        public bool InsertData(string username, string fname, string lname, string email, string password, string role)
         {
-            string query = "INSERT INTO users (UserName, Firstname, Lastname ,Email, Password, balance, Status) VALUES (@Username, @Firstname, @Lastname, @Email, @Password, @Balance, @Status)";
+            string query = "INSERT INTO users (UserName, Firstname, Lastname ,Email, Password, balance, Status, Role) VALUES (@Username, @Firstname, @Lastname, @Email, @Password, @Balance, @Status, @Role)";
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@Username", username),
@@ -35,7 +36,9 @@ namespace WebSocketStreamingWithUI.Class
                 new MySqlParameter("@Password", password),
                 new MySqlParameter("@Balance", 1000),
                 new MySqlParameter("@Status", "Active"),
-               
+                new MySqlParameter("@Role", role),
+
+
             };
 
             return ExecuteNonQuery(query, parameters);
@@ -244,6 +247,38 @@ namespace WebSocketStreamingWithUI.Class
                 return null;
             }
         }
+        public bool UpdatePassword(string emailOrUsername, string oldPassword, string newPassword)
+        {
+            string query = "SELECT password FROM users WHERE email = @identifier OR username = @identifier";
+
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@identifier", emailOrUsername);
+                string currentHashedPassword = cmd.ExecuteScalar()?.ToString();
+
+                if (currentHashedPassword == null)
+                    return false; 
+
+                if (currentHashedPassword != Passwordhash.HashPassword(oldPassword))
+                    return false; 
+
+                
+                string newHashedPassword = Passwordhash.HashPassword(newPassword);
+
+               
+                string updateQuery = "UPDATE users SET password = @newpass WHERE email = @identifier OR username = @identifier";
+                using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn))
+                {
+                    updateCmd.Parameters.AddWithValue("@newpass", newHashedPassword);
+                    updateCmd.Parameters.AddWithValue("@identifier", emailOrUsername);
+                    int rowsAffected = updateCmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+        }
+
 
     }
 
