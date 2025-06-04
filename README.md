@@ -1,5 +1,12 @@
 # WebSocketStreamingWithUI
 
-This repository is a final project for 4 subjects. 
-What it does is that it fetches real-time exchange for cryptocurrencies via Websocket Streaming
+Final Project for 4 Subjects
+Features: 
+Real-time Price Fetching on Binance via Websocket
+Buy&Sell Cryptocurrencies
+Exchange Cryptocurrencies
+Withdraw & Deposit
+Add Favorite Currencies
+
+Account Management
 
